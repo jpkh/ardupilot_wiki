@@ -6,8 +6,7 @@ Plane Home
 
 .. tip::
 
-   The ArduPilot Developer Ecosystem is Evolving! 
-   `Find out more here … <http://diydrones.com/profiles/blogs/a-new-chapter-in-ardupilot-development>`__
+   Keep up with the latest ArduPilot related blogs on `ArduPilot.org! <http://ardupilot.org/>`__
 
 .. image:: /images/home_plane.jpg
     :target: _images/home_plane.jpg
@@ -15,7 +14,9 @@ Plane Home
 --------------
 
 The free Plane firmware running on a compatible controller board gives
-any fixed-wing aircraft full autonomous capability.
+any fixed-wing aircraft full autonomous capability. VTOL fixed-wing aircraft that 
+hover and cruise in different configurations 
+are also included under the arduplane firmware.
 
 Plane provides advanced functions such as support for hundreds of
 three-dimensional waypoints, automatic take-off and landing as well as
@@ -30,25 +31,27 @@ research use.
 .. note::
 
     This is the platform that won the prestigious 
-    `Outback Challenge UAV competition <http://diydrones.com/profiles/blogs/canberrauav-arduplane-wins-outback-challenge>`__ 
-    in both 2012 and 2014 as well as the \
+    `Outback Challenge UAV competition <http://uavchallenge.org>`__ 
+    in `2012 <http://diydrones.com/profiles/blogs/canberrauav-outback-challenge-2012-debrief>`__,
+    `2014 <http://diydrones.com/profiles/blogs/canberrauav-outback-challenge-2014-debrief>`__
+    and `2016 <http://discuss.ardupilot.org/t/canberrauav-outback-challenge-2016-debrief>`__ as well as the \
     `2014 Sparkfun Autonomous Vehicle Competition <https://avc.sparkfun.com/2014/scores#Aerial:Fixed>`__.
 
 
 --------------
 
-System components:
-~~~~~~~~~~~~~~~~~~
+System components
+~~~~~~~~~~~~~~~~~
 
--  APM :ref:`autopilot <common-autopilots>` loaded with the latest
+-  :ref:`Autopilot <common-autopilots>` loaded with the latest
    version of `Plane firmware <http://firmware.ardupilot.org/>`__
 -  :ref:`Ground Control Station <common-choosing-a-ground-station>`
-   software gives you an easy point-and-click setup/configuration, along
-   with a full-featured ground control interface.
--  A suitable airframe for your mission.
+   with software that gives you an easy point-and-click setup/configuration, along
+   with a full-featured interface.
+-  A suitable airframe, transmitter, and receiver for your mission.
 -  Support tools and hardware for operating and maintaining your
    aircraft.
--  Plus many other useful options, such as :ref:`two-way telemetry radios <common-telemetry-landingpage>` which allow in-flight
+-  Many other useful options, such as :ref:`two-way telemetry radios <common-telemetry-landingpage>` which allow in-flight
    communication and control between the aircraft and your computer.
 
    
@@ -67,7 +70,8 @@ less power.
 There is a huge variety of fixed wing aircraft from electric battery
 powered small foam planes to large scale wooden replicas with multi
 liquid fuel engines and everything in between.  You are bound to find a
-plane that suits your flying style and needs.
+plane that suits your flying style and needs. With the advance of VTOL 
+fixed-wing aircraft, taking off and landing in tight spaces is now possible too.
 
 When precision missions are required, fixed-wing aircraft are at a
 disadvantage, as they must have air moving over their wings to generate
@@ -75,10 +79,10 @@ lift.  This means they must stay in forward motion, which means they
 can't hover in one spot the way a copter can and as a result cannot
 provide the same level of precise camera positioning.
 
-So for longer missions and more payload, a fixed-wing is your best
-choice. But for keeping a camera in one place, consider switching to a
-copter instead. The same APM autopilot can control that equally well by
-simply loading the :ref:`Copter <copter:home>` code.
+For longer missions and more payload, a fixed-wing is your best
+choice. But for keeping a camera in one place or moving slowly, consider 
+switching to a copter instead. The same APM autopilot can control that 
+equally well by simply loading the :ref:`Copter <copter:home>` code.
 
 
 --------------
@@ -86,14 +90,7 @@ simply loading the :ref:`Copter <copter:home>` code.
 Announcements
 -------------
 
--  Mar 26, 2016: `Plane 3.5.2 released <http://diydrones.com/profiles/blogs/apm-plane-3-5-2-released>`__.
--  Mar 21, 2016: `Plane 3.5.1 released <http://diydrones.com/profiles/blogs/apm-plane-3-5-1-released>`__.
--  Feb 02, 2016: `Plane 3.5.0 released <http://diydrones.com/profiles/blogs/apm-plane-3-5-0-released>`__.
--  Feb 02, 2016: `Plane 3.5.0 released <http://diydrones.com/profiles/blogs/apm-plane-3-5-0-released>`__.
--  Sept 24, 2015: `Plane 3.4.0 released <http://diydrones.com/profiles/blogs/apm-plane-3-4-0-released>`__.
--  May 20th 2015 - `Plane 3.3.0 released <http://ardupilot.com/forum/viewtopic.php?f=110&t=12425>`__
--  February 4th 2015 - `Plane 3.2.1 released <http://ardupilot.com/forum/viewtopic.php?f=107&t=11165>`__
--  November 25th 2014 - `Plane 3.2.0 released <http://ardupilot.com/forum/viewtopic.php?f=105&p=25742#p25742>`__
+Monitor https://discuss.ardupilot.org/c/arduplane for plane-related announcements.
 
 
 Full Table of Contents
@@ -109,7 +106,7 @@ Full Table of Contents
     Advanced Configuration <docs/common-advanced-configuration>
     QuadPlane Support <docs/quadplane-support>
     Mission Planning <docs/common-mission-planning>
-    Mission Analysis <docs/common-mission-analysis>
+    Logs <docs/common-logs>
     Optional Hardware <docs/common-optional-hardware>
     AutoPilot Hardware <docs/common-autopilots>
     Use-Cases and Applications <docs/common-use-cases-and-applications>

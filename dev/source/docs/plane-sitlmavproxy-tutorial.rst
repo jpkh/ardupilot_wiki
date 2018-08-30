@@ -6,7 +6,7 @@ Plane SITL/MAVProxy Tutorial
 
 This tutorial provides a basic walk-through of how to use
 :ref:`SITL <sitl-simulator-software-in-the-loop>` and
-`MAVProxy <http://tridge.github.io/MAVProxy/>`__ for *Plane* testing.
+`MAVProxy <http://ardupilot.github.io/MAVProxy/>`__ for *Plane* testing.
 
 Overview
 ========
@@ -23,7 +23,7 @@ The tutorial is complementary to the topic :ref:`Using SITL for ArduPilot Testin
    -  We use *MAVProxy* here, but you can :ref:`attach another ground station to SITL <using-sitl-for-ardupilot-testing_connecting_otheradditional_ground_stations>`
       if you prefer (similar instructions can be used in any GCS).
    -  This tutorial is for Plane - see
-      :ref:`Copter <copter-sitl-mavproxy-tutorial>` and Rover for similar
+      :ref:`Copter <copter-sitl-mavproxy-tutorial>` and :ref:`Rover <rover-sitlmavproxy-tutorial>` for similar
       tutorials on the other vehicles.
 
 Preconditions
@@ -36,14 +36,7 @@ using the ``--map`` and ``--console`` options:
 ::
 
     cd ~/ardupilot/ArduPlane
-    sim_vehicle.sh -j4 --map --console
-
-As part of the setup you should have loaded some standard/test
-parameters into the *MAVProxy Command Prompt*:
-
-::
-
-    param load ..\Tools\autotest\ArduPlane.parm
+    sim_vehicle.py --map --console
 
 The *MAVProxy Command Prompt*, *Console* and *Map* should be arranged
 conveniently so you can observe the status and send commands at the same
@@ -147,7 +140,7 @@ skip to the second waypoint using ``wp set n``, and *loop* the mission:
     wp set 2
     wp loop
 
-The `MAVProxy Waypoints documentation <http://dronecode.github.io/MAVProxy/html/uav_configuration/waypoints.html>`__
+The `MAVProxy Waypoints documentation <http://ardupilot.github.io/MAVProxy/html/uav_configuration/waypoints.html>`__
 lists the full set of available commands (or you can get them using
 auto-completion by typing "wp" on the command line).
 
@@ -322,5 +315,6 @@ and simulation using ``param show *``, and to set any parameter using:
 ``param set PARAM_NAME VALUE``. In addition to affecting the vehicle
 itself some parameters simulate the performance/failure of specific
 hardware components and the environment (for example, the wind). These
-can be listed using: `:ref:`param show sim*``. The topic `Using SITL for ArduPilot Testing <using-sitl-for-ardupilot-testing>` explains more about how
-you can test using SITL.
+can be listed using: ``param show sim*``. The topic :ref:`Using SITL
+for ArduPilot Testing <using-sitl-for-ardupilot-testing>` explains
+more about how you can test using SITL.

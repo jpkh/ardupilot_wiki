@@ -18,15 +18,11 @@ a few noticeable changes, not the least being a much better quality GPS
 
 .. warning::
 
-   Hacking a commercial product is risky! This software is still evolving,
-   and you may well find issues with the vehicle ranging from poor flight
-   to complete software freeze.
+   Hacking a commercial product is risky! This software is still evolving.
 
    That said, it is almost always possible to recover a drone and members
    of the ardupilot dev team can likely help people hacking or recovering
    their Bebop on `this google group <https://groups.google.com/forum/#!forum/bebop-ardupilot>`__.
-   Prepare to spend some time, patience and develop some hardware/software
-   skills. 
 
 Building ArduCopter for Bebop 2
 ===============================
@@ -35,6 +31,13 @@ The instructions are exactly the same as :ref:`the one used for Bebop <building-
 
 Uploading the Firmware
 ======================
+
+Mission Planner can now upload stable and custom versions of ardupilot to the Bebop2.
+
+..  youtube:: Ir0DyvlbTM0
+    :width: 100%
+
+Instructions below are for the manual method of uploading
 
 #. Install adb (android debug tool):
 
@@ -62,7 +65,8 @@ Uploading the Firmware
 
    ::
 
-       adb push arducopter /usr/bin/
+       adb mkdir /data/ftp/internal_000/APM
+       adb push arducopter /data/ftp/internal_000/APM/
 
 Starting ArduPilot
 ==================
@@ -71,12 +75,14 @@ Starting ArduPilot
 
    ::
 
+       adb shell
        kk
 
 #. Launch Copter:
 
    ::
 
+       cd /data/ftp/internal_000/APM
        arducopter -A udp:192.168.42.255:14550:bcast -B /dev/ttyPA1 -C udp:192.168.42.255:14551:bcast -l /data/ftp/internal_000/APM/logs -t /data/ftp/internal_000/APM/terrain
 
 Launch Copter at startup
@@ -93,7 +99,7 @@ Replace it with:
 
 ::
 
-    arducopter -A udp:192.168.42.255:14550:bcast -B /dev/ttyPA1 -C udp:192.168.42.255:14551:bcast -l /data/ftp/internal_000/APM/logs -t /data/ftp/internal_000/APM/terrain &
+    /data/ftp/internal_000/APM/arducopter -A udp:192.168.42.255:14550:bcast -B /dev/ttyPA1 -C udp:192.168.42.255:14551:bcast -l /data/ftp/internal_000/APM/logs -t /data/ftp/internal_000/APM/terrain &
 
 #. Enable adb server by pressing the power button 4 times.
 #. Connect to adb server as described before:

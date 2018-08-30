@@ -6,43 +6,45 @@ Welcome to the ArduPilot Development Site
 
 .. tip::
 
-    The ArduPilot Developer Ecosystem is Evolving! 
-    `Find out more here … <http://diydrones.com/profiles/blogs/a-new-chapter-in-ardupilot-development>`__
+    Keep up with the latest ArduPilot related blogs on `ArduPilot.org! <http://ardupilot.org/>`__
 
+:ref:`ArduPilot <ardupilot:home>` (sometimes known as APM) is the leading open source autopilot
+system supporting multi-copters, traditional helicopters, fixed wing aircraft, rovers, submarines and antenna trackers.
 
-:ref:`ArduPilot/APM <ardupilot:home>` is a open source autopilot
-system supporting multi-copters, traditional helicopters, fixed wing
-aircraft and rovers. The source code is developed by a `large community of enthusiasts <http://ardupilot.org>`__. 
-New developers are always welcome! The best way to start is by joining the 
-`Developer Team Forum <http://discuss.ardupilot.org/c/development-team>`__, which
-is open to all and chock-full of daily development goodness. Lurk for a
-while to get a feel for it, then participate!
+We pride ourselves on being **versatile** (rich in features with support for a large number of flight controllers, sensors and frame types), **trusted** (reliable and predictable) and **open** (both in terms of software and in our team's organisation and governance).
+
+The source code is developed by a group of voluteer and profession (i.e. paid) developers who, along with our users and `Partners <http://ardupilot.org/about/Partners>`__, make up the `ArduPilot Community <http://ardupilot.org>`__.
+
+Getting Involved
+================
+
+New developers are always welcome! The best way to start is to:
+
+- read this wiki to learn the basics of the software and :ref:`how the team works <how-the-team-works>`
+- get involved with the other developers by posting on the `Developer Team Forum <http://discuss.ardupilot.org/c/development-team>`__, chat to us on `Gitter <https://gitter.im/ArduPilot/ardupilot>`__ or join the :ref:`weekly development call <ardupilot-mumble-server>`.  You can also find a large number of users and some developers in the `ArduPilot facebook group <https://www.facebook.com/groups/ArduPilot.org>`__.  :ref:`All channels <common-contact-us>` are open to all.  Lurk for a while to get a feel for it, then participate!
+- find a specific bug you'd like to fix or a feature you'd like to add (check out the `good first issues <https://github.com/ArduPilot/ardupilot/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22>`__, recent `issues from Randy <https://github.com/ArduPilot/ardupilot/issues/created_by/rmackay9>`__ or our :ref:`roadmap <roadmap>` for ideas).
+- fix the bug in your own clone and :ref:`test <simulation-2>` that it's working
+- submit the change to the main code base :ref:`via a pull request <submitting-patches-back-to-master>`.
 
 Why the name?
 =============
 
-The 'Ardu' part of the ArduPilot name comes from Arduino. The original
-APM1 autopilot board was based around the
-`Arduino <http://www.arduino.cc/>`__ development environment. We've
-since outgrown the Arduino environment and no longer use the Arduino
-runtime libraries, although we do still support building the ArduPilot
-for the AVR based APM1 and APM2 boards using a slightly modified version
-of the Arduino integrated development environment. A timeline history of
-ArduPilot can be found :ref:`here <history-of-ardupilot>`.
+The 'Ardu' part of the ArduPilot name comes from `Arduino <http://www.arduino.cc/>`__. The original :ref:`APM1 and APM2 <common-apm25-and-26-overview>` boards were based around the
+Arduino development environment and AVR CPUs. We long ago outgrew these boards so we recommend users use one of the many more capable boards found on our :ref:`Autopilot Hardware Options page <common-autopilots>` including the Pixhawk.
 
+A timeline history of ArduPilot can be found :ref:`here <history-of-ardupilot>`.
 
 Supported boards
 ================
 
-:ref:`Supported AutoPilot Controller Boards <supported-autopilot-controller-boards>` provides an overview
-and key links for all the supported controller boards, including
-`Pixhawk <https://store.3drobotics.com/products/3dr-pixhawk>`__, `Arsov AUAV-X2 <http://www.auav.co/product-p/auavx2.htm>`__,
-`Erle-Brain <http://erlerobotics.com/docs/Intro.html>`__,
-`NAVIO+ <http://www.emlid.com/>`__ etc.
+The :ref:`Autopilot Hardware Options <common-autopilots>` page provides an overview for all the supported controller boards, including
+:ref:`Pixhawk <common-pixhawk-overview>`, :ref:`The Cube <common-thecube-overview>`,
+:ref:`Pixracer <common-pixracer-overview>`, :ref:`NAVIO2 <common-navio2-overview>`, :ref:`Bebop2 <copter:parrot-bebop-autopilot>`, etc.
 
-The ArduPilot/APM source code is written on top of
-the `AP-HAL <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL>`__
-hardware abstraction layer, making it possible to port the code to a
+To get going quickly please consider purchasing one of the :ref:`ready-to-fly vehicles <common-rtf>` including the very low-cost `SkyRocket/SkyViper drone <http://ardupilot.org/copter/docs/skyrocket.html>`__.
+
+The ArduPilot source code includes the `AP-HAL <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL>`__
+hardware abstraction layer, making it relatively easy to port the code to a
 wide range of autopilot boards. See this `blog post <http://diydrones.com/profiles/blogs/lots-of-changes-to-apm-development>`__
 for more information on the move to AP-HAL.
 
@@ -54,8 +56,6 @@ different projects which are listed below.  Those marked with an asterix
 (\*) are peer projects that have their own owners outside the core
 ArduPilot dev team.
 
--  DroneKit (`site <http://dronekit.io/>`__) - APM SDK for apps running
-   on vehicles, mobile devices and/or in the cloud.
 -  Plane (`wiki <http://plane.ardupilot.com/>`__,
    `code <https://github.com/ArduPilot/ardupilot>`__) - autopilot for
    planes
@@ -65,6 +65,8 @@ ArduPilot dev team.
 -  Rover (`wiki <http://rover.ardupilot.com/>`__,
    `code <https://github.com/ArduPilot/ardupilot>`__) - autopilot for
    ground vehicles
+-  Antenna Tracker (`wiki <http://ardupilot.org/antennatracker/index.html>`__,
+   `code <https://github.com/ArduPilot/ardupilot>`__) - for automatically aiming an antenna at a vehicle
 -  Mission Planner (`wiki <http://planner.ardupilot.com/>`__,
    `code <https://github.com/ArduPilot/MissionPlanner>`__) - the most
    commonly used ground station written in C# for windows but also runs
@@ -72,97 +74,48 @@ ArduPilot dev team.
 -  APM Planner 2.0 (`wiki <http://planner2.ardupilot.com/>`__,
    `code <https://github.com/ArduPilot/apm_planner>`__) is a ground
    station specifically for APM written in C++ using the Qt libraries
--  MAVProxy
-   (`wiki <http://www.qgroundcontrol.org/mavlink/mavproxy_startpage>`__)
-   - command line oriented and scriptable ground station (mostly used by
-   developers)
+-  `MAVProxy <http://ardupilot.github.io/MAVProxy/html/index.html>`__
+   - command line oriented and scriptable ground station (mostly used by developers)
+-  `DroneKit <http://dronekit.io/>`__ - APM SDK for apps running on vehicles, mobile devices and/or in the cloud.
 -  MinimOSD (`wiki <http://code.google.com/p/arducam-osd/wiki/minimosd>`__,
-   `code <http://code.google.com/p/arducam-osd/source/browse/#svn%2Ftrunk%2FArduCAM_OSD>`__)
+   `code <https://github.com/diydrones/MinimOSD-Extra>`__)
    - on-screen display of flight data
--  AndroPilot (`user
-   guide <https://github.com/geeksville/arduleader/wiki/Andropilot%20Users%20Guide>`__,
-   `code <https://github.com/geeksville/arduleader/tree/master/andropilot>`__,
-   `google play <https://play.google.com/store/apps/details?id=com.geeksville.andropilot&hl=en>`__)
+-  Tower (`wiki <https://github.com/DroidPlanner/Tower/wiki>`__,
+   `code <https://github.com/DroidPlanner/Tower>`__, `google play <https://play.google.com/store/apps/details?id=org.droidplanner.android>`__)
    - android ground station
--  DroneAPI
-   (`tutorial <http://dev.ardupilot.com/wiki/droneapi-tutorial/>`__,
-   `droneshare <http://www.droneshare.com>`__) - A developer API for
-   drone coprocessors and web applications.
--  DroidPlanner2
-   (`wiki <https://github.com/DroidPlanner/droidplanner/wiki>`__,
-   `code <https://github.com/DroidPlanner/droidplanner>`__, `google play <https://play.google.com/store/apps/details?id=org.droidplanner>`__)
-   - android ground station
--  `QGroundControl <http://www.qgroundcontrol.org/>`__ is an alternative
-   ground station written in C++ using the Qt libraries
--  PX4 (`wiki <http://pixhawk.org/firmware/start>`__) - designers of the
-   PX4FMU and owners of the underlying libraries upon which
-   Plane/Copter/Rover use when running on the PX4FMU
--  MAVLink (`wiki <http://www.qgroundcontrol.org/mavlink/start>`__) -
+-  `QGroundControl* <http://www.qgroundcontrol.org/>`__ is an alternative ground station written in C++ using the Qt libraries
+-  `PX4* <https://pixhawk.org/start>`__ - designers of the original PX4FMU hardware (from which the Pixhawk was developed) and owners of a relatively small number of drivers we use when running on a Pixhawk flight controller board
+-  `MAVLink* <http://www.qgroundcontrol.org/mavlink/start>`__ -
    the protocol for communication between the ground station, flight
    controller and some periphers including the OSD. A "Dummy's Guide" to
    working with MAVLink is
    `here <http://diydrones.com/group/arducopterusergroup/forum/topics/mavlink-tutorial-for-absolute-dummies-part-i?xg_source=activity>`__.
-
-Getting Started with ArduPilot Development
-==========================================
-
-The main entry points for developing flight controller/antenna tracker
-and companion computer code are listed in the sidebar.
-
-For topics related to Ground Control Station development see:
-
--  :ref:`Building Mission Planner (C#, Windows) <buildin-mission-planner>`
--  `Building APM Planner 2.0 (Qt, C++, Linux, Mac OSX, Windows) <https://github.com/ArduPilot/apm_planner/blob/master/README.md>`__
-
-RTF vehicles
-============
-
--  :ref:`3DR Solo <solo>`
+-  `UAVCAN* <http://uavcan.org>`__ -
+   Lightweight protocol designed for reliable communication in aerospace and robotic 
+   applications via CAN bus. Ardupilot is using the `Libuavcan <http://uavcan.org/Implementations/Libuavcan/>`__,
+   which is a portable, cross-platform library written in C++ with minimal dependency on the C++ standard library.
 
 How the team works
 ==================
 
--  :ref:`Bringing new members onto the team <guidelines-for-contributors-to-the-apm-codebase>`
--  The main developer discussion mailing list is
-   `drones-discuss <https://groups.google.com/forum/#!forum/drones-discuss>`__,
-   and is open to anyone to join
--  The development team is also using `gitter <https://gitter.im/>`__
-   for APM development discussions -
-   https://gitter.im/diydrones/ardupilot#
--  We have a :ref:`mumble server <ardupilot-mumble-server>`
-   for real-time voice discussions
--  Our annual developers conference is
-   `DroneCon <http://www.dronecon.org/>`__. See previous years speeches
-   and content `here <http://www.dronecon.org/>`__.
--  The source code for ArduPilot/APM is managed using git on
-   https://github.com/ArduPilot/ardupilot
--  Pre-compiled firmware for supported autopilot boards is available
-   from http://firmware.ardupilot.org
--  User support is available on the `APM forums <http://ardupilot.com/forum/viewforum.php?f=25>`__.
--  The ArduPilot/APM \ `automatic test system <http://autotest.ardupilot.org/>`__ shows the test status of
-   each commit. It's described
-   `here <http://diydrones.com/profiles/blog/show?id=705844%3ABlogPost%3A703309>`__.
+-  Our annual developers conference is held in Feb/March in Canberra Australia (`2018 annoucement <https://discuss.ardupilot.org/t/developer-meetup-in-canberra-february-2018>`__).
+-  The source code for ArduPilot/APM is managed using git on https://github.com/ArduPilot/ardupilot
+-  Pre-compiled firmware for supported autopilot boards is available from http://firmware.ardupilot.org
+-  User support is available on the `forums <http://discuss.ardupilot.org/>`__.
+-  The ArduPilot `automatic test system <http://autotest.ardupilot.org/>`__ shows the test status of each commit. It's described `here <http://diydrones.com/profiles/blog/show?id=705844%3ABlogPost%3A703309>`__.
 -  Bug tracking and open issues are tracked using the `github issues system <https://github.com/ArduPilot/ardupilot/issues>`__
--  Vehicle onboard parameter documentation for
-   :ref:`copter <copter:parameters>`, :ref:`plane <plane:parameters>` and
-   :ref:`rover <rover:parameters>` is auto-generated from the source code
--  :ref:`Release Procedures for Copter <release-procedures>`
--  :ref:`Current and Past Dev Team members <planner:common-team>`
+-  Vehicle onboard parameter documentation for :ref:`copter <copter:parameters>`, :ref:`plane <plane:parameters>` and :ref:`rover <rover:parameters>` is auto-generated from the source code
 
 Development languages and tools
 ===============================
 
 The main flight code for ArduPilot is written in C++. Support tools are
-written in a variety of languages, most commonly in python. Currently
-the main vehicle code is written as '.pde' files, which come from the
-Arduino build system. The pde files are preprocessed into a .cpp file as
-part of the build. The include statements in the pde files also provide
-implied build rules for what libraries to include and link to.
+written in a variety of languages, most commonly in python.
 
 License
 =======
 
-ArduPilot (including Copter, Plane, Rover and MissionPlanner) is
+ArduPilot (including Copter, Plane, Rover, Antenna Tracker and MissionPlanner) is
 released as free software under the `GNU General Public License <https://github.com/ArduPilot/ardupilot/blob/master/COPYING.txt>`__
 version 3 or later.  See :ref:`License overview wiki page here. <license-gplv3>`
 
@@ -170,11 +123,7 @@ Didn't find what you are looking for?
 =====================================
 
 If you think of something that should be added to this site, please
-`open an issue <https://github.com/ArduPilot/ardupilot/issues>`__ or
-post a comment on the
-`drones-discuss <https://groups.google.com/forum/#!forum/drones-discuss>`__
-mailing list.
-
+`open an issue for the wiki <https://github.com/ArduPilot/ardupilot_wiki/issues>`__.
 
 
 Full Table of Contents
@@ -183,22 +132,26 @@ Full Table of Contents
 .. toctree::
    :titlesonly:
    
-    Working with the ArduPilot Project Code <docs/where-to-get-the-code>
     License (GPLv3) <docs/license-gplv3>
-    Supported Controller Boards <docs/supported-autopilot-controller-boards>
-    Learning the ArduPilot Codebase <docs/learning-the-ardupilot-codebase>
-    Code Overview (Copter) <docs/apmcopter-code-overview>
+    Downloading the code / Using Git <docs/where-to-get-the-code>
     Building the code <docs/building-the-code>
-    Loading the code onto APM2.x <docs/load-the-code-onto-apm2x>
-    Code Editors & IDEs <docs/code-editing-tools-and-ides>
+    Editors & IDEs <docs/code-editing-tools-and-ides>
+    Learning the code <docs/learning-the-ardupilot-codebase>
     Simulation & Testing <docs/simulation-2>
     Debugging <docs/debugging>
-    Contributing <docs/contributing>
+    Contributing Code <docs/contributing>
     MAVLink Commands <docs/mavlink-commands>
-    Advanced Configuration Settings <docs/advanced-configuration-settings>
+    CAN and UAVCAN <docs/can-bus>
+    Companion Computers <docs/companion-computers>
+    ROS <docs/ros>
+    Porting to a new Flight Controller <docs/porting>
+    Pixhawk Advanced Hardware Info <docs/pixhawk-advanced-hardware-info>
     MAVProxy Developer GCS <docs/mavproxy-developer-gcs>
     RTF Vehicle Developer Information <docs/ready-to-fly-rtf-vehicle-developer-information>
-    Companion Computers <docs/companion-computers>
-    Mission Planner Terminal <docs/mission-planner-terminal>
+    How The Team Works <docs/how-the-team-works>
+    Events <docs/events>
+    Schools <docs/schools>
+    GSoC 2018 project ideas <docs/gsoc-ideas-list>
+    Wiki Editing Guide <docs/common-wiki_editing_guide>
     Appendix <docs/common-appendix>
     Full Table of Contents <docs/common-table-of-contents>

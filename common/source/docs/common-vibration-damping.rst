@@ -16,10 +16,10 @@ and isolating the Flight Control Boards.
 Overview
 ========
 
-The Pixhawk, APM2.x and PX4 Flight Control boards have accelerometers
+Flight Control boards have accelerometers
 built into the board that are sensitive to vibrations. ArduPilot (the
 firmware) combines the data from these accelerometers with barometer and
-GPS data to calculate an estimate of it’s position. With excessive
+GPS data to calculate an estimate of its position. With excessive
 vibrations, the estimate can be thrown off and lead to very bad
 performance in modes that rely on accurate positioning (e.g. on Copter:
 AltHold, Loiter, RTL, Guided, Position and AUTO flight modes).
@@ -57,10 +57,10 @@ flight control board is so small.
 The following sections describe a number of alternatives that have been
 tested and shown to perform better:
 
-3M foam sold by 3DRobotics
---------------------------
+3M foam
+-------
 
-This foam comes is sticky on both sides and comes pre-cut so that
+This `foam sold by mRobotics <https://store.mrobotics.io/product-p/mro-pxfoams-mr.htm>`__ comes is sticky on both sides and comes pre-cut so that
 individual cubes can be easily attached to each of the four corners of
 the flight controller as described on the :ref:`Mounting the Flight Controller wiki page <common-mounting-the-flight-controller>`.
 
@@ -106,12 +106,12 @@ Gel pads
    .. figure:: ../../../images/Flamewheel330PX4onZeal2.jpg
       :target: ../_images/Flamewheel330PX4onZeal2.jpg
 
-      FlameWheel F330 With PX4 Mounted on Intermediate platform
+      FlameWheel F330 With PX4FMU/PX4IO Mounted on Intermediate platform
 
    .. figure:: ../../../images/Flamewheel330PX4Hardtop.jpg
       :target: ../_images/Flamewheel330PX4Hardtop.jpg
 
-      FlameWheel F330 With PX4 on Zeal Pads with Protective Hard Top
+      FlameWheel F330 With PX4FMU/PX4IO on Zeal Pads with Protective Hard Top
 
    .. figure:: ../../../images/PX4F330accels_5_9_13.jpg
       :target: ../_images/PX4F330accels_5_9_13.jpg
@@ -258,7 +258,7 @@ An Excellent 3D Printed Anti-Vibration Platform
 -----------------------------------------------
 
 By \ `GuyMcCaldin <http://diydrones.com/profile/GuyMcCaldin>`__ (original
-Blog article: \ `3D Printed Anti Vibration Mount <http://diydrones.com/profiles/blogs/3d-printed-anti-vibration-mount>`__).
+Blog article: 3D Printed Anti Vibration Mount (no longer available)).
 
 .. image:: http://i.imgur.com/minON7K.jpg
     :target:  http://i.imgur.com/minON7K.jpg
@@ -343,6 +343,18 @@ options of your airframe, just let me know.
 
 The log file that was used to produce the results shown above can be
 downloaded from here: \ `Turnigy Talon 2min Loiter (default PIDs) <https://www.dropbox.com/s/qju3b33a82wbh3v/2013-10-03%2009-55%2010.log>`__
+
+3D Printed Anti-Vibration Platform for NAVIO2
+---------------------------------------------
+
+Anti-vibration for NAVIO2 can be easily 3D printed. It significantly simplifies mounting and eliminates vibrations. You can find STL files `here <https://docs.emlid.com/navio2/Navio-APM/hardware-setup/#anti-vibration-mount>`__.
+
+
+
+Anti-vibration with Navio2 mounted on frame:
+
+.. figure:: ../../../images/anti-vibration-mount.jpg
+   :target: ../_images/anti-vibration-mount.jpg
 
 Check frame motors, props and prop adapters
 ===========================================
@@ -479,7 +491,7 @@ Additional Vibration Reduction Considerations
    less than 2 ounces and this is a very small mass.
 #. Virtually all off the shelf solutions (either pad or stud type) are
    designed for an isolated mass that would weigh at least 5 to 10 times
-   what an APM or PX4 / IO board weighs for optimal effectiveness. This
+   what an APM2.x or PX4FMU/PX4IO board weighs for optimal effectiveness. This
    includes all pre-made Sorbothane, Alpha gel, EAR, memory foam or
    other silicone or urethane gel or foam mounts as well as Lord Micro
    mounts.

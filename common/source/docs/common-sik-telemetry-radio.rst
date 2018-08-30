@@ -5,7 +5,7 @@ SiK Telemetry Radio
 ===================
 
 A *SiK Telemetry Radio* is one of the easiest ways to setup a telemetry
-connection between your APM/Pixhawk and a ground station. This article
+connection between your Flight Controller and a ground station. This article
 provides a basic user guide for how to connect and configure your radio.
 
 .. figure:: ../../../images/3dr_radio_v2.jpg
@@ -23,11 +23,11 @@ provides a basic user guide for how to connect and configure your radio.
 Overview
 ========
 
-A `SiK Telemetry Radio <https://github.com/Dronecode/SiK>`__ is a small,
+A `SiK Telemetry Radio <https://github.com/ArduPilot/SiK>`__ is a small,
 light and inexpensive open source radio platform that typically allows
 ranges of better than 300m "out of the box" (the range can be extended
 to several kilometres with the use of a patch antenna on the ground).
-The radio uses `open source firmware <https://github.com/Dronecode/SiK>`__
+The radio uses `open source firmware <https://github.com/ArduPilot/SiK>`__
 which has been specially designed to work well with MAVLink packets and
 to be integrated with the Mission Planner, Copter, Rover and Plane.
 
@@ -35,21 +35,19 @@ The radios can be either 915Mhz or 433Mhz and you should purchase the
 model which is :ref:`appropriate for your country/region <common-telemetry-radio-regional-regulations>`.
 
 As the platform is open source, implementation can be purchased from
-many different sources, including:
+many different sources, including ArduPilot Partners:
 
--  `jD-SiK Telemetry Set <http://store.jdrones.com/jD_SiK_Radio_Telemetry_radio_p/rfsik20set.htm>`__ (jDrones)
--  `HKPilot Transceiver Telemetry Radio Set V2 (915Mhz) <http://www.hobbyking.com/hobbyking/store/__55560__HKPilot_Transceiver_Telemetry_Radio_Set_V2_915Mhz_.html>`__
-   (Hobby King)
--  [STRIKEOUT:3DR Telemetry Radio (version 2) (3DRobotics)] - 3DR has
-   stopped manufacturing this product.
+-  `jD-SiK Telemetry Set <http://store.jdrones.com/jD_SiK_Radio_Telemetry_radio_p/rfsik20set900.htm>`__ (jDrones)
+-  `mRo SiK Telemetry Radio <https://store.mrobotics.io/ProductDetails.asp?ProductCode=mRo-sikv2>`__ (mRobotics)
+-  `CUAV Transceiver Telemetry Radio Set (433Mhz) <https://store.cuav.net/index.php?id_product=34&id_product_attribute=0&rewrite=500mw-433mhz-3dr-wireless-tx-rx-dual-ttl-telemetry-for-mini-pixhawk-apm-pro-flight-control&controller=product&id_lang=3>`__ (CUAV)
+-  `VirtualRobotix Telemetry Set <http://www.virtualrobotix.it/index.php/en/shop/telemetria>`__ (VirtualRobotix)
 
 .. tip::
 
    If you're looking for an alternative, the 
    :ref:`RFD900 Radio Modem <common-rfd900>` is highly recommended by many community members
    (The SiK platform was based on the RFD900 and both platforms have
-   continued to evolve). It is available at a similar price point from
-   quality manufacturers and supports a significantly better range. 
+   continued to evolve). It provides a significantly better range. 
 
 Features
 ========
@@ -111,9 +109,8 @@ and ground stations.
 Connecting to Pixhawk
 ---------------------
 
-Use the `6 pin DF13 connector <http://www.unmannedtechshop.co.uk/df13-6-position-to-5-position-connector-15-cm/>`__
-that should have come with the radio to connect the radio to your
-Pixhawk's "Telem 1" ("Telem 2" or "Serial 4/5" can also be used but the
+Use the 6 pin DF13 connector that should have come with the radio to connect the
+radio to your Pixhawk's "Telem 1" ("Telem 2" or "Serial 4/5" can also be used but the
 default recommendation is "Telem1").
 
 .. image:: ../../../images/Telemetry_3DR_Radio_Pixhawk.jpg
@@ -122,9 +119,8 @@ default recommendation is "Telem1").
 Connecting to APM2.x
 --------------------
 
-Use the `6-to-5 pin DF13 <http://www.unmannedtechshop.co.uk/df13-6-position-to-5-position-connector-15-cm/>`__
-connector to connect the radio to your APM2's Telem port. Because of the
-limited number of serial ports on the APM2.x, the telemetry radio cannot
+Use the 6-to-5 pin DF13 connector to connect the radio to your APM2's Telem port
+Because of the limited number of serial ports on the APM2.x, the telemetry radio cannot
 be used while the board is also plugged in with the micro USB port.
 
 .. image:: ../../../images/Telemetry_3DR_Radio_APM2.jpg
@@ -203,7 +199,6 @@ Improving the range
 The range can be improved by:
 
 -  Using a small "patch antenna" on the ground like `this flat patch antenna <http://www.readymaderc.com/store/index.php?main_page=product_info&cPath=11_45_47&products_id=51>`__
-   or this `Yagi antenna <http://www.readymaderc.com/store/index.php?main_page=product_info&cPath=11_45_47&products_id=296>`__
    perhaps mounted on an :ref:`Antenna Tracker <antennatracker:home>`
 -  Replace at least one of the two radios with a higher powered
    :ref:`RFD900 <common-rfd900>`
@@ -239,5 +234,5 @@ settings, see
 ==========================
 
 The best place to get involved with the development or tuning of these
-radios is the `SiK Radios forum <http://ardupilot.com/forum/viewforum.php?f=22>`__. Join in on the
+radios is the `SiK Radios forum <http://discuss.ardupilot.org/c/hardware-discussion/radios-hardware>`__. Join in on the
 forum to help make these radios even better!

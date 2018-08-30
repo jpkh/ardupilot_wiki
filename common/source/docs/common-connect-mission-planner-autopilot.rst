@@ -30,13 +30,15 @@ IP connections etc.
 
 .. figure:: ../../../images/pixhawk_usb_connection.jpg
    :target: ../_images/pixhawk_usb_connection.jpg
+   :width: 450px
 
    Pixhawk USB Connection
 
 .. figure:: ../../../images/new-radio-laptop.jpg
    :target: ../_images/new-radio-laptop.jpg
+   :width: 450px
 
-   Connection using SiK Radio from 3DR
+   Connection using SiK Radio
 
 On *Mission Planner*, the connection and data rate are set up using the
 drop down boxes in the upper right portion of the screen.
@@ -48,7 +50,7 @@ Once you've attached the USB or Telemetry Radio, Windows will
 automatically assign your autopilot a COM port number, and that will
 show in the drop-down menu (the actual number does not matter). The
 appropriate data rate for the connection is also set (typically the USB
-connection data rate is 11520 and the radio connection rate is 57600).
+connection data rate is 115200 and the radio connection rate is 57600).
 
 Select the desired port and data rate and then press the **Connect**
 button to connect to the autopilot. After connecting **Mission Planner**
@@ -77,10 +79,9 @@ If Mission planner is unable to connect:
    blocking the IP traffic.
 
 You should also ensure that the autopilot controller board has
-appropriate ArduPilot firwmare installed and has booted correctly (on
-Pixhawk/PX4 there are useful :ref:`LEDs <common-leds-pixhawk>` and
-:ref:`Sounds <common-sounds-pixhawkpx4>` which can tell you the state of
-the autopilot).
+appropriate ArduPilot firmware installed and has booted correctly (on
+Pixhawk there are useful :ref:`LEDs <common-leds-pixhawk>` and
+:ref:`Sounds <common-sounds-pixhawkpx4>` which can tell you the state of the autopilot).
 
 Related topics
 ==============

@@ -5,7 +5,7 @@ Setting up SITL on Linux
 ========================
 
 This page describes how to setup the :ref:`SITL (Software In The Loop) <sitl-simulator-software-in-the-loop>` on Linux. The specific
-commands were tested on Ubuntu 12.10, 13.04 and 14.10.
+commands were tested on Ubuntu from 12.10 to 16.04.
 
 Overview
 ========
@@ -24,136 +24,69 @@ for a windows install.
 Install steps
 =============
 
-Please follow each of the steps below.
+Please follow each of the steps described below.
 
-Download ardupilot
-------------------
+There is also a linked video below showing how to do the setup.
 
-If you don't have a copy of the ardupilot git repository then open a
-terminal and run:
+.. warning::
 
-::
+    The video hasn't been updated according to the text. Please read the written instructions in case of error.
+    For example the video speak about ``sim_vehicle.sh`` where it is ``sim_vehicle.py`` now.
 
-    git clone git://github.com/ArduPilot/ardupilot.git
+.. youtube:: pJGFkZmGV6o
+    :width: 100%
 
-JSBSim (Plane only)
--------------------
-
-If you want to fly the fixed wing (Plane) simulator then you will need
-to use the JSBSim flight simulator. JSBSim is a sophisticated flight
-simulator that is used as the core flight dynamics system for several
-well known flight simulation systems.
-
-In the same directory (your home directory) run this commands:
-
-::
-
-    git clone git://github.com/tridge/jsbsim.git
-    sudo apt-get install libtool automake autoconf libexpat1-dev
-
-If you are getting an error message saying you need a newer version of
-JSBSim then you can update it like this:
-
-::
-
-    cd jsbsim
-    git pull
-    ./autogen.sh --enable-libraries
-    make
-
-Install some required packages
-------------------------------
-
-If you are on a debian based system (such as Ubuntu or Mint) then run
-this:
-
-::
-
-    sudo apt-get install python-matplotlib python-serial python-wxgtk2.8 python-lxml
-    sudo apt-get install python-scipy python-opencv ccache gawk git python-pip python-pexpect
-    sudo pip install pymavlink MAVProxy
-
-Or if you are on a RPM based system (such as Fedora) run this:
-
-::
-
-    yum install opencv-python wxPython python-pip pyserial scipy python-lxml python-matplotlib python-pexpect python-matplotlib-wx
-
-Add some directories to your search path
-----------------------------------------
-
-Add the following lines to the end of your ".bashrc" in your home
-directory (notice the . on the start of that filename. Also, this is a
-hidden file, so if you're using a file manager, make sure to turn on
-"show hidden files"). Note the order, it is important to have jsbsim/src
-before autotest in case you're running a virtual machine.
-
-::
-
-    export PATH=$PATH:$HOME/jsbsim/src
-    export PATH=$PATH:$HOME/ardupilot/Tools/autotest 
-    export PATH=/usr/lib/ccache:$PATH
-
-Then reload your PATH by using the "dot" command in a terminal
-
-::
-
-    . ~/.bashrc
+.. include:: building-setup-linux.rst
+    :start-after: Setup on Ubuntu
+    :end-before: Setup for other Distributions
 
 Start SITL simulator
 --------------------
 
 To start the simulator first change directory to the vehicle directory.
-For example, for the fixed-wing code change to **ardupilot/ArduPlane**.
+For example, for the multicopter code change to **ardupilot/ArduCopter**:
 
-Then start the simulator using **sim_vehicle.sh**. The first time you
+::
+
+   cd ardupilot/ArduCopter
+
+Then start the simulator using **sim_vehicle.py**. The first time you
 run it you should use the -w option to wipe the virtual EEPROM and load
 the right default parameters for your vehicle.
 
 ::
 
-    sim_vehicle.sh -w
+    sim_vehicle.py -w
 
 After the default parameters are loaded you can start the simulator
-normally:
+normally.  First kill the sim_vehicle.py you are running using Ctrl-C.  Then:
 
 ::
 
-    sim_vehicle.sh --console --map --aircraft test
+    sim_vehicle.py --console --map
 
 .. tip::
 
-   `sim_vehicle.sh <https://github.com/ArduPilot/ardupilot/blob/master/Tools/autotest/sim_vehicle.sh>`__
-   has many useful build options, ranging from setting the simulation speed
+   `sim_vehicle.py <https://github.com/ArduPilot/ardupilot/blob/master/Tools/autotest/sim_vehicle.py>`__
+   has many useful options, ranging from setting the simulation speed
    through to choosing the initial vehicle location. These can be listed by
    calling it with the ``-h`` flag (and some are demonstrated in :ref:`Using SITL for ArduPilot Testing <using-sitl-for-ardupilot-testing>`).
 
-Load a mission
---------------
+.. tip::
 
-Let's also load a test mission.  From within MAVProxy type:
+   If the map titles don't load, you can temporary change the map provider in the map window by clicking View/Service.
+   To keep the new map service between launch, add the following lines to the end of your ".bashrc" (change MicrosoftHyb by the provider you want):
 
-::
+   ::
 
-    wp load ../Tools/autotest/ArduPlane-Missions/CMAC-toff-loop.txt
+     export MAP_SERVICE="MicrosoftHyb"
 
-that is a mission which flies in a loop around my local flying field.
-Now let's takeoff!
-
-Run the command "arm throttle" followed by "mode auto"
-
-::
-
-    arm throttle
-    mode auto
-
-Your virtual aircraft should now takeoff.
 
 Learn MAVProxy
 --------------
 
 To get the most out of SITL you really need to learn to use MAVProxy.
-Have a read of the `MAVProxy documentation <http://tridge.github.io/MAVProxy/>`__. Enjoy flying!
+Have a read of the `MAVProxy documentation <http://ardupilot.github.io/MAVProxy/>`__. Enjoy flying!
 
 Updating MAVProxy and pymavlink
 -------------------------------
@@ -166,16 +99,40 @@ this command
 
     sudo pip install --upgrade pymavlink MAVProxy
 
-Using a different JSBSim model
-------------------------------
+Using JSBSim
+------------
 
-If using the JSBSim plane simulator you can specify a different JSBSim
-model than the default Rascal110 by specifying the model name using the
--f parameter to sim_vehicle.sh, like this:
+For ArduPlane you can choose several possible simulators. A popular
+choice is JSBSim, which you can enable with the -f jsbsim option to SITL.
+
+JSBSim is a sophisticated flight
+simulator that is used as the core flight dynamics system for several
+well known flight simulation systems.
+
+In the same directory (your home directory) run these commands:
 
 ::
 
-    sim_vehicle.sh -f jsbsim:MyModel --console --map
+    git clone git://github.com/tridge/jsbsim.git
+    sudo apt-get install libtool libtool-bin automake autoconf libexpat1-dev
+
+If you are getting an error message saying you need a newer version of
+JSBSim then you can update it like this:
+
+::
+
+    cd jsbsim
+    git pull
+    ./autogen.sh --enable-libraries
+    make
+
+If using the JSBSim plane simulator you can specify a different JSBSim
+model than the default Rascal110 by specifying the model name using the
+-f parameter to sim_vehicle.py, like this:
+
+::
+
+    sim_vehicle.py -f jsbsim:MyModel --console --map
 
 the model should be in the **Tools/autotest/aircraft/** directory.
 
@@ -226,7 +183,7 @@ The main steps (tested on Ubuntu Linux 14.04 LTS) are:
 
    ::
 
-       sim_vehicle.sh -j4 -L KSFO 
+       sim_vehicle.py -L KSFO
 
    .. note::
 

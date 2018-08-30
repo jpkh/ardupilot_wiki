@@ -1,8 +1,14 @@
 .. _tuning-steering-and-navigation-for-a-rover:
 
-==========================================
-Tuning steering and navigation for a Rover
-==========================================
+==============================================================
+Tuning Steering and navigation for a Rover (ver 3.1 and older)
+==============================================================
+
+.. note::
+
+   These instructions are relevant for Rover-3.1 and older.
+   For newer versions of the Rover firmware please refer to these :ref:`steering <rover-tuning-steering-rate>` and
+   :ref:`navigation tuning guides <rover-tuning-navigation>`.
 
 When setting up a Rover there are 6 key parameters you need to get
 right. This guide provides a set of steps to get those parameters right,
@@ -32,7 +38,7 @@ The key parameters
    AUTO.
 -  ``CRUISE_THROTTLE``: This sets the initial guess at what throttle is
    needed to achieve CRUISE_SPEED when driving straight ahead. This
-   needs to be right for the rover to achieve good speed control.
+   needs to be **RIGHT** for the rover to achieve good speed control.
 
 Step 1: Setting initial parameters
 ==================================
@@ -50,7 +56,7 @@ These are conservative values that should give you slow, gentle
 behaviour for most rovers.
 
 Step 2: Setting CRUISE_THROTTLE
-================================
+===============================
 
 We need to get ``CRUISE_THROTTLE`` right so we know what throttle level
 will give us a speed of 2 meters/second.
@@ -63,7 +69,7 @@ will give us a speed of 2 meters/second.
    2 meters/second
 
 Step 3: Setting the STEER2SRV_P
-================================
+===============================
 
 To set your STEER2SRV_P parameter you need to measure the diameter of
 the turning circle of your rover.
@@ -74,7 +80,7 @@ to measure the diameter of that circle and set STEER2SRV_P to that
 value in meters.
 
 Step 4: tuning TURN_MAX_G
-===========================
+=========================
 
 The ``TURN_MAX_G`` parameter can now be tuned so that your rover can
 drive more aggressively, without turning over.
@@ -85,7 +91,7 @@ drive more aggressively, without turning over.
    doesn't start to roll over and doesn't skid
 
 Step 5: tuning NAVL1_PERIOD
-============================
+===========================
 
 Now you can finally start tuning your steering in AUTO mode. To tune in
 AUTO you will need to create a mission for your rover to navigate. A

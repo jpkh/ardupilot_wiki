@@ -7,12 +7,6 @@ Using Linux Trace Toolkit ng (LTTng) to Create Realtime ArduPilot Traces
 This article explains how to use `LTTng <https://lttng.org>`__ for
 creating runtime traces for ArduPilot running on Linux boards (only).
 
-.. note::
-
-   This support in the master branch (Jan 2016) but is not yet in the
-   released vehicle branches (e.g. not in Copter 3.2, Plane 3.4 or Rover
-   2.5) 
-
 Overview
 ========
 
@@ -35,30 +29,21 @@ class, which handles 3 operations: ``Begin``, ``End``, ``Count``. You
 add tracing to your code by calling the performance utility methods in
 `Perf.cpp <https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_Linux/Perf.cpp>`__.
 
-.. note::
-
-   The only modules that currently include calls to the Perf API are
-   EKF and EKF2 but it is possible to use it to monitor other
-   modules.
-
 Monitoring APM with LTTng
 =========================
 
-In order to monitor APM with *LTTng*, the first thing to do is to enable
-support for *LTTng* in ArduPilot builds. Using the regular make build
-system, you do this by modifying `mk/board_native.mk line 30 <https://github.com/ArduPilot/ardupilot/blob/master/mk/board_native.mk#L30>`__:
-
-::
-
-    HAVE_LTTNG=1
-
-Then clean and rebuild ArduPilot.
+In order to monitor APM with *LTTng*, the first thing to do is to install LTTng
+on your board. The *LTTng* documentation explains how to install it on your Linux
+distribution `here <https://lttng.org/docs/#doc-installing-lttng>`__. If
+there is no official package for your Linux distribution, you can also
+build it from the sources as explained
+`here <http://lttng.org/download/#build-from-source>`__
 
 .. note::
 
-   You can't build statically with *LTTng* enabled because is calls
-   dlopen. On the bebop, I had to build the whole system with armhf
-   toolchain, which is not the one used by default
+   You can't build statically with *LTTng* enabled because it calls
+   dlopen. On bebop I had to build the whole system with armhf
+   toolchain, which is not the one used by default.
 
 Putting trace events inside the code
 ------------------------------------
@@ -81,18 +66,6 @@ Before calling these functions, ``my_perf`` needs to be allocated
     AP_HAL::Util::perf_counter_t my_perf = hal.util->perf_alloc(AP_HAL::Util::PC_ELAPSED, "my_perf");
 
 An example of adding multiple perf events can be seen in `this patch <https://github.com/jberaud/ardupilot/commit/4bd763d58a6b529630629ad581de198f9d6e6731>`__.
-
-Installing LTTng on your board
-------------------------------
-
-In order to use *LTTng*, you will have to install *LTTng* tools on your
-board.
-
-The *LTTng* documentation explains how to install it on your Linux
-distribution `here <https://lttng.org/docs/#doc-installing-lttng>`__. If
-there is no official package for your Linux distribution, you can also
-build it from the sources as explained
-`here <http://lttng.org/download/#build-from-source>`__
 
 Trace capture
 -------------

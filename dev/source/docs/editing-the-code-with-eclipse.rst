@@ -1,20 +1,19 @@
 .. _editing-the-code-with-eclipse:
 
-=================================================
-Building for Pixhawk/PX4 using Eclipse on Windows
-=================================================
+========================================
+Editing/Building with Eclipse on Windows
+========================================
 
-This article shows how you can set up Eclipse for editing ArduPilot code
-and building for Pixhawk/PX4 targets.
+This article shows how you can setup Eclipse for editing and building binaries for Pixhawk/STM32 boards.  It is not possible to build on Windows for other boards.
 
 .. note::
 
-   These instructions are partially based on the `PX4 Windows Toolchain Installation wiki <https://pixhawk.ethz.ch/px4/dev/toolchain_installation_win>`__.
+   Ensure that you have Java (32-bit) installed before Eclipse can run or else you'll get Java Error Code 13 due to 32/64-bit version mismatch. Java can be installed `here <https://www.java.com/en/>`__.
 
 Preconditions
 =============
 
-Follow the instructions in :ref:`Building for Pixhawk/PX4 on Windows with Make <building-px4-with-make>` to download the required source code
+Follow the instructions in :ref:`Building for Pixhawk on Windows with Make <building-px4-with-make>` to download the required source code
 (*ardupilot*, *PX4Firmware* and *PX4NuttX*) and toolchain.
 
 The *PX4 toolchain* includes a preconfigured version of Eclipse that has
@@ -29,43 +28,12 @@ toolchain*. The link can be accessed from either:
 -  The Windows Start menu (**Start \| All Programs \| PX4 Toolchain \|
    PX4 Eclipse**), or
 -  You can directly run the file
-   **C:\\px4\\toolchain\\msys\\1.0\\px4_eclipse.bat**
+   **C:\\Pixhawk_Toolchain\\toolchain\\msys\\1.0\\px4_eclipse.bat**
 
 Creating the Project
 ====================
 
-You can set up an Eclipse project to build ArduPilot either "from
-scratch" or using pre-defined project files. Using the template files
-saves you a little work as they already include the project location and
-*px4-v2 make target definitions* for Copter and Plane.
-
-Creating the Project from template files
-----------------------------------------
-
-The project can be created from predefined template files:
-
--  Rename **/ardupilot/eclipse.cproject** to **.cproject** and
-   **/ardupilot/eclipse.project** to **.project**
-
-   .. note::
-
-      If using *Windows Explorer* append an additional period "." to
-         the end of the files when renaming them - e.g. **.cproject.** (the
-         additional period is not actually "saved".)
-
--  Select **File \| Import \| General \| Existing Projects into
-   Workspace**
--  Check **Select root directory** and browse to the ardupilot directory
--  Select the ardupilot directory and press **Finish**
-
-.. image:: ../images/EditingWithEclipse_ImportProject.png
-    :target: ../_images/EditingWithEclipse_ImportProject.png
-
-Creating the Project from scratch
----------------------------------
-
-Alternative to the above steps, the project can be created by doing the
-following:
+The project can be created by doing the following:
 
 -  Select **File \| New \| Make Project with Existing Code**
 -  Fill in the Project Name and set the *Existing Code Location* to the
@@ -116,16 +84,9 @@ full list of possible targets can be found in
 |                                      | for a quadcopter                     |
 +--------------------------------------+--------------------------------------+
 | ``make px4-v2``                      | Build the Pixhawk firmware for a     |
-|                                      | quad                                 |
-+--------------------------------------+--------------------------------------+
-| ``make px4-v2-hexa``                 | Build the Pixhawk firmware for a     |
-|                                      | hexacopter.                          |
-|                                      |                                      |
-|                                      | # Other supported suffixes include   |
-|                                      | "octa", "tri" and "heli".            |
-|                                      |                                      |
-|                                      | # More can be found in               |
-|                                      | "mk/tagets.mk" under FRAMES          |
+|                                      | copter. in the new version you can   |
+|                                      | specify the frame type (quad, hexa,  | 
+|                                      | octo) after flashing the pixhawk     | 
 +--------------------------------------+--------------------------------------+
 | ``make clean``                       | "clean" the ardupilot directory      |
 +--------------------------------------+--------------------------------------+
@@ -144,10 +105,6 @@ make target.
 .. image:: ../images/EditingTheCode_Eclipse3.png
     :target: ../_images/EditingTheCode_Eclipse3.png
 
-.. note::
-
-   There is currently no option to upload frames other than
-   quad.
 
 Building from Eclipse
 =====================

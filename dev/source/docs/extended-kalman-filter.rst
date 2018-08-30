@@ -14,7 +14,7 @@ available tuning parameters.
 Overview
 ========
 
-The availability of faster processors such as Pixhawk and the PX4 have
+The availability of faster processors (like the one on Pixhawk) have
 enabled more advanced mathematical algorithms to be implemented to
 estimate the orientation, velocity and position of the flight vehicle.
 An Extended Kalman Filter (EKF) algorithm has been developed that uses
@@ -40,7 +40,7 @@ significant errors so that the vehicle becomes less susceptible to
 faults that affect a single sensor.
 
 Another feature of the EKF algorithm is that it is able to estimate
-offsets in the vehicles compas readings and also estimate the earth's
+offsets in the vehicles compass readings and also estimate the earth's
 magnetic field for both plane, copter and rover applications. This makes
 it less sensitive to compass calibration errors than current DCM and
 INAV algorithms.
@@ -189,7 +189,11 @@ This parameter controls which measurement source is used to determine
 height during optical flow navigation. Set to 0 to use the barometer or
 to 1 to use the range finder. If set to 1,the vehicle will attempt to
 maintain a constant height relative to the terrain, which is the default
-behaviour during optical flow navigation.
+behaviour during optical flow navigation. 
+Warning : EK2_ALT_SOURCE = 1 is only suitable for low altitude and 
+low speed operation over flat surfaces, not for up and away flight. 
+To use range finder at lower altitudes and barometer for up and away flight, 
+set EK2_ALT_SOURCE = 0 and use the RNG_USE_HGT parameter.
 
 EKF_EAS_GATE
 --------------

@@ -7,7 +7,7 @@ Example Configuration
 This topic provides additional recommended configuration for Rover
 vehicles during initial setup and testing. It assumes that the
 configuration is performed using *Mission Planner* (and that *Mission
-Planner* is already :ref:`installed <common-install-mission-planner>` and
+Planner* is already :ref:`installed <planner:install-mission-planner>` and
 :ref:`connected <common-connect-mission-planner-autopilot>`).
 
 #. Go to the **Config/Tuning** tab.
@@ -20,6 +20,10 @@ Planner* is already :ref:`installed <common-install-mission-planner>` and
       already set to it.
    -  Reduce **Target cruise speed in auto** from 5.00 to **2.50**.
    -  Reduce **Base throttle percentage** from 50 to **30**.
+
+.. warning::
+
+   This step is important as all the navigation in auto modes is based on the cruise speed and throttle configuration. See :ref:`Rover Tuning <tuning-steering-and-navigation-for-a-rover>`
 
 #. Set a failsafe to turn your vehicle off (put it in HOLD mode) if you
    lose RC reception for 5 seconds.

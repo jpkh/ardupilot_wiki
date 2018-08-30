@@ -24,19 +24,19 @@ Specifications
 
    -  Ideal diode controller with automatic failover
    -  Servo rail high-power (7 V) and high-current ready
-   -  All peripheral outputs over-current protected, all inputs ESC
+   -  All peripheral outputs over-current protected, all inputs ESD
       protected
 
 -  **Interfaces**
 
-   -  5x UART serial ports, 1 high-power capable, 2x with HW flow
+   -  5x UART serial ports, 1 high-power capable, 2 with HW flow
       control
    -  Spektrum DSM/DSM2/DSM-X Satellite input
    -  Futaba S.BUS input (output not yet implemented)
    -  PPM sum signal
    -  RSSI (PWM or voltage) input
    -  I2C, SPI, 2x CAN, USB
-   -  3.3 and 6.6 ADC inputs
+   -  3.3V and 6.6V ADC inputs
 
 -  **Dimensions**
 
@@ -82,7 +82,8 @@ RTS, 4 = CTS, 3 = RX, 2 = TX, 1 = 5V.**
 Pixhawk connector pin assignments
 =================================
 
-**TELEM1, TELEM2 ports**
+TELEM1, TELEM2 ports
+~~~~~~~~~~~~~~~~~~~~
 
 .. raw:: html
 
@@ -128,7 +129,8 @@ Pixhawk connector pin assignments
 
 
 
-**GPS port**
+GPS port
+~~~~~~~~
 
 .. raw:: html
 
@@ -174,8 +176,8 @@ Pixhawk connector pin assignments
 
 
 
-**SERIAL 4/5 port - due to space constraints two ports are on one
-connector.**
+SERIAL 4/5 port - due to space constraints two ports are on one connector.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
@@ -222,7 +224,8 @@ connector.**
    </table>
 
 
-**ADC 6.6V**
+ADC 6.6V
+~~~~~~~~
 
 
 .. raw:: html
@@ -254,7 +257,8 @@ connector.**
 
 
 
-**ADC 3.3V**
+ADC 3.3V
+~~~~~~~~
 
 
 
@@ -297,7 +301,8 @@ connector.**
 
 
 
-**I2C**
+I2C
+~~~
 
 
 
@@ -335,7 +340,8 @@ connector.**
 
 
 
-**CAN**
+CAN
+~~~
 
 
 
@@ -371,13 +377,137 @@ connector.**
    </tbody>
    </table>
 
+SPI
+~~~
 
 
-**Console Port**
+
+.. raw:: html
+
+   <table border="1" class="docutils">
+   <tbody>
+   <tr>
+   <th>Pin</th>
+   <th>Signal</th>
+   <th>Volt</th>
+   </tr>
+   <tr>
+   <td>1 (red)</td>
+   <td>VCC</td>
+   <td>+5V</td>
+   </tr>
+   <tr>
+   <td>2 (blk)</td>
+   <td>SPI_SCK</td>
+   <td>3.3V</td>
+   </tr>
+   <tr>
+   <td>3 (blk)</td>
+   <td>SPI_MISO</td>
+   <td>+3.3V</td>
+   </tr>
+   <tr>
+   <td>4 (blk)</td>
+   <td>SPI_MOSI</td>
+   <td>+3.3V</td>
+   </tr>
+   <tr>
+   <td>5 (blk)</td>
+   <td>!SPI_NSS</td>
+   <td>+3.3V</td>
+   </tr>
+   <tr>
+   <td>6 (blk)</td>
+   <td>!GPIO</td>
+   <td>+3.3V</td>
+   </tr>
+   <tr>
+   <td>7 (blk)</td>
+   <td>GND</td>
+   <td>GND</td>
+   </tr>
+   </tbody>
+   </table>
+
+POWER
+~~~~~
+
+.. raw:: html
+
+   <table border="1" class="docutils">
+   <tbody>
+   <tr>
+   <th>Pin</th>
+   <th>Signal</th>
+   <th>Volt</th>
+   </tr>
+   <tr>
+   <td>1 (red)</td>
+   <td>VCC</td>
+   <td>+5V</td>
+   </tr>
+   <tr>
+   <td>2 (blk)</td>
+   <td>VCC</td>
+   <td>+5V</td>
+   </tr>
+   <tr>
+   <td>3 (blk)</td>
+   <td>CURRENT</td>
+   <td>up to +3.3V</td>
+   </tr>
+   <tr>
+   <td>4 (blk)</td>
+   <td>VOLTAGE</td>
+   <td>up to +3.3V</td>
+   </tr>
+   <td>5 (blk)</td>
+   <td>GND</td>
+   <td>GND</td>
+   </tr>
+   <td>6 (blk)</td>
+   <td>GND</td>
+   <td>GND</td>
+   </tr>
+   </tbody>
+   </table>
+
+SWITCH
+~~~~~~
+
+.. raw:: html
+
+   <table border="1" class="docutils">
+   <tbody>
+   <tr>
+   <th>Pin</th>
+   <th>Signal</th>
+   <th>Volt</th>
+   </tr>
+   <tr>
+   <td>1 (red)</td>
+   <td>VCC</td>
+   <td>+3.3V</td>
+   </tr>
+   <tr>
+   <td>2 (blk)</td>
+   <td>!IO_LED_SAFETY</td>
+   <td>GND</td>
+   </tr>
+   <tr>
+   <td>3 (blk)</td>
+   <td>SAFETY</td>
+   <td>GND</td>
+   </tr>
+   </tbody>
+   </table>
+
+Console Port
+~~~~~~~~~~~~
 
 The system's serial console runs on the port labeled SERIAL4/5. The
 pinout is standard serial pinout, to connect to a standard FTDI cable
-(3.3V, but its 5V tolerant).
+(3.3V, but it's 5V tolerant).
 
 
 .. raw:: html
@@ -432,31 +562,62 @@ pinout is standard serial pinout, to connect to a standard FTDI cable
    </tbody>
    </table>
 
+Spektrum/DSM Port
+~~~~~~~~~~~~~~~~~
+
+The Spektrum/DSM port is for connecting Spektrum DSM-2/DSMX receiver
+modules.
+
+.. raw:: html
+
+   <table border="1" class="docutils">
+   <tbody>
+   <tr>
+   <th>Pin</th>
+   <th>Signal</th>
+   <th>Volt</th>
+   </tr>
+   <tr>
+   <td>1 (white)</td>
+   <td>Signal</td>
+   <td>+3.3V</td>
+   </tr>
+   <tr>
+   <td>2 (black)</td>
+   <td>GND</td>
+   <td>GND</td>
+   </tr>
+   <tr>
+   <td>3 (red)</td>
+   <td>VCC</td>
+   <td>+3.3V</td>
+   </tr>
+   </tbody>
+   </table>
 
 
 Pixhawk system features
 =======================
 
--  The Pixhawk flight controller is a further evolution of the PX4
-   flight controller system. Pixhawk consists of a PX4-FMU controller
+-  The Pixhawk (FMUv2) flight controller consists of a PX4-FMU controller
    and a PX4-IO integrated on a single board with additional IO, Memory
    and other features.
 -  It is highly optimized to provide control and automation for APM
    flight navigation software with high performance and
-   capacity. Pixhawk allows current APM and PX4 operators to seamlessly
+   capacity. Pixhawk allows users of older boards to seamlessly
    transition to this system and lowers the barriers to entry for new
    users.
--  The NuttX real-time operating system, features high performance,
+-  The NuttX real-time operating system features high performance,
    flexibility, and reliability for controlling any autonomous vehicle.
--  A Unix/Linux-like programming environment, Integrated
-   multithreading and autopilot functions such as Lua scripting of
+-  A Unix/Linux-like programming environment, integrated
+   multithreading and autopilot functions such as scripting of
    missions and flight behavior provide powerful development
    capabilities.
 -  A custom PX4 driver layer ensures tight timing across all processes.
--  New peripheral options will include a digital airspeed sensor,
-   support for an external multi-color LED indicator and an external
-   compass.
--  All peripherals are automatically detected and configured.
+-  Peripheral options include digital airspeed sensors,
+   external multi-color LED indicators and external
+   compasses.
+-  Most peripherals are automatically detected and configured.
 -  **A very powerful 32-bit processor with an additional failsafe backup
    controller and extensive memory.**
 
@@ -478,13 +639,13 @@ Pixhawk system features
    -  MEAS MS5611 barometric pressure sensor for determining altitude.
    -  Built in voltage and current sensing for battery condition
       determination.
-   -  Connection for an externally mountable UBLOX LEA GPS for
+   -  Connections for externally-mountable GPS units for
       determining absolute position.
 
 -  **Extensive I/O interfaces with dedicated connectors**
 
    -  Fourteen PWM servo or ESC speed control outputs.
-   -  Five UART (serial ports), one high-power capable, 2x with HW flow
+   -  Five UARTs (serial ports), one high-power capable, 2 with HW flow
       control.
    -  Two CAN I/O ports (one with internal 3.3V transceiver, one on
       expansion connector)
@@ -496,7 +657,6 @@ Pixhawk system features
    -  I2C and SPI serial ports.
    -  Two 3.3 volt and one 6.6 volt Analog inputs.
    -  Internal microUSB port and external microUSB port extension.
-   -  Contains its own on board microcontroller and stacks with the FMU.
 
 -  **Comprehensive power system with redundancy and extensive
    protection.**
@@ -514,35 +674,33 @@ Pixhawk system features
       multicolored LED to indicate flight status.
    -  High-power, multi-tone piezo audio indicator also informs of
       current flight status.
-   -  Available high performance UBLOX GPS plus external compass in
-      protective case.
+   -  High performance UBLOX GPS plus external compass in
+      protective case available.
    -  Weight: 38g (1.31oz), Width: 50mm (1.96"), Thickness: 15.5mm
       (.613"), Length: 81.5mm (3.21")
 
-Comparison of PX4-FMU-IO and Pixhawk
-====================================
+Comparison of PX4FMU/PX4IO and Pixhawk
+======================================
 
-The new PX4 \ `Pixhawk module <http://pixhawk.org/modules/pixhawk>`__ is an evolution
-of the
-existing \ `FMU <http://pixhawk.org/modules/px4fmu>`__ and `IO <http://pixhawk.org/modules/px4io>`__ modules
+The new Pixhawk is an evolution of the PX4FMU  and PX4IO modules
 and is completely compatible.
 
--  The PX4 FMU and IO stack is very small (the size of an 8 ch RC
+-  The PX4FMU and PX4IO stack is very small (the size of an 8 ch RC
    receiver) and very densely packed, Pixhawk has more space, more
    serial ports and more PWM outputs.
 -  There are two groups of servo connectors, one main group of 8 outputs
    wired through the backup processor, and an auxiliary group of 6
    outputs directly wired to the main processor.
 -  The port labeled "RC" can take normal PPM sum or Futaba S.Bus inputs
-   and the port labeled "SB" can read RSSI our output S.Bus to servos.
+   and the port labeled "SB" can read RSSI or output S.Bus to servos.
 -  A Spektrum satellite compatible port is on top (labeled SPKT/DSM).
 -  The basic operation is the same, and the software is shared.
 -  Inside Pixhawk a FMUv2 and an IOv2 do their duties on a single board
    (and developers will find that the software will refer to FMUv2 and
    IOv2)
--  The PX4 / Pixhawk system has more than 10 times the CPU performance
-   and memory of the APM and a lot more as well.
--  14 PWM outputs (Pixhawk) vs. 12 PWM outputs (PX4)
+-  The Pixhawk system has more than 10 times the CPU performance
+   and memory of the APM2.x and a lot more as well.
+-  14 PWM outputs (Pixhawk) vs. 12 PWM outputs (PX4FMU/PX4IO)
 -  All Pixhawk PWM outputs on servo connectors (PX4: 8 on servo, 4 on 15
    pin DF13 connector)
 -  5 serial ports vs. 4 (with some double functionality, so only 3 in
@@ -561,8 +719,7 @@ and is completely compatible.
    work in v1, but also software-supported)
 -  No more solid state relays on v2 (was not really used)
 -  Connectors easier to disconnect in case, as the surrounding plastic
-   helps to place the fingers correctly (more on this in a separate
-   post)
+   helps to place the fingers correctly
 -  Case prevents one-off failure operation of servo connectors
 -  The new unit is consirably larger, has the same height, but offers in
    general more handling convenience.
@@ -580,6 +737,9 @@ Connecting and disconnecting DF13 connectors
 ..  youtube:: Kfu8M8t2fWY
     :width: 100%
 
+..  youtube:: TverfQwSdzU
+    :width: 100%
+	    
 .. _common-pixhawk-overview_pixhawk_analog_input_pins:
 
 Pixhawk analog input pins
@@ -588,7 +748,7 @@ Pixhawk analog input pins
 This section lists the analog pins available on the Pixhawk. These are
 virtual pins, defined in the firmware.
 
-**Virtual Pin 2 and Power connector Pin 4 and Virtual Pin 2**: power
+**Virtual Pin 2 and Power connector Pin 4**: power
 management connector voltage pin, accepts up to 3.3V, usually attached
 to 3DR power brick with 10.1:1 scaling
 
@@ -602,7 +762,7 @@ provide the HWSTATUS.Vcc reading that ground stations use to display 5V
 status
 
 **Virtual Pin 13 and ADC 3.3V connector Pin 4**: This takes a max of
-3.3V. May be used for sonar or other analog sensor.
+3.3V. May be used for sonar or other analog sensors.
 
 **Virtual Pin 14 and ADC 3.3V connector Pin 2**: This takes a max of
 3.3V. May be used for second sonar or other analog sensor.
@@ -625,8 +785,8 @@ RSSI input pin on the SBUS-out connector (the bottom pin of the 2nd last
 servo connector on the 14 connector servo rail).
 
 This can alternatively serve as SBus out by setting the
-``BRD_CAN_ENABLE`` parameter ( :ref:`Copter <copter:BRD_CAN_ENABLE>`,
-:ref:`Plane <plane:BRD_CAN_ENABLE>`, :ref:`Rover <rover:BRD_CAN_ENABLE>`).
+``BRD_SBUS_OUT`` parameter ( :ref:`Copter <copter:BRD_SBUS_OUT>`,
+:ref:`Plane <plane:BRD_SBUS_OUT>`, :ref:`Rover <rover:BRD_SBUS_OUT>`).
 
 .. image:: ../../../images/pixhawk2.jpg
     :target: ../_images/pixhawk2.jpg
@@ -721,11 +881,11 @@ See also
     LEDs <common-leds-pixhawk>
     Safety Switch <common-safety-switch-pixhawk>
     Sounds <common-sounds-pixhawkpx4>
-
+    Pixhawk Serial Names <common-pixhawk-serial-names>
 
 [site wiki="planner"]
     Pixhawk Wiring Quick Start <common-pixhawk-wiring-and-quick-start>
     Powering the Pixhawk <common-powering-the-pixhawk>
     Mounting the Flight Controller <common-mounting-the-flight-controller>
-    Compatible RC Transmitter and Receiver Systems (Pixhawk/PX4) <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>
+    Compatible RC Transmitter and Receiver Systems (Pixhawk) <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>
 [/site]

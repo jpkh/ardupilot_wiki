@@ -5,7 +5,7 @@ Antenna Design Overview
 =======================
 
 This article provides an overview of the the fundamental principles of
-antenna design. Antenna Design is an important factor in using UAVs over
+antenna design. Antenna design is an important factor in using UAVs over
 extended range and where there are obstructed views. While this is not
 directly related to Antenna Tracking/flight controllers, it may be
 useful for some readers.
@@ -204,7 +204,7 @@ Resonance and matching issues
    element, outwards from the feedpoint. It therefore requires that the
    feedpoint be fed in a balanced fashion.
 
-   -  Coax cable is an an balanced feeder - the shield is at ground
+   -  Coax cable is a balanced feeder - the shield is at ground
       potential, while the inner core carries the energy.
    -  This effectively ( oversimplifying a little) connects the one
       dipole half to the 'live' core, and the other half to 'ground'

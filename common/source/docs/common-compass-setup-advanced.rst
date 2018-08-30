@@ -9,9 +9,9 @@ the compass (magnetometer).
 
 .. tip::
 
-   Users who have selected the :ref:`3DR UBlox GPS + Compass Module <common-installing-3dr-ublox-gps-compass-module>`
-   (recommended) and mounted it according to the specified instructions can
-   usually perform a simple "live calibration" as described in :ref:`Compass Calibration in Mission Planner <common-compass-calibration-in-mission-planner>`).
+   Users with who have selected the :ref:`UBlox GPS + Compass Module <common-installing-3dr-ublox-gps-compass-module>`
+   (recommended) and have mounted it in the default orientation can
+   usually perform a simple "Onboard Calibration" as described in :ref:`Compass Calibration <common-compass-calibration-in-mission-planner>`).
 
    This topic provides a more complete overview of compass calibration. It
    will be useful if the compass is mounted in a non-standard orientation
@@ -39,9 +39,9 @@ table below:
 +-------------------------------------------+--------------+-----------------+
 | Configuration                             | Compass #1   | Compass #2      |
 +===========================================+==============+=================+
-| Pixhawk/PX4 + Compass                     | External     | Internal        |
+| Pixhawk + Compass                         | External     | Internal        |
 +-------------------------------------------+--------------+-----------------+
-| Pixhawk/PX4 (no external compass used)    | Internal     | Available       |
+| Pixhawk (no external compass used)        | Internal     | Available       |
 +-------------------------------------------+--------------+-----------------+
 | APM2.6                                    | External     | Not supported   |
 +-------------------------------------------+--------------+-----------------+
@@ -51,15 +51,10 @@ table below:
 +-------------------------------------------+--------------+-----------------+
 
 Most users will only need to select their autopilot/compass
-configuration and perform the :ref:`Live Calibration <common-compass-setup-advanced_live_calibration_of_offsets>` but details are also given
-on the less-used 
-[site wiki="copter"]
-:ref:`CompassMot <common-compass-setup-advanced_compassmot_compensation_for_interference_from_the_power_wires_escs_and_motors>` and
-[/site] 
-Manual Declination.  Most of this configuration can be
-performed from the *Mission Planner*'s **Initial Setup \| Mandatory
-Hardware \| Compass** screen.  Other ground stations may have similar
-features.
+configuration and perform the :ref:`Live Calibration <common-compass-setup-advanced_live_calibration_of_offsets>` but details are also given on the less-used  :ref:`CompassMot <common-compass-setup-advanced_compassmot_compensation_for_interference_from_the_power_wires_escs_and_motors>` and Manual Declination.  
+Most of this configuration can be performed from the *Mission Planner*'s **Initial Setup \| Mandatory
+Hardware \| Compass** screen.  
+Other ground stations may have similar features.
 
 .. tip::
 
@@ -91,13 +86,28 @@ select the button corresponding to your autopilot controller:
 -  For APM 2.6, select **APM with External Compass**.
 -  For APM 2.5, select **APM (Internal Compass)**.
 
-If your external compass is in a non-standard orientation, you must
-manually select the orientation in the combo box (change from
-``ROTATION_NONE``). Compass orientations are relative to the flight
-controller, not the airframe!
+If your external compass is in a non-standard orientation, you must manually 
+select the orientation in the combo box (change from ``ROTATION_NONE``). 
+When externally connected the COMPASS_ORIENT option operates independently 
+of the AHRS_ORIENTATION board orientation option.
 
 Most users will then only need to press the **Live Calibration** button
 and perform a :ref:`Live Calibration <common-compass-setup-advanced_live_calibration_of_offsets>`.
+
+Checking Compass Orientation
+----------------------------
+-  Ensure your AHRS_ORIENT parameter is correct.  This will ensure that your internal compass' orientation will be correct
+-  When rotating your aircraft through all axes each of the compasses should move in the same direction, and should be of approximately the same values
+
+- Northern Hemisphere:
+  - Z-component should be *positive*
+  - when pitching the vehicle down, the X component should *increase* in value
+  - when rolling the vehicle right, the Y component should *increase* in value
+
+- Southern Hemisphere:
+  - Z-component should be *negative*
+  - when pitching the vehicle down, the X component should *decrease* in value
+  - when rolling the vehicle right, the Y component should *decrease* in value
 
 General settings
 ----------------
@@ -208,13 +218,6 @@ distortions.
          3.2.1 the recommendation was that the absolute value of each offset
          be less than 150 (i.e. *-150 < offset < 150*).
 
-.. tip::
-
-   Some users recommend performing the calibration outdoors away from
-   metal objects using wireless telemetry (primarily so you don't get
-   tangled in the cable) although no tests have been performed to confirm
-   this is necessary.
-
 The video below is from earlier versions of the calibration routine but
 may still produce good offsets.
 
@@ -243,7 +246,7 @@ Please follow these instructions:
    down into the ground when the throttle is raised
 -  Secure the copter (perhaps with tape) so that it does not move
 -  Turn on your transmitter and keep throttle at zero
--  Connect your vehicle's Lipo battery
+-  Connect your vehicle's LiPo battery
 -  Connect your flight controller to your computer with the usb cable
 -  **If using AC3.2:**
 
@@ -278,7 +281,7 @@ Please follow these instructions:
    fine, some are not).  If it is higher than 60% you should try moving
    your APM/PX further up and away from the sources of interference or
    consider purchasing an external compass (or 
-   `GPS+compass module <https://store.3dr.com/products/3dr-gps-ublox-with-compass>`__).
+   :ref:`GPS+compass module<common-positioning-landing-page>` (some of these)).
 
 Here is a video of the procedure based on AC3.1.5:
 
@@ -316,7 +319,7 @@ Although we do not believe this is ever necessary, you can manually tune
 the declination in flight using the Channel 6 tuning knob on your
 transmitter by following these steps:
 
-#. Connect your APM/PX4 to the Mission Planner
+#. Connect your Pixhawk (or other board) to the Mission Planner
 #. Go to the **Software \| Copter Pids** screen
 #. Set the Ch6 Opt to "Declination", Min to "0.0" and Max to "3.0". 
    This will give a tunable range of -30 to +30 degrees.  Set Max to
@@ -339,7 +342,7 @@ transmitter by following these steps:
    known as "toilet bowling").
 #. If you find it's impossible to tune away the circling then it's
    likely you will require an external compass
-   or `GPS+compass module. <https://store.3dr.com/products/3dr-gps-ublox-with-compass>`__
+   or :ref:`GPS+compass module<common-positioning-landing-page>` (some of these)
 
 Compass error messages
 ======================

@@ -19,12 +19,22 @@ Maxbotix Sonar and Pulsed Light LED range finders.
 [site wiki="copter"]
 .. note::
 
-   Lidar's are used in flight modes which have height control, such
+   Downward facing Lidar are used in flight modes which have height control, such
    as Altitude Hold, Loiter and PosHold Mode.  The data from the sensor
    will be used until you exceed RNGFND_MAX_CM, after that it switches to
-   the barometer.  Currently Lidar is not supported in Auto
-   Mode.
+   the barometer.
+
+   Copter-3.4 (and higher) includes support for :ref:`Terrain Following <terrain-following>` in Auto mode.
+
+   Copter-3.5 (and higher) can use lidar for :ref:`object avoidance <common-rangefinder-objectavoidance>`.
 [/site]
+
+   
+.. warning::
+   
+   RNGFND_MAX_CM must be set to a tested, appropriate value.  If RNGFND_MAX_CM is set to a value
+   greater than the range of the sensor, the flight controller will not respond correctly to the 
+   data provided.
 
 Follow the links below (or in sidebar) for configuration information
 based upon your set-up.
@@ -40,15 +50,27 @@ based upon your set-up.
     Sonar Sensors <sonar-sensors>
 [/site]
 
-    LIDAR-Lite <common-rangefinder-lidarlite>
+    Attollo Engineering Wasp200 <common-wasp200-lidar>
+    Benewake TF02 <common-benewake-tf02-lidar>
+    Benewake TFmini <common-benewake-tfmini-lidar>
+    EchoLogger ECT400 <common-echologger-ect400>
+    LightWare SF20 / LW20 Lidar <common-lightware-lw20-lidar>
+    LightWare SF10 / SF11 Lidar <common-lightware-sf10-lidar>
+    Lightware SF02 Lidar <common-rangefinder-sf02>
+[site wiki="copter"]
+    Lightware SF40c (360 degree) <common-lightware-sf40c-objectavoidance>
+[/site]
     Maxbotic I2C Sonar <common-rangefinder-maxbotixi2c>
     Maxbotic Analog Sonar <common-rangefinder-maxbotix-analog>
-    Lightware SF02 <common-rangefinder-sf02>
-    LightWare SF10 Lidar <common-lightware-sf10-lidar>
     TeraRanger One Rangefinder <common-teraranger-one-rangefinder>
+[site wiki="copter"]
+    TerraRanger Tower (360 degree) <common-teraranger-tower-objectavoidance>
+[/site]
+    Leddar One Lidar <common-leddar-one-lidar>
+    LIDAR-Lite <common-rangefinder-lidarlite>
+    RPLidar A2 360 degree laser scanner <common-rplidar-a2>
+    ST VL53L0X Lidar <common-vl53l0x-lidar>
 
-
-    
 [site wiki="copter"]
     Analog Sonar (AC3.1) <sonar>
 [/site]

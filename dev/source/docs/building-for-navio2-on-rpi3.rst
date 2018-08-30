@@ -23,24 +23,31 @@ Setup
 Use an ssh terminal program such as `Putty <http://www.putty.org/>`__ to
 log into the Navio2 board's RPI3.
 
-Clone the source:
+.. note::
+    
+    On Raspbian Stretch, one of the Python requirements might be missing, so please install future by
 
 ::
 
-    git clone https://github.com/diydrones/ardupilot.git
-    cd ardupilot
-    git submodule update --init
+    pip install future
+
+.. include:: building-setup-linux.rst
+    :start-after: Setup on Ubuntu
+    :end-before: Setup for other Distributions
 
 .. note::
     
     Waf should always be called from the ardupilot's root directory.
 
 
-To keep access to Waf convenient, use the following alias from the root ardupilot directory: 
+To keep access to Waf convenient, use the following alias from the root ardupilot directory:
 
 ::
     
     alias waf="$PWD/modules/waf/waf-light"
+
+Configure
+---------
 
 Choose the board to be used:
 
@@ -51,19 +58,20 @@ Choose the board to be used:
 Build
 -----
 
-Now you can build arducopter. For quadcopter use the following command:
+Now you can build arducopter. For copter use the following command:
 
 ::
 
-    waf --targets bin/arducopter-quad
+    waf --targets bin/arducopter
 
 
-To build for other frame types replace quad with one of the following options:
+To build a helicopter, specify "arducopter-heli".
+The following frame types are specified in the "Frame Type" item of the Mission Planner menu "INITIAL SETUP".
 
 ::
 
-    coax heli hexa octa octa-quad single tri y6
+    Quad Hexa Octa Octa-Quad Y6  Heli Tri
 
-In the end of compilation binary file with the name arducopter-quad will be placed in ``ardupilot/build/navio2/bin/ directory``.
+In the end of compilation binary file with the name arducopter will be placed in ``ardupilot/build/navio2/bin/ directory``.
 
 

@@ -1,8 +1,10 @@
 .. _the-ardupilot-autotest-framework:
 
-================================
-The ArduPilot Autotest Framework
-================================
+==================
+Autotest Framework
+==================
+
+.. image:: ../images/autotest.jpg
 
 ArduPilot has an automatic testing framework based on SITL. The autotest
 framework is what produces the web pages at
@@ -32,7 +34,7 @@ run:
 
 ::
 
-    ./Tools/scripts/autotest.py --list
+    ./Tools/autotest/autotest.py --list
 
 you will see what test scripts you can run. You can then add those
 commands on the command line to run them. For example, to build the
@@ -40,7 +42,7 @@ fixed wing code and then run a test flight do this:
 
 ::
 
-    ./Tools/scripts/autotest/autotest.py build.Plane fly.Plane
+    ./Tools/autotest/autotest.py build.ArduPlane fly.ArduPlane
 
 the results (and log files) will be put in the ../buildlogs directory.
 
@@ -49,7 +51,7 @@ watching autotest a bit less boring! Run it like this:
 
 ::
 
-    ./Tools/scripts/autotest/autotest.py build.Plane fly.Plane --map
+    ./Tools/autotest/autotest.py build.ArduPlane fly.ArduPlane --map
 
 you will actually see the map appear twice, once for when it loads the
 default parameters, and then for the real flight. Just close the first

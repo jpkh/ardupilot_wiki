@@ -43,6 +43,8 @@ is \ `here <http://www.arduino.cc/en/>`__.
 stabilized flight, position maintenance and automated mission (waypoint)
 path following.
 
+**ATC**: This could be the Atitude Control libray in Copter with params starting with "ATC\_" or it could mean Air Traffic Control. Usually located at an airport control tower but can also be an app or service such as \ `AirMap <http://www.airmap.com>`__ or \ `Altitude Angel <http://www.altitudeangel.com>`__.
+
 **Copter**: Rotary-wing autopilot software variant of the ArduPilot
 project.
 
@@ -220,27 +222,22 @@ control algorithm that allows for more accurate sensor-motion control
 loops and less overcontrol.
 See \ `this <https://en.wikipedia.org/wiki/PID_controller>`__ for more.
 
-**POI**: Point of Interest. Designates a spot that a UAV should keep a
-camera pointed towards.
+**POI**: Point of Interest. Designates a spot that a UAV should keep a camera pointed towards.
 
 **PPM**: `Pulse Position Modulation <https://en.wikipedia.org/wiki/Pulse-position_modulation>`__.
 The square-wave pulse train used to transmit multiple channels of
 information between some RC transmitters and receivers. Some RC
 receivers provide a PPM output (sometimes referred to as the PPM Sum)
-which can be used on the APM and PX4. Other receivers convert the PPM
+which can be used on Pixhawk-series boards. Other receivers convert the PPM
 signal and only provide PWM signals for each channel.
 
 **PWM**: Pulse Width Modulation. The square-wave signals used in RC
 control to drive servos and speed controllers. There is one PWM signal
-for each channel. The width varies from 1000 to 2000 microseconds,
-depending on the RC manufacturer.
+for each channel. The width varies from 1000 to 2000 microseconds, depending on the RC manufacturer.
 
-**PX4 (PX4FMU and PX4IO)**: Flight Controller system providing
-capabilities for stabilized flight, position maintenance and automated
-mission (waypoint) path following.
+**PX4FMU/PX4IO**: First version of Pixhawk-series flight controllers (FMUv1). Discontinued.
 
-**RTL**: Return to Launch. Fly back to the "home" location where the
-aircraft took off.
+**RTL**: Return to Launch. Fly back to the "home" location where the aircraft took off.
 
 **SiRF III**: The standard used by most modern GPS modules. Includes
 !SiRF III binary mode, which is an alternative to the ASCII-based NMEA

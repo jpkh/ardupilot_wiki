@@ -13,8 +13,8 @@ someone's hand is near a propeller.
 .. warning::
 
    This feature in no way removes the need to respect the
-   prop! When the plane is powered, ALWAYS avoid placing hands into the
-   same plane that the propeller spins, even when the throttle is
+   prop! When the plane is powered, ALWAYS avoid placing hands in
+   the vicinity of the propellor, even when the throttle is
    disarmed. If all is not well with the autopilot electronics or software
    there is always a slight possibility that signal could unintentionally
    reach the motor. Even though this is unlikely (and made even less likely
@@ -81,7 +81,7 @@ transmitter when in throttle failsafe or you won't be able to arm using
 the rudder as the APM will think you are at a non-zero throttle level.
 
 Simplest Solution: Use Only ARMING_REQUIRE
-===========================================
+==========================================
 
 The simplest way to use the throttle arming feature is to require the
 user to request the throttle to arm. ARMING_REQUIRE has three possible
@@ -112,7 +112,7 @@ To arm throttle in Mission Planner, use the Flight Data screen, then
 select the Actions tab. This provides an "Arm/Disarm" button that can be
 used to arm and disarm the throttle.
 
-.. figure:: ../images/armingButtonMissPlan.jpg
+.. figure:: ../../../images/armingButtonMissPlan.jpg
    :target: ../_images/armingButtonMissPlan.jpg
 
    Location of the Arm/Disarm buttonin Mission Planner (button circled in red near the bottom of theimage).
@@ -123,7 +123,7 @@ result in a message from your ground control software stating that
 throttle arming was successful. Mission planner displays a message in
 the artificial horizon on the Flight Data screen:
 
-.. figure:: ../images/armingArmedMissPlan.jpg
+.. figure:: ../../../images/armingArmedMissPlan.jpg
    :target: ../_images/armingArmedMissPlan.jpg
 
    Message on the artificial horizon inMission Planner stating that arming was successful.

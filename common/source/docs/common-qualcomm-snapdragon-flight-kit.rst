@@ -4,11 +4,14 @@
 Qualcomm Snapdragon Flight Kit
 ==============================
 
-The Snapdragon Flight platform is a high-end autopilot / onboard
-computer with a high quality camera.
+The Snapdragon Flight platform is a high performance CPU autopilot with a two onboard cameras.
 
 .. image:: ../../../images/QualcommFlightKit.jpg
     :target: ../_images/QualcommFlightKit.jpg
+
+.. warning::
+
+   Numerous developers have reported this board is difficult to get working perhaps because of a lack of documentation or issues with underlying software on the board.  If you are looking for a high performance Linux flight controller, you may wish to consider the :ref:`Intel Aero <common-intel-aero-overview>`, :ref:`Navio2 <common-navio2-overview>` or :ref:`Erle Brain <common-erle-brain-linux-autopilot>` instead.
 
 Overview
 ========
@@ -354,8 +357,7 @@ board.
 
 .. note::
 
-   This is an interim solution until Qualcomm/Intrinsyc release an
-   ESC add-on control board for the Qualcomm Flight.
+   `Qualcomm/Intrinsyc have released a ESC <https://shop.intrinsyc.com/collections/dragonboard-accessories/products/qualcomm-electronic-speed-control-board>`__ for use with this board but it has not been tested for use with ArduPilot.
 
 Logging
 =======

@@ -30,8 +30,6 @@ found
     That said, it is almost always possible to recover a drone and members
     of the ardupilot dev team can likely help people hacking or recovering
     their Bebop on `this google group <https://groups.google.com/forum/#!forum/bebop-ardupilot>`__.
-    Prepare to spend some time, patience and develop some hardware/software
-    skills.
 
 
 Upgrading the firmware
@@ -142,14 +140,16 @@ Download and compile ArduCopter
    ::
 
        git clone https://github.com/ArduPilot/ardupilot.git
+       cd ardupilot
+       git submodule update --init --recursive
 
 #. Building the flight control firmware is nearly identical for
-   :ref:`building for the Pixhawk <building-px4-for-linux-with-make>`
-   except the ``make`` command is:
+   :ref:`building for the Pixhawk <building-px4-with-make>`
+   except the build command is:
 #. ::
 
-       cd ardupilot/ArduCopter
-       make bebop
+       ./waf configure --board=bebop --static
+       ./waf build
 
 #. Strip the binary to reduce the memory footprint:
 
@@ -374,7 +374,7 @@ flash an alternative version in order to be able to control your Bebop
 with it (information about that is coming soon...).
 
 In order to pilot the Bebop manually, Mission Planner GCS users can use
-a :ref:`gamepad as described here <copter:flying-with-a-joystickgamepad-instead-of-rc-controller>`. 
+a :ref:`gamepad as described here <copter:common-joystick>`. 
 Alternatively use the RCOutput UDP interface on port 777 on the Bebop,
 with a Linux PC (or board type Raspberry Pi) and a USB gamepad.
 

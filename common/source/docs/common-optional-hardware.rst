@@ -18,37 +18,77 @@ information related to Autopilot selection see :ref:`Autopilot Hardware Options 
    
 .. toctree::
     :maxdepth: 1
-    
-    Telemetry <common-telemetry-landingpage>
-    Power Modules <common-powermodule-landingpage>
-    Rangefinders <common-rangefinder-landingpage>
-    Optical Flow Sensor <common-optical-flow-sensors-landingpage>
-    Cameras & Gimbals <common-cameras-and-gimbals>
-    OSD for FPV <common-osd-boards-on-screen-display>
-    Servo <common-servo>
-    GPS/Compass <common-positioning-landing-page>
-    Relay Switch <common-relay>   
-    UAVCAN ESCs <common-uavcan-escs>
-    EPM Gripper (EPM688) <common-electro-permanent-magnet-gripper>
-    PPM Encoder <common-ppm-encoder>
-    Received Signal Strength Indication (RSSI) <common-rssi-received-signal-strength-indication>
-    External LEDs <common-external-leds>
-    
-[site wiki="copter"]
-    Parachute <parachute>
-    Joystick or Gamepad <flying-with-a-joystickgamepad-instead-of-rc-controller>
-    Buzzer <nav-leds>
-    Landing Gear <landing-gear>
-    Precision Landing (IRLock) <precision-landing-with-irlock>
-    ADS-B Receiver <common-ads-b-reciever>
-[/site]
 
+[site wiki="copter,plane"]
+    ADS-B Receiver <common-ads-b-receiver>
+[/site]
 [site wiki="plane"]
     Airspeed Sensor <airspeed>
-    ADS-B Receiver <common-ads-b-reciever>
-    eCalc Motor and Prop Efficiency Guide <ecalc-motor-and-prop-efficiency-guide>
 [/site]
-
+    Battery Monitors (aka Power Modules) <common-powermodule-landingpage>
+    Barometer (external) <common-baro-external>
+[site wiki="copter,plane,rover"]
+    Buzzer <common-buzzer>
+[/site]
+    Cameras & Gimbals <common-cameras-and-gimbals>
 [site wiki="copter,plane,rover"]
     Companion Computers <common-companion-computers>
+[/site]
+[site wiki="copter"]
+    Crop Sprayer <sprayer>
+[/site]
+    Display (Onboard) <common-display-onboard>
+[site wiki="copter,plane"]
+    DShot and BLHeli pass-through support <common-dshot>
+[/site]
+[site wiki="plane"]
+    eCalc Motor and Prop Efficiency Guide <ecalc-motor-and-prop-efficiency-guide>
+[/site]
+    GPS/Compass <common-positioning-landing-page>
+    Grippers <common-gripper-landingpage>
+    Joystick or Gamepad <common-joystick>
+[site wiki="copter"]
+    Landing Gear <landing-gear>
+[/site]
+    LEDs (external) <common-external-leds>
+[site wiki="copter,rover"]
+    Marvelmind for Non-GPS Navigation <common-marvelmind>
+[/site]
+[site wiki="copter"]
+    Object Avoidance with Lightware SF40C <common-lightware-sf40c-objectavoidance>
+    Object Avoidance with TeraRanger Tower <common-teraranger-tower-objectavoidance>
+    common-rangefinder-objectavoidance
+[/site]
+    On-Screen Display (OSD) <common-osd-boards-on-screen-display>
+[site wiki="copter,plane"]
+    Optical Flow Sensor <common-optical-flow-sensors-landingpage>
+[/site]
+[site wiki="copter"]
+    Parachute <parachute>
+[/site]
+    Power Tether <common-power-tether>
+    PPM Encoder <common-ppm-encoder>
+[site wiki="copter,rover"]
+    Pozyx for Non-GPS navigation <common-pozyx>
+[/site]
+[site wiki="copter"]
+    Precision Landing and Loiter (IRLock) <precision-landing-with-irlock>
+[/site]
+    Rangefinders (Sonar, Lidar) <common-rangefinder-landingpage>
+    Received Signal Strength Indication (RSSI) <common-rssi-received-signal-strength-indication>
+    Relay Switch <common-relay>
+    Safety Switch <common-safety-switch-pixhawk>
+    SBus Out <common-sbus-out>
+    Servo <common-servo>
+[site wiki="rover"]
+    Start/Stop Switch <startstop-switch>
+[/site]
+    Telemetry Radio <common-telemetry-landingpage>
+    UAVCAN ESCs <common-uavcan-escs>
+    Video <common-video-landingpage>
+[site wiki="rover"]
+    Wheel Encoders <wheel-encoder>
+[/site]
+[site wiki="copter,rover"]
+    ZED for Non-GPS navigation <common-zed>
 [/site]

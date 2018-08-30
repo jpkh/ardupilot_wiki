@@ -465,7 +465,7 @@ to the two radio models available
    </table>
 
 DUTY_CYCLE setting
-===================
+==================
 
 Most users will want to set the ``DUTY_CYCLE`` to 100. The
 ``DUTY_CYCLE`` is the maximum percentage of time that the radio will
@@ -558,7 +558,7 @@ you have ``NUM_CHANNELS`` set to more than 1.
 Upgrading radio firmware
 ========================
 
-The firmware for the radios is `open source <https://github.com/Dronecode/SiK>`__, and new features are
+The firmware for the radios is `open source <https://github.com/ArduPilot/SiK>`__, and new features are
 regularly added. You should check for new releases regularly to get the
 most from your radios.
 

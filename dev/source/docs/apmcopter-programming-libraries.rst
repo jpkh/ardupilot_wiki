@@ -1,10 +1,10 @@
 .. _apmcopter-programming-libraries:
 
-===============================
-ArduPilot Programming Libraries
-===============================
+===================
+ArduPilot Libraries
+===================
 
-The \ `the libraries <https://github.com/ArduPilot/ardupilot/tree/master/libraries>`__ are
+The \ `libraries <https://github.com/ArduPilot/ardupilot/tree/master/libraries>`__ are
 shared with Copter, Plane and Rover. Below is a high level list of
 libraries and their function.
 
@@ -12,18 +12,19 @@ libraries and their function.
 
 -  `AP_AHRS <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_AHRS>`__ -
    attitude estimation using DCM or EKF
--  `AP_Common <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_InertialNav>`__ -
+-  `AP_Common <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Common>`__ -
    core includes required by all sketches and libraries
 -  `AP_Math <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Math>`__ -
    various math functions especially useful for vector manipulation
 -  `AC_PID <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AC_PID>`__ -
-   PID controller library
+   PID(Proportional-Integral-Derivative) controller library
 -  `AP_InertialNav <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_InertialNav>`__ -
    inertial navigation library for blending accelerometer inputs with
    gps and baro data
--  `AC_AttitudeControl <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AC_AttitudeControl>`__
-   -
--  `AP_WPNav <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_InertialNav>`__
+-  `AC_AttitudeControl <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AC_AttitudeControl>`__ -
+   ArduCopter's control library includes various functions of attitude, position control based on PID control.
+   
+-  `AC_WPNav <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AC_WPNav>`__
    - waypoint navigation library
 -  `AP_Motors <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Motors>`__
    - multicopter and traditional helicopter motor mixing

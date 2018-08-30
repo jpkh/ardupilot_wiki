@@ -12,7 +12,7 @@ There are Lots of Ways you Can Put Together a MultiCopter
    fast.
 #. You are likely to have a good experience if you start with a simple,
    small QuadCopter, either a Ready to Fly or an All Inclusive Kit.
-#. For for those with good DIY capabilities an Almost Ready To Fly build
+#. For those with good DIY capabilities an Almost Ready To Fly build
    like the F450 FlameWheel described below can also work well.
 #. For your first MultiCopter, DO NOT initially try to build a Photo /
    Video or First Person View copter, just build a good QuadCopter.
@@ -163,9 +163,9 @@ other alternatives and customization has to be added on.
 #. If you are not already well qualified at Do It Yourself projects, A good
 all inclusive kit is definitely the best place to start.
 
-#. The innovative `Iris QuadCopter <https://store.3dr.com/products/IRIS>`__ is
+#. The innovative `Iris QuadCopter <https://www.amazon.com/3DRobotics-3DR0171-3DR-IRIS-Quadcopter/dp/B00NWXY076>`__ is
 actually \ **Ready To Fly** and comes with the top of the line
-**Pixhawk** flight controller.
+**Pixhawk** flight controller. However, these are no longer produced/sold by 3DR.
 
     #. It is capable of fully autonomous flight and includes the RC
        transmitter, the battery and even telemetry, at $750.00 it is a real

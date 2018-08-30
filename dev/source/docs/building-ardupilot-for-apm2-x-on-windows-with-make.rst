@@ -17,7 +17,7 @@ This article shows how to build ArduPilot for APM2.x on Windows with *Make*.
    3.4.0 no longer fit on APM boards. Plane, Rover and AntennaTracker
    builds can still be installed at time of writing but you can no longer
    build APM2.x off the master branch (you will need to build off a
-   supported release branch).
+   supported release branch, or for the keen developer, from the AVR-master branch master-AVR and the tags from there.  see: https://github.com/ArduPilot/ardupilot/tree/master-AVR ).
 
    The last Copter firmware that can be built on APM 2.x 
    `can be downloaded from here <http://firmware.ardupilot.org/downloads/wiki/firmware/ArduCopter_APM_2.0_Firmware_3.2.1.zip>`__.
@@ -59,13 +59,14 @@ Build instructions
       ::
 
           git clone https://github.com/ArduPilot/ardupilot.git
+          cd ardupilot
+          git submodule update --init --recursive
 
    -  Checkout the branch you want to build (the last branch you can use
       for Copter is shown below):
 
       ::
 
-          cd ardupilot
           git checkout ArduCopter-3.2.1
 
 #. Install the special ArduPilot Arduino package. This contains gcc
@@ -82,7 +83,7 @@ Build instructions
                system where the tools are located.
 
 #. Download and install the *PX4 toolchain* by running the
-   `px4_toolchain_installer_v14_win.exe <http://firmware.ardupilot.org/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe>`__
+   `px4_toolchain_installer_v14_win.exe <http://firmware.ardupilot.org/Tools/STM32-tools/px4_toolchain_installer_v14_win.exe>`__
 #. Open the *PX4Console* and navigate to the target vehicle directory:
 
    -  Start the *PX4Console*. This can be found under **Start \| All
@@ -139,7 +140,7 @@ Hints for speeding up compile time
 ==================================
 
 Anti virus protection is likely to slow the compile times especially for
-PX4 so it is recommended that the folders containing the ArduPilot
+Pixhawk so it is recommended that the folders containing the ArduPilot
 source code is excluded from your virus protections real-time scan.
 
 The first scan after a ``make px4-clean`` will be very slow as it

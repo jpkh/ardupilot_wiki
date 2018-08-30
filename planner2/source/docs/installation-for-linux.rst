@@ -7,20 +7,24 @@ Installing APM Planner for Linux
 System Requirements
 ===================
 
--  Ubuntu 14.04 or equivalent
+-  Ubuntu 16.04 LTS (Xenial Xerus) or equivalent
 -  300 MB free space
 -  Internet connection to use maps
+
+.. Note::
+
+    Check the `downloads <http://firmware.ardupilot.org/Tools/APMPlanner/>`__ link for other pre-built binaires for other distros and versions. If not available APM Planner 2.0 can be easily `built from source <https://github.com/ArduPilot/apm_planner>`__ for many platforms, for example Arch Linux
 
 Download
 --------
 
-Download the latest deb file for your machine from either
-
-`<http://discuss.ardupilot.org/t/download-latest-apm-planner-2-0-20-and-other-releases>`__
-
-OR from
+Download the latest deb file for your machine from 
 
 `firmware.ardupilot.org/Tools/APMPlanner <http://firmware.ardupilot.org/Tools/APMPlanner/>`__
+
+And also check the discussion forum for lastest info
+
+`<http://discuss.ardupilot.org/c/ground-control-software/apm-planner-2-0>`__
 
 
 Install Packages
@@ -31,7 +35,7 @@ Open a terminal window and go to the location where you downloaded the
 
 ::
 
-    sudo dpkg -i apmplanner*.deb
+    sudo dpkg -i apm_planner*.deb
 
 The installation will likely fail because of missing dependencies. 
 These dependencies can be installed with this command:
@@ -44,7 +48,7 @@ Then retry the apmplanner installation again:
 
 ::
 
-    sudo dpkg -i apmplanner*.deb
+    sudo dpkg -i apm_planner*.deb
 
 Create a desktop icon
 =====================

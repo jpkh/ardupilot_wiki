@@ -9,9 +9,9 @@ and connect its most important peripherals.
 
 .. warning::
 
-   Do not connect any servos to the direct PWM outputs of your
+   Do not connect any servos or other devices to the PWM outputs of your
    receiver. The RCIN port on the Pixhawk is designed for low power devices
-   only, and a servo may draw a lot of current when moving rapidly. If you
+   only, and a servo or relay may draw a lot of current from the receiver. If you
    connect a servo directly onto your receiver while the receiver is
    powered from the RCIN port of your Pixhawk you may damage your
    Pixhawk.
@@ -41,12 +41,19 @@ module. Information about powering the Pixhawk can be found in the topic
 Connect remote control inputs
 =============================
 
-Pixhawk is compatible with PPM remote control (RC) receivers, Futaba
-S.Bus receivers, and Spektrum DSM,DSM2, and DSM-X Satellite receivers.
+Pixhawk is compatible with 
+   #. PPM remote control (R/C) receivers
+   #. Futaba S.Bus receivers
+   #. Spektrum DSM and DSM2 receivers
+   #. Spektrum DSM-X Satellite receivers
+   #. MULTIPLEX SRXL version 1 and version 2 receivers.
+
 For traditional single-wire-per-channel (PWM) receivers a PPM encoder
-can be used to convert the receiver outputs to PPM-SUM.  Information
-about compatible receivers and how they are connected can be found in
-:ref:`Compatible RC Transmitter and Receiver Systems (Pixhawk/PX4) <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>`.
+can be used to convert the receiver outputs to PPM-SUM. 
+
+.. tip::
+
+   Information about compatible receivers and how they are connected can be found in :ref:`Compatible RC Transmitter and Receiver Systems (Pixhawk) <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>`.
 
 .. figure:: ../../../images/FRSkyTaranis.jpg
    :target: ../_images/FRSkyTaranis.jpg
@@ -64,7 +71,7 @@ to the BUZZER and SWITCH ports as shown.
 
 .. warning::
 
-   Mount the beeper is at least 5cm away from the flight
+   Mount the beeper at least 5cm away from the flight
    controller or the noise may upset the accelerometers.
 
 3DR GPS+Compass
@@ -100,6 +107,7 @@ main output signal (S) pins by motor number:
 -  Pin 2 = Motor 2 - - Pin 6 = Motor 6
 -  Pin 3 = Motor 3 - - Pin 7 = Motor 7
 -  Pin 4 = Motor 4 - - Pin 8 = Motor 8
+
 [/site]
 
 [site wiki="plane"]
@@ -110,6 +118,7 @@ pins:
 -  Pin 2 = Elevator
 -  Pin 3 = Throttle
 -  Pin 4 = Rudder
+
 [/site]
 
 [site wiki="rover"]
@@ -118,6 +127,8 @@ signal pins:
 
 -  Pin 3 = Throttle
 -  Pin 1 = Steering
+
+The skid-steer parameters are used to configure vehicles that have fixed wheels and steer like tank tracks (do not use servos to steer the wheels but rather use differential speed between the left and right wheels). The parameters are: SKID_STEER_OUT and SKID_STEER_IN. When enabled, flight controller's ouput RC1 is used for the left track control, and ouput RC3 is used for right track control.
 [/site]
 
 Connect other peripherals
@@ -143,7 +154,7 @@ Related information
     :maxdepth: 1
 
     Powering the Pixhawk <common-powering-the-pixhawk>
-    Compatible RC Tx/Rx Systems (Pixhawk/PX4) <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>
+    Compatible RC Tx/Rx Systems (Pixhawk) <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>
 
 [site wiki="copter"]
     Advanced Pixhawk Quadcopter Wiring Chart <advanced-pixhawk-quadcopter-wiring-chart>

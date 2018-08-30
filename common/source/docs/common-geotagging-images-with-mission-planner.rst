@@ -305,6 +305,50 @@ working with specific cameras:
 -  `Geotag GoPro Images with a Pixhawk Log File <http://tuffwing.com/support/geotag_gopro_images_with_pixhawk_log.html>`__
    (tuffwing.com)
 
+Alternative Commercial Hardware Solutions
+=========================================
+
+DROTAGx - In-Camera Card Photo Tagging - Airborne Projects
+----------------------------------------------------------
+
+With the appropriate mission from Mission Planner(or similar),
+`DROTAGx <https://www.airborneprojects.com/product/drotag-onboard-image-tagging-computer/>`_ (airborneprojects.com) enables APM compatible Flight Controllers (like Pixhawk)
+to *Trigger and Geo-Tag* your Digital Camera pictures in
+the air. It works through one of the available TELEMETRY ports and
+through a microUSB cable to the camera.
+
+You will have your taken pictures automatically Geo-Tagged by DROTAGx in the
+microSD card inside your camera at the time you land, with no need for any
+post-processing.
+
+DROTAGx enables non DRONE experts to get professional survey level results,
+with it's easy to use and included accessories:
+
+-   Photo tagging directly on the camera card itself.
+-   Have a plain text log file with geographical data in the camera card itself.
+    Includes Yaw, Roll, and Pitch of the Drone.
+-   1 Picture every 1.6 seconds.
+-   Guaranteed correct tagging even if the camera misses several pictures in a row!
+-   Hotshoe for camera flash feedback included for cameras with external flash.
+    With the hotshoe installed take pictures as fast as your camera allows for,
+    and microsecond accurate shutter lag.
+-   Also tags RAW photos.
+-   Customer support.
+
+Airborne Project's also provides a comprehensive
+`DROTAGx manual <https://www.airborneprojects.com/docs/drotagx_manual.pdf>`_ (airborneprojects.com)
+with before flight checklists, detailed explanations for diagnosis and
+other tips.
+
+DROTAGx is used by several national governmental organizations including Land
+Management Organizations around the world. Many professional surveying
+companies also choose the DROTAG for their tagging needs.
+
+.. image:: https://www.airborneprojects.com/wp-content/uploads/2016/06/drotag_1.jpg
+    :target: https://www.airborneprojects.com/product/drotag-onboard-image-tagging-computer/
+    :width: 100%
+
+
 Acknowledgements
 ================
 
@@ -313,3 +357,4 @@ from Sandro Benigno and Guto Santaella updated by Jesus Alvarez.
 
 
 [copywiki destination="copter,plane,rover,planner"]
+

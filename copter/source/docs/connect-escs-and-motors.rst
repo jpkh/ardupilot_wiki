@@ -4,11 +4,10 @@
 Connect ESCs and Motors
 =======================
 
-This article explains how to connect the ESCs, Motors and Propellers for
-Pixhawk, PX4, APM 2.x. and Erle-Brain2.
+This article explains how to connect the ESCs, Motors and Propellers for Pixhawk, APM 2.x. and Erle-Brain2.
 
-Connect motor PWM signal outputs (Pixhawk/PX4)
-==============================================
+Connect motor PWM signal outputs (Pixhawk)
+==========================================
 
 Connect the power (+), ground (-), and signal (s) wires for each ESC to
 the controller main output pins by motor number. Find your frame type
@@ -58,8 +57,7 @@ module, it is optional to connect the power and ground wires from the
 PDB to the flight controller board. If you would like to use these
 cables in addition to or instead of the power module or as a common
 point for low current servos, connect the ground (-) wire to a main
-output ground (-) pin and the power (+) wire to a main output power (+)
-pin.
+output ground (-) pin and the power (+) wire to a main output power (+) pin.
 
 .. note::
 
@@ -109,10 +107,6 @@ Hexa, Octo, Y6
 
 .. image:: ../images/MOTORS_Hexa-octo-y6.jpg
     :target: ../_images/MOTORS_Hexa-octo-y6.jpg
-
-.. note::
-
-   2014 3DR RTF Y6 uses the Y6B configuration.
 
 X8
 --
@@ -252,11 +246,10 @@ the opto-isolator and while the Pixhawk can be powered from the servo
 rail, it does not provide +5V to the servo rail. The ESCs must be
 powered by a BEC or with a jumper from an unused connector on the board.
 It is strongly recommended that you use a BEC to power the rail rather
-than a jumper. Do not add servos or other devices to the servo rail as
-the power module is not intended to supply power to them.
+than a jumper.
 
-.. image:: ../images/Pixhawk-Correction-to-KDE-Optoisolated-ESC.jpg
-    :target: ../_images/Pixhawk-Correction-to-KDE-Optoisolated-ESC.jpg
+.. image:: ../images/Pixhawk-Correction-to-KDE-ESC2.png
+    :target: ../_images/Pixhawk-Correction-to-KDE-ESC2.png
 
 The KDE ESCs have fixed PWM ranges so you must manually set the output
 range of each PWM signal so that RCx_MIN is 1100 and RCx_MAX is 1900us

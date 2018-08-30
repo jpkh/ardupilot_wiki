@@ -27,7 +27,7 @@ May 2009 - `First ArduPilot board <http://diydrones.com/profiles/blogs/ardupilot
 `thermopiles <http://diydrones.com/profiles/blogs/attopilot-ir-sensors-now>`__)
 released by Jordi/3DRobotics
 
-Nov 2009 - `ardupilot code respository <https://code.google.com/p/ardupilot/>`__ created by Jordi
+Nov 2009 - `ArduPilot code repository <https://code.google.com/p/ardupilot/>`__ created by Jordi
 
 Nov 2009 - first version of ArduIMU written by Jordi, Doug Weibel, Jose
 Julio using DCM from William Premerlani
@@ -81,10 +81,12 @@ is released by Michael Oborne
 Aug 2010 - `TradHeli support <https://vimeo.com/14135066>`__\ added by
 Randy
 
-Dec 2010 - first successful fork of ardupilot code as `MegaPirates group extends original CopterNG code <http://diydrones.com/profiles/blogs/arducopter-ng-taken-over-by>`__
+Dec 2010 - first successful fork of ArduPilot code as `MegaPirates group extends original CopterNG code <http://diydrones.com/profiles/blogs/arducopter-ng-taken-over-by>`__
 
 April 2011 – First fully autonomous Copter mission flown by Jason at
 `Sparkfun AVC <http://diydrones.com/profiles/blogs/acm-at-the-avc>`__
+
+April 2011 - Laser Navigation made the first piece of 32 bit hardware capable of running the Arducopter software
 
 2011 - APM2 released by 3D Robotics
 
@@ -116,7 +118,7 @@ Jonathan Challinger leads to Copter's inertial based altitude hold by
 Randy and Leonard
 (`AC2.9 <http://diydrones.com/forum/topics/arducopter-2-9-released>`__).
 
-Jan 2013 - ardupilot code moved from `google code <http://code.google.com/p/ardupilot/>`__ to
+Jan 2013 - ArduPilot code moved from `google code <http://code.google.com/p/ardupilot/>`__ to
 `github <https://github.com/ArduPilot/ardupilot>`__
 
 Jan/Feb 2013 - Android GCSs appear (`DroidPlanner from
@@ -144,8 +146,7 @@ Dec 2013 - `BeaglePilot project <https://github.com/BeaglePilot/beaglepilot>`__ 
 Jan 2014 - Extended Kalman Filter added for more reliable attitude and
 position information by Paul Riseborough, Tridge
 
-Mar 2014 -
-`VRBrain <http://www.virtualrobotix.com/page/vr-brain-v4-0>`__ boards
+Mar 2014 - `VRBrain <http://www.virtualrobotix.com/page/vr-brain-v4-0>`__ boards
 support added by Emile Castelnuovo and Tridge
 
 Mar 2014 - `Emlid presented Navio <http://diydrones.com/profiles/blogs/navio-raspberry-pi-autopilot>`__, first Raspberry Pi autopilot shield that allows to run ArduPilot directly on Raspberry Pi.
@@ -182,17 +183,37 @@ June 2015 - `Parrot Bebop port's first successful flights <http://diydrones.com/
 Aug 2015 - Michael Clement & Michael Day fly 
 `50 arduplanes in a multi-vehicle environment <http://diydrones.com/profiles/blogs/from-zero-to-fifty-planes-in-twenty-seven-minutes>`__
 
-Sep 2015 - `First major news event involving a misbehaving pilot of an ardupilot vehicle (a Solo) <http://edition.cnn.com/2015/09/04/us/us-open-tennis-drone-arrest/>`__
+Sep 2015 - `First major news event involving a misbehaving pilot of an ArduPilot vehicle (a Solo) <http://edition.cnn.com/2015/09/04/us/us-open-tennis-drone-arrest/>`__
 
-March 2016 - 3DR ceases direct funding of ArduPilot community.
+March 2016 - 3DR ceases direct funding of ArduPilot community as it `cuts jobs <http://www.marketwatch.com/story/drone-maker-3d-robotics-reboots-by-cutting-jobs-refocusing-on-corporate-market-2016-03-23>`__.
 
 March 2016 - Formation of the `ardupilot.org non profit organisation <http://diydrones.com/profiles/blogs/a-new-chapter-in-ardupilot-development>`__ and new website.
 
+May 2016 - `Flirtey delivery drone (using ArduPilot) is entered into Smithsonian Air and Space Museum <http://www.smithsonianmag.com/smart-news/first-delivery-drone-united-states-lands-spot-smithsonian-180958964/?no-ist>`__.
+
+Sep 2016 - Flymaple board support removed ( not actively tested or used , also lacks a maintainer see PR #4191 ).
+
+Sep 2016 - Relationship with 3DR, Chris Anderson and PX4 team lead sours as DroneCode Platinum board members outvote Silver board members to remove GPLv3 projects including ArduPilot from DroneCode.
+
+Sep 2016 - ArduPilot begins :ref:`ArduPilot Partners <common-partners>` group.
+
+Sep 2016 - `Canberra UAV places 1st in Medical Express 2016 <https://uavchallenge.org/2016/09/29/final-day-of-medical-express-2016>`__ competition (aka Outback Challenge) (`debrief <https://discuss.ardupilot.org/t/canberrauav-outback-challenge-2016-debrief/12162>`__)
+
+Oct 2016 - Copter-3.4 release including object avoidance.
+
+Feb 2017 - ArduSub officially joins ArduPilot and `merges back to master <https://discuss.ardupilot.org/t/best-contribution-for-feb-ardusub-rustom-jehangir-and-jacob-walser/16031>`__
+
+Feb 2017 - ArduPilot developer unconference in Canberra Australia (`Tridge <https://discuss.ardupilot.org/t/developer-unconference-feb-2017-andrew-tridgell/15888>`__, `PaulR <https://discuss.ardupilot.org/t/developer-unconference-feb-2017-andrew-tridgell/15888>`__, `MichaelO <https://discuss.ardupilot.org/t/developer-unconference-michael-oborne/16015>`__)
+
+May 2017 - `Google Summer of Code funds 4 developers <https://discuss.ardupilot.org/t/calling-student-programmers-google-and-ardupilot-2017-summer-of-code/15296>`__ for the summer (see `SafeRTL <https://discuss.ardupilot.org/t/safertl-mode-for-copter/20486>`__)
+
+July 2017 - Copter-3.5 release including Visual Odometry and Pozyx support for non-GPS navigation, AutoTune gets position hold, `Solo support <https://discuss.ardupilot.org/t/the-solo-lives-on/19347>`__
+
+Aug 2017 - SkyRocket announces release of ArduPilot based SkyViper GPS Streaming drone (`blog <https://discuss.ardupilot.org/t/skyrocket-and-ardupilot/20381>`__)
 
 .. note::
 
-   The above list includes many of the major milestones for the
-   project.  Please see the
+   The above list includes many of the major milestones for the project.  Please see the
    `ArduCopter.cpp <https://github.com/ArduPilot/ardupilot/blob/master/ArduCopter/ArduCopter.cpp>`__
    or the `GitHub contributors graph <https://github.com/ArduPilot/ardupilot/graphs/contributors>`__
    for a more complete list of contributors to the project.

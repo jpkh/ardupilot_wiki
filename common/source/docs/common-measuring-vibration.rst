@@ -24,6 +24,8 @@ These instructions explain how to measure the vibration levels. If you
 find they are out-of-tolerance then follow the advice found on the First
 Time Set-up sections :ref:`Vibration Damping <common-vibration-damping>`.
 
+For more advanced vibration analysis, see :ref:`Batch Sampling <common-imu-batchsampling>`.
+
 Copter-3.3/Plane 3.4 (and later versions)
 =========================================
 
@@ -85,7 +87,7 @@ Earlier firmware versions
    
 -  Fly your copter in Stabilize mode and try to maintain a level hover
    (it doesn't need to be perfectly stable or level)
--  Disconnect the Lipo, reconnect your APM/PX4 to the mission planner
+-  Disconnect the Lipo, reconnect your Pixhawk to the mission planner
 -  :ref:`Download the dataflash logs and <common-downloading-and-analyzing-data-logs-in-mission-planner_downloading_logs_via_mavlink>`
    after the download has completed, use the Mission Planner's "Review a
    Log" buttong to open the latest file in the log directory (it's last
@@ -97,6 +99,7 @@ Earlier firmware versions
    below.
 
    |DiagnosingWithLogs_Vibes|
+
 -  Check the scale on the left and ensure that your vibration levels for
    the AccX and AccY are between -3 and +3.  For AccZ the acceptable
    range is -15 to -5.  If it is very close or over these limits you

@@ -4,9 +4,8 @@
 Downloading and Analyzing Data Logs in Mission Planner
 ======================================================
 
-:ref:`Dataflash logs <common-downloading-and-analyzing-data-logs-in-mission-planner>`
-are stored on the Pixhawk (or APM2.x) onboard dataflash memory and can
-be download after a flight. On Plane and Rover dataflash logs are
+Dataflash logs are stored on the flight controller's onboard dataflash memory
+and can be download after a flight. On Plane and Rover dataflash logs are
 created soon after start-up. On Copter they are created after you first
 arm the copter. This topic explains how to configure and access
 Dataflash logs.
@@ -18,6 +17,10 @@ Dataflash logs.
    :ref:`Telemetry logs <common-mission-planner-telemetry-logs>` (also
    known as "tlogs") collect similar information to dataflash logs (see
    :ref:`Diagnosing problems using Logs <common-diagnosing-problems-using-logs>` for more information).
+
+.. note::
+
+   If your vehicle is having trouble producing dataflash logs - including the infamous "No IO heartbeat" diagnostic message - try a different SD card.  You may also choose to test the card using a dedicated tool, such as ``H2testw``.  Low board voltates are also known to cause logging issues.
 
 .. _common-downloading-and-analyzing-data-logs-in-mission-planner_downloading_logs_via_mavlink:
 
@@ -31,11 +34,8 @@ This method is available in AC3.2 (or higher).
 -  On the bottom left, select the "DataFlash Logs" tab and push the
    "Download DataFlash Log Via Mavlink" button
 
-.. image:: ../../../images/Capture3.png
-    :target: ../_images/Capture3.png
-
-.. image:: ../../../images/Capture3.png
-    :target: ../_images/Capture3.png
+.. image:: ../../../images/mission_planner_download_logs.png
+    :target: ../_images/mission_planner_download_logs.png
 
 Then, select the log you want to download. This will save that log to
 your MissionPlanner/logs directory, in a folder named after the vehicle
@@ -65,7 +65,22 @@ Manually review a log
 For more detailed analysis, click on "Review a Log" and select a log
 that you've already saved to the MissionPlanner/logs directory.  Once
 again, they will be in folders named after the vehicle type, such as
-QUADCOPTER or ROVER. Once you pick the log you want, you will get charts
+QUADCOPTER or ROVER.
+
+Steps to review a log downloaded from the internet, or your vehicle
+-------------------------------------------------------------------
+For DataFlash logs, with a .bin extension:
+#. Download the log file. Note the place on your computer to which it is downloaded. (For example, it might be C:\Downloads)
+#. Open Mission Planner
+#. Navigate to the “Flight Data” page (top left)
+#. Select the “Dataflash Logs” tab (mid-screen, left side)
+#. Select the “Review a Log” button.
+#. A standard Windows “select a file” box will let you go find the .bin file that you downloaded, at the place that you downloaded it. (Per the example above, it is in C:\Downloads) Choose that file.
+#. After reading the log, a Manual Log Review window will be open, which allows you to plot data from the log for inspection. (see below)
+
+Reviewing the log data
+----------------------
+Once you pick the log you want, you will get charts
 such as the below. The basic format of the dataflash is:
 
 -  Line numbers appear on the very left side of the viewer
@@ -102,14 +117,14 @@ Setting what data you want recorded
 ===================================
 
 The LOG_BITMASK parameter controls what message types are recorded in
-the dataflash.  Recent versions of the mission planner and ardupilot
+the dataflash.  Recent versions of the mission planner and ArduPilot
 allow individual messages to be enabled/disabled from the MP's
 Config/Tuning, Standard Params screen.
 
 .. image:: ../../../images/mp_dataflash_log_bitmask.png
     :target: ../_images/mp_dataflash_log_bitmask.png
 
-Earlier versions of MP/ardupilot allow selecting the message using a
+Earlier versions of MP/ArduPilot allow selecting the message using a
 drop-down as shown below. 
 
 .. image:: ../../../images/mp_log_bitmask.png
@@ -123,19 +138,21 @@ Message Details (Copter specific)
 **ATT (attitude information):**
 
 +-----------+--------------------------------------------------------------------------------------------------------+
-| RollIn    | The pilot's desired roll angle in centi-degrees (roll left is negative, right is positive)             |
+| DesRoll   | The pilot's desired roll angle in degrees (roll left is negative, right is positive)                   |
 +-----------+--------------------------------------------------------------------------------------------------------+
-| Roll      | The vehicle's actual roll in centi-degrees (roll left is negative, right is positive)                  |
+| Roll      | The vehicle's actual roll in degrees (roll left is negative, right is positive)                        |
 +-----------+--------------------------------------------------------------------------------------------------------+
-| PitchIn   | The pilot's desired pitch angle in centi-degrees (pitch forward is negative, pitch back is positive)   |
+| DesPitch  | The pilot's desired pitch angle in degrees (pitch forward is negative, pitch back is positive)         |
 +-----------+--------------------------------------------------------------------------------------------------------+
-| Pitch     | The vehicle's actual pitch angle in centi-degrees (roll left is negative, right is positive)           |
+| Pitch     | The vehicle's actual pitch angle in degrees (pitch forward is negative, pitch back is positive)        |
 +-----------+--------------------------------------------------------------------------------------------------------+
-| YawIn     | Tthe pilot's desired yaw rate as a number from -4500 ~ 4500 (not in deg/sec, clockwise is positive)    |
+| DesYaw    | The pilot's desired heading in degrees with 0 = north                                                  |
 +-----------+--------------------------------------------------------------------------------------------------------+
-| Yaw       | The vehicles actual heading in centi-degrees with 0 = north                                            |
+| Yaw       | The vehicle's actual heading in degrees with 0 = north                                                 |
 +-----------+--------------------------------------------------------------------------------------------------------+
-| NavYaw    | The desired heading in centi-degrees                                                                   |
+| ErrRP     | The average size of the roll/pitch error estimate (values between 0 and 1)                             |
++-----------+--------------------------------------------------------------------------------------------------------+
+| ErrYaw    | The average size of the yaw error estimate (values between 0 and 1)                                    |
 +-----------+--------------------------------------------------------------------------------------------------------+
 
 **ATUN (auto tune overview):**
@@ -212,141 +229,74 @@ a mission):**
 
 **COMPASS (raw compass, offset and compassmot compensation values):**
 
-.. raw:: html
-
-   <table>
-   <tbody>
-   <tr>
-   <th>Field</th>
-   <th>Description</th>
-   </tr>
-   <tr>
-   <td>MagX, MagY. MagZ</td>
-   <td>Raw magnetic field values for x, y and z axis</td>
-   </tr>
-   <tr>
-   <td>OfsX, OfsY, OfsZ</td>
-   <td>Raw magnetic offsets (will only change if COMPASS_LEARN parameter is 1)</td>
-   </tr>
-   <tr>
-   <td>MOfsX, MOfsY, MOfsZ</td>
-   <td>Compassmot compensation for throttle or current</td>
-   </tr>
-   </tbody>
-   </table>
++---------------------+----------------------------------------------------------------------------------------+
+| Field               | Description                                                                            |
++---------------------+----------------------------------------------------------------------------------------+
+| MagX, MagY. MagZ    | Raw magnetic field values for x, y and z axis                                          |
++---------------------+----------------------------------------------------------------------------------------+
+| OfsX, OfsY, OfsZ    | Raw magnetic offsets (will only change if COMPASS_LEARN parameter is 1)                |
++---------------------+----------------------------------------------------------------------------------------+
+| MOfsX, MOfsY, MOfsZ | Compassmot compensation for throttle or current                                        |
++---------------------+----------------------------------------------------------------------------------------+
 
 **CURRENT (battery voltage, current and board voltage information):**
 
-.. raw:: html
++---------------------+----------------------------------------------------------------------------------------+
+| FIELD               | DESCRIPTION                                                                            |
++---------------------+----------------------------------------------------------------------------------------+
+| Thr                 | Pilot input throttle from 0 ~ 1000                                                     |
++---------------------+----------------------------------------------------------------------------------------+
+| ThrInt              | Integrated throttle (i.e. sum of total throttle output for this flight)                |
++---------------------+----------------------------------------------------------------------------------------+
+| Volt                | Battery voltage in volts \* 100                                                        |
++---------------------+----------------------------------------------------------------------------------------+
+| Curr                | Current drawn from the battery in amps \* 100                                          |
++---------------------+----------------------------------------------------------------------------------------+
+| Vcc                 | Board voltage                                                                          |
++---------------------+----------------------------------------------------------------------------------------+
+| CurrTot             | Total current drawn from battery                                                       |
++---------------------+----------------------------------------------------------------------------------------+
 
-   <table>
-   <tbody>
-   <tr>
-   <th>FIELD</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>Thr</td>
-   <td>Pilot input throttle from 0 ~ 1000</td>
-   </tr>
-   <tr>
-   <td>ThrInt</td>
-   <td>Integrated throttle (i.e. sum of total throttle output for this flight)</td>
-   </tr>
-   <tr>
-   <td>Volt</td>
-   <td>Battery voltage in volts \* 100</td>
-   </tr>
-   <tr>
-   <td>Curr</td>
-   <td>Current drawn from the battery in amps \* 100</td>
-   </tr>
-   <tr>
-   <td>Vcc</td>
-   <td>Board voltage</td>
-   </tr>
-   <tr>
-   <td>CurrTot</td>
-   <td>Total current drawn from battery</td>
-   </tr>
-   </tbody>
-   </table>
 
 **CTUN (throttle and altitude information):**
 
-.. raw:: html
-
-   <table>
-   <tbody>
-   <tr>
-   <th>FIELD</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>ThrIn</td>
-   <td>The pilot's throttle in as a number from 0 to 1000</td>
-   </tr>
-   <tr>
-   <td>SonAlt</td>
-   <td>The altitude above ground according to the sonar</td>
-   </tr>
-   <tr>
-   <td>BarAlt</td>
-   <td>The altitude above ground according to the barometer</td>
-   </tr>
-   <tr>
-   <td>WPAlt</td>
-   <td>The desired altitude while in AltHold, Loiter, RTL or Auto flight modes</td>
-   </tr>
-   <tr>
-   <td>NavThr</td>
-   <td>Not used</td>
-   </tr>
-   <tr>
-   <td>AngBst</td>
-   <td>Throttle increase (from 0 ~ 1000) as a result of the copter leaning over
-   (automatically added to all pilot and autopilot throttle to reduce
-   altitude loss while leaning)   </td>
-   </tr>
-   <tr>
-   <td>CRate</td>
-   <td>Accelerometer + baro climb rate estimate in cm/s</td>
-   </tr>
-   <tr>
-   <td>ThrOut</td>
-   <td>Final throttle output sent to the motors (from 0 ~ 1000). Normally equal
-   to ThrIn+AngBst while in stabilize mode.   </td>
-   </tr>
-   <tr>
-   <td>DCRate</td>
-   <td>Pilot desired climb rate in cm/s</td>
-   </tr>
-   </tbody>
-   </table>
++---------+----------------------------------------------------------------------------------------------------+
+| FIELD   | DESCRIPTION                                                                                        |
++---------+----------------------------------------------------------------------------------------------------+
+| ThrIn   | The pilot's throttle in as a number from 0 to 1000                                                 |
++---------+----------------------------------------------------------------------------------------------------+
+| SonAlt  | The altitude above ground according to the sonar                                                   |
++---------+----------------------------------------------------------------------------------------------------+
+| BarAlt  | The altitude above ground according to the barometer                                               |
++---------+----------------------------------------------------------------------------------------------------+
+| WPAlt   | The desired altitude while in AltHold, Loiter, RTL or Auto flight modes                            |
++---------+----------------------------------------------------------------------------------------------------+
+| NavThr  | Not used                                                                                           |
++---------+----------------------------------------------------------------------------------------------------+
+| AngBst  | Throttle increase (from 0 ~ 1000) as a result of the copter leaning over (automatically            |
+|         | added to all pilot and autopilot throttle to reduce altitude loss while  leaning)                  |
++---------+----------------------------------------------------------------------------------------------------+
+| CRate   | Accelerometer + baro climb rate estimate in cm/s                                                   |
++---------+----------------------------------------------------------------------------------------------------+
+| ThrOut  | Final throttle output sent to the motors (from 0 ~ 1000). Normally equal to ThrIn+AngBst while     |
+|         | in stabilize mode.                                                                                 |
++---------+----------------------------------------------------------------------------------------------------+
+| DCRate  | Pilot desired climb rate in cm/s                                                                   |
++---------+----------------------------------------------------------------------------------------------------+
 
 **D32, DU32 (single data values which are either signed 32bit integers
 or unsigned 32bit integers):**
 
-.. raw:: html
-
-   <table>
-   <tbody>
-   <tr>
-   <th>FIELD</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>id</td>
-   <td>Identification number for the variable.  There are only two possible values:
-   <ul>
-   <li>7 = bit mask of internal state.  The meaning of individual bits can
-   be found in `Copter.cpps’s definition of the ap structure <https://github.com/ArduPilot/ardupilot/blob/master/ArduCopter/ArduCopter.cpp#L361>`__./
-   <li>9 = simple mode's initial heading in centi-degrees</li>
-   </ul>
-   </td>
-   </tr>
-   </tbody>
-   </table>
++---------+-------------------------------------------------------------------------------------------------------+
+| FIELD   | DESCRIPTION                                                                                           |
++---------+-------------------------------------------------------------------------------------------------------+
+| id      | Identification number for the variable. There are only two possible values:                           |
+|         |                                                                                                       |
+|         | *   7 = bit mask of internal state.  ( The meaning of individual bits can be found in the def'n       |
+|         |     of the ap structure <https://github.com/ardupilot/ardupilot/blob/master/ArduCopter/Copter.h#L251> |
+|         |                                                                                                       |
+|         | *   9 = simple mode's initial heading in centi-degrees                                                |
++---------+-------------------------------------------------------------------------------------------------------+
 
 **EKF (Extended Kalman Filter**):
 
@@ -357,359 +307,206 @@ or unsigned 32bit integers):**
 
 SubSystem and Error codes listed below
 
-.. raw:: html
-
-   <table>
-   <tbody>
-   <tr>
-   <th>Error</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>1: Main</td>
-   <td> (never used)</td>
-   </tr>
-   <tr>
-   <td>2: Radio</td>
-   <td>
-   <ul>
-   <li>ECode 1: “Late Frame” which means the APM’s onboard ppm encoder did not provide an update for at least 2 seconds
-   </li>ECode 0: error resolved which means the ppm encoder started providing data again</li>
-   </ul>
-   </td>
-   </tr>
-   <tr>
-   <td>3: Compass</td>
-   <td>
-   <ul>
-   <li>ECode 1: the compass failed to initialise (likely a hardware issue)</li>
-   <li>ECode 2: failure while trying to read a single value from the compass (probably a hardware issue)</li>
-   <li>ECode 0: above errors resolved</li>
-   </ul>
-   </td>
-   </tr>
-   <tr>
-   <td>4: Optical flow</td>
-   <td>Ecode 1: failed to initialise (likely a hardware issue)</td>
-   </tr>
-   <tr>
-   <td>5: Throttle failsafe</td>
-   <td>
-   <ul>
-   <li>ECode 1: throttle dropped below FS_THR_VALUE meaning likely loss of contact between RX/TX</li>
-   <li>ECode 0: above error resolve meaning RX/TX contact likely restored</li>
-   </ul>
-   </td>
-   </tr>
-   <tr>
-   <td>6: Battery failsafe</td>
-   <td>ECode 1: battery voltage dropped below LOW_VOLT or total battery capacity used exceeded BATT_CAPACITY</td>
-   </tr>
-   <tr>
-   <td>7: GPS failsafe</td>
-   <td>
-   <ul>
-   <li>ECode 1: GPS lock lost for at least 5 seconds</li>
-   <li>ECode 0: GPS lock restored</li>
-   </ul>
-   </td>
-   </tr>
-   <tr>
-   <td>8: GCS (Ground station) failsafe</td>
-   <td>
-   <ul>
-   <li>ECode 1: updates from ground station joystick lost for at least 5 seconds</li>
-   <li>ECode 0: updates from ground station restored</li>
-   </ul>
-   </td>
-   </tr>
-   <tr>
-   <td>9: Fence</td>
-   <td>
-   <ul>
-   <li>ECode 1: altitude fence breached</li>
-   <li>ECode 2: circular fence breached</li>
-   <li>ECode 3: both altitude and circular fences breached</li>
-   <li>ECode 0: vehicle is back within the fences</li>
-   </ul>
-   </td>
-   </tr>
-   <tr>
-   <td>10: Flight Mode</td>
-   <td>
-   ECode 0 ~ 17: the vehicle was unable to enter the desired flight mode</li>
-   (0=Stabilize, 1=Acro, 2=AltHold, 3=Auto, 4=Guided, 5=Loiter, 6=RTL,
-   7=Circle, 8=Position, 9=Land, 10=OF_Loiter, 11=Drift, 13=Sport,
-   14=Flip, 15=AutoTune, 16=PosHold, 17=Brake)
-   </td>
-   </tr>
-   <tr>
-   <td>11: GPS</td>
-   <td>
-   <ul>
-   <li>ECode 2: GPS Glitch</li>
-   <li>ECode 0: GPS Glitch cleared</li>
-   </ul>
-   </td>
-   </tr>
-   <tr>
-   <td>12: Crash Check</td>
-   <td>ECode 1: Crash detected</td>
-   </tr>
-   </tbody>
-   </table>
++------------+----------------------------------------------------------------------------------------------------+
+| Error      | DESCRIPTION                                                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| 1:Main     | (never used)                                                                                       |
++------------+----------------------------------------------------------------------------------------------------+
+| 2:Radio    | ECode 1: “Late Frame” which means the APM’s onboard ppm encoder did not provide an                 |
+|            | update for at least 2 seconds                                                                      |
++------------+----------------------------------------------------------------------------------------------------+
+| 3:Compass  | ECode 1: the compass failed to initialise (likely a hardware issue)                                |
+|            | ECode 2: failure while trying to read a single value from the compass (probably a hardware issue)  |
+|            | ECode 0: above errors resolve                                                                      |
++------------+----------------------------------------------------------------------------------------------------+
+| 4:Optical  | Ecode 1: failed to initialise (likely a hardware issue)                                            |
+| flow       |                                                                                                    |
++------------+----------------------------------------------------------------------------------------------------+
+| 5:Throttle | ECode 1: throttle dropped below FS_THR_VALUE meaning likely loss of contact between RX/TX          |
+| failsafe   | ECode 0: above error resolve meaning RX/TX contact likely restored                                 |
++------------+----------------------------------------------------------------------------------------------------+
+| 6:Battery  | ECode 1: battery voltage dropped below LOW_VOLT or total capacity used exceeded BATT_CAPACITY      |
+| failsafe   |                                                                                                    |
++------------+----------------------------------------------------------------------------------------------------+
+| 7: GPS     | ECode 1: GPS lock lost for at least 5 seconds                                                      |
+| failsafe   | ECode 0: GPS lock restored                                                                         |
++------------+----------------------------------------------------------------------------------------------------+
+| 8: GCS     | ECode 1: updates from ground station joystick lost for at least 5 seconds                          |
+| failsafe   | ECode 0: updates from ground station restored                                                      |
++------------+----------------------------------------------------------------------------------------------------+
+| 9: Fence   | ECode 1: altitude fence breached                                                                   |
+|            | ECode 2: circular fence breached                                                                   |
+|            | ECode 3: both altitude and circular fences breached                                                |
+|            | ECode 0: vehicle is back within the fences                                                         |
++------------+----------------------------------------------------------------------------------------------------+
+| 10: Flight | ECode 0 ~ 17: the vehicle was unable to enter the desired flight mode:                             |
+| Mode       | 0=Stabilize, 1=Acro, 2=AltHold, 3=Auto, 4=Guided, 5=Loiter, 6=RTL, 7=Circle, 8=Position, 9=Land,   |
+|            | 10=OF_Loiter, 11=Drift, 13=Sport, 14=Flip, 15=AutoTune, 16=PosHold, 17=Brake                       |
++------------+----------------------------------------------------------------------------------------------------+
+| 11: GPS    | ECode 2: GPS Glitch                                                                                |
+|            | ECode 0: GPS Glitch cleared                                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| 12: Crash  | ECode 1: Crash detected                                                                            |
+| Check      |                                                                                                    |
++------------+----------------------------------------------------------------------------------------------------+
 
 **EV: (an event number)**. The full list of possible events can be found
 in `defines.h <https://github.com/ArduPilot/ardupilot/blob/master/ArduCopter/defines.h#L291>`__
 but the most common are:
 
-.. raw:: html
++------------+----------------------------------------------------------------------------------------------------+
+| Event No   | DESCRIPTION                                                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| 10         | Armed                                                                                              |
++------------+----------------------------------------------------------------------------------------------------+
+| 11         | Disarmed                                                                                           |
++------------+----------------------------------------------------------------------------------------------------+
+| 15         | Auto Armed (pilot has raised throttle above zero and autopilot is free to take control of throttle)|
++------------+----------------------------------------------------------------------------------------------------+
+| 16         | TakeOff                                                                                            |
++------------+----------------------------------------------------------------------------------------------------+
+| 18         | Land Complete                                                                                      |
++------------+----------------------------------------------------------------------------------------------------+
+| 25         | Set Home (home location coordinates have been capture)                                             |
++------------+----------------------------------------------------------------------------------------------------+
 
-   <table>
-   <tbody>
-   <tr>
-   <th>Event Number</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>10</td>
-   <td>Armed</td>
-   </tr>
-   <tr>
-   <td>11</td>
-   <td>Disarmed</td>
-   </tr>
-   <tr>
-   <td>15</td>
-   <td>Auto Armed (pilot has raised throttle above zero and autopilot is free to take control of throttle)</td>
-   </tr>
-   <tr>
-   <td>16</td>
-   <td>TakeOff</td>
-   </tr>
-   <tr>
-   <td>18</td>
-   <td>Land Complete</td>
-   </tr>
-   <tr>
-   <td>25</td>
-   <td>Set Home (home location coordinates have been capture)</td>
-   </tr>
-   </tbody>
-   </table>
+
+
+
+**GPA: (Global Position Accuracy)**
+
++------------+----------------------------------------------------------------------------------------------------+
+| FIELD      | DESCRIPTION                                                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| VDop       | Vertical dilution of precision, a unitless measure of precision                                    |
+|            | https://en.wikipedia.org/wiki/dilution_of_precision                                                |
++------------+----------------------------------------------------------------------------------------------------+
+| HAcc       | Horizontal Accuracy as reported by the GPS module, in meters                                       |
++------------+----------------------------------------------------------------------------------------------------+
+| VAcc       | Vertical Accuracy as reported by the GPS module, in meters                                         |
++------------+----------------------------------------------------------------------------------------------------+
+| SAcc       | Speed accuracy as reported by the GPS, in m/s/s                                                    |
++------------+----------------------------------------------------------------------------------------------------+
+| VV         | Flag to indicate if the GPS is reporting vertical velocity                                         |
+|            |   0 No vertical velocity data                                                                      |
+|            |   1 GPS has vertical velocity data                                                                 |
++------------+----------------------------------------------------------------------------------------------------+
+| SMS        | The autopilot time in milliseconds that the accuracy/GPS position data is associated with.         |
++------------+----------------------------------------------------------------------------------------------------+
+| Delta      | The time between when the previous GPS message and the current GPS message was parsed by the       |
+|            | autopilot, in milliseconds                                                                         |
++------------+----------------------------------------------------------------------------------------------------+
+
+
 
 **GPS:**
 
-.. raw:: html
-
-   <table>
-   <tbody>
-   <tr>
-   <th>FIELD</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>Status</td>
-   <td>0 = no GPS, 1 = GPS but no fix, 2 = GPS with 2D fix, 3 = GPS with 3D fix   </td>
-   </tr>
-   <tr>
-   <td>Time</td>
-   <td>The GPS reported time since epoch in milliseconds</td>
-   </tr>
-   <tr>
-   <td>NSats</td>
-   <td>The number of satellites current being used</td>
-   </tr>
-   <tr>
-   <td>`HDop <https://en.wikipedia.org/wiki/Dilution_of_precision_%28GPS%29>`__:</td>
-   <td>A measure of gps precision (1.5 is good, >2.0 is not so good)</td>
-   </tr>
-   <tr>
-   <td>Lat</td>
-   <td>Lattitude according to the GPS</td>
-   </tr>
-   <tr>
-   <td>Lng</td>
-   <td>Longitude according to the GPS</td>
-   </tr>
-   <tr>
-   <td>RelAlt</td>
-   <td>Accelerometer + Baro altitude in meters</td>
-   </tr>
-   <tr>
-   <td>Alt</td>
-   <td>GPS reported altitude (not used by the flight controller)</td>
-   </tr>
-   <tr>
-   <td>SPD</td>
-   <td>Horizontal ground speed in m/s</td>
-   </tr>
-   <tr>
-   <td>GCrs</td>
-   <td>Ground course in degrees (0 = north)</td>
-   </tr>
-   </tbody>
-   </table>
++------------+----------------------------------------------------------------------------------------------------+
+| FIELD      | DESCRIPTION                                                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| Status     | 0 = no GPS, 1 = GPS but no fix, 2 = GPS with 2D fix, 3 = GPS with 3D fix                           |
++------------+----------------------------------------------------------------------------------------------------+
+| Time       | The GPS reported time since epoch in milliseconds                                                  |
++------------+----------------------------------------------------------------------------------------------------+
+| NSats      | The number of satellites current being used                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| HDop       | A measure of gps precision (1.5 is good, >2.0 is not so good)                                      |
+|            | https://en.wikipedia.org/wiki/dilution_of_precision                                                |
++------------+----------------------------------------------------------------------------------------------------+
+| Lat        | Lattitude according to the GPS                                                                     |
++------------+----------------------------------------------------------------------------------------------------+
+| Lng        | Longitude according to the GPS                                                                     |
++------------+----------------------------------------------------------------------------------------------------+
+| RelAlt     | Accelerometer + Baro altitude in meters                                                            |
++------------+----------------------------------------------------------------------------------------------------+
+| Alt        | GPS reported altitude (not used by the flight controller)                                          |
++------------+----------------------------------------------------------------------------------------------------+
+| SPD        | Horizontal ground speed in m/s                                                                     |
++------------+----------------------------------------------------------------------------------------------------+
+| GCrs       | Ground course in degrees (0 = north)                                                               |
++------------+----------------------------------------------------------------------------------------------------+
 
 **IMU (accelerometer and gyro information):**
 
-.. raw:: html
-
-   <table>
-   <tbody>
-   <tr>
-   <th>FIELD</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>GyrX, GyrY, GyrZ</td>
-   <td>The raw gyro rotation rates in degrees/second</td>
-   </tr>
-   <tr>
-   <td>AccX, AccY, AccZ</td>
-   <td>The raw accelerometer values in m/s/s</td>
-   </tr>
-   </tbody>
-   </table>
++------------------+----------------------------------------------------------------------------------------------+
+| FIELD            | DESCRIPTION                                                                                  |
++------------------+----------------------------------------------------------------------------------------------+
+| GyrX, GyrY, GyrZ | The raw gyro rotation rates in degrees/second                                                |
++------------------+----------------------------------------------------------------------------------------------+
+| AccX, AccY, AccZ | The raw accelerometer values in m/s/s                                                        |
++------------------+----------------------------------------------------------------------------------------------+
 
 **Mode (flight mode):**
 
-.. raw:: html
-
-   <table>
-   <tbody>
-   <tr>
-   <th>FIELD</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>Mode</td>
-   <td>The flight mode displayed as a string (i.e. STABILIZE, LOITER, etc)</td>
-   </tr>
-   <tr>
-   <td>ThrCrs</td>
-   <td>Throttle cruise (from 0 ~ 1000) which is the autopilot's best guess as to what throttle is required to maintain a stable hover</td>
-   </tr>
-   </tbody>
-   </table>
++------------+----------------------------------------------------------------------------------------------------+
+| FIELD      | DESCRIPTION                                                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| Mode       | The flight mode displayed as a string (i.e. STABILIZE, LOITER, etc)                                |
++------------+----------------------------------------------------------------------------------------------------+
+| ThrCrs     | Throttle cruise (from 0 ~ 1000) which is the autopilot's best guess as to what throttle            |
+|            | is required to maintain a stable hover                                                             |
++------------+----------------------------------------------------------------------------------------------------+
 
 **NTUN (navigation information):**
 
-.. raw:: html
-
-   <table>
-   <tbody>
-   <tr>
-   <th>FIELD</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>WPDst</td>
-   <td>Distance to the next waypoint (or loiter target) in cm. Only updated
-   while in Loiter, RTL, Auto flight modes.   </td>
-   </tr>
-   <tr>
-   <td>WPBrg</td>
-   <td>Bearing to the next waypoint in degrees</td>
-   </tr>
-   <tr>
-   <td>PErX</td>
-   <td>Distance to intermediate target between copter and the next waypoint in
-   the latitude direction   </td>
-   </tr>
-   <tr>
-   <td>PErY</td>
-   <td>Distance to intermediate target between copter and the next waypoint in the longitude direction</td>
-   </tr>
-   <tr>
-   <td>DVelX</td>
-   <td>Desired velocity in cm/s in the latitude direction</td>
-   </tr>
-   <tr>
-   <td>DVelY</td>
-   <td>Desired velocity in cm/s in the longitude direction</td>
-   </tr>
-   <tr>
-   <td>VelX</td>
-   <td>Actual accelerometer + gps velocity estimate in the latitude direction</td>
-   </tr>
-   <tr>
-   <td>VelY</td>
-   <td>Actual accelerometer + gps velocity estimate in the longitude direction</td>
-   </tr>
-   <tr>
-   <td>DAcX</td>
-   <td>Desired acceleration in cm/s/s in the latitude direction</td>
-   </tr>
-   <tr>
-   <td>DAcY</td>
-   <td>Desired acceleration in cm/s/s in the longitude direction</td>
-   </tr>
-   <tr>
-   <td>DRol</td>
-   <td>Desired roll angle in centi-degrees</td>
-   </tr>
-   <tr>
-   <td>DPit</td>
-   <td>Desired pitch angle in centi-degrees</td>
-   </tr>
-   </tbody>
-   </table>
++------------+----------------------------------------------------------------------------------------------------+
+| FIELD      | DESCRIPTION                                                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| WPDst      | Distance to the next waypoint (or loiter target) in cm. Only updated while in Loiter, RTL, Auto.   |
++------------+----------------------------------------------------------------------------------------------------+
+| WPBrg      | Bearing to the next waypoint in degrees                                                            |
++------------+----------------------------------------------------------------------------------------------------+
+| PErX       | Distance to intermediate target between copter and the next waypoint in the latitude direction     |
++------------+----------------------------------------------------------------------------------------------------+
+| PErY       | Distance to intermediate target between copter and the next waypoint in the longitude direction    |
++------------+----------------------------------------------------------------------------------------------------+
+| DVelX      | Desired velocity in cm/s in the latitude direction                                                 |
++------------+----------------------------------------------------------------------------------------------------+
+| DVelY      | Desired velocity in cm/s in the longitude direction                                                |
++------------+----------------------------------------------------------------------------------------------------+
+| VelX       | Actual accelerometer + gps velocity estimate in the latitude direction                             |
++------------+----------------------------------------------------------------------------------------------------+
+| VelY       | Actual accelerometer + gps velocity estimate in the longitude direction                            |
++------------+----------------------------------------------------------------------------------------------------+
+| DAcX       | Desired acceleration in cm/s/s in the latitude direction                                           |
++------------+----------------------------------------------------------------------------------------------------+
+| DAcY       | Desired acceleration in cm/s/s in the longitude direction                                          |
++------------+----------------------------------------------------------------------------------------------------+
+| DRol       | Desired roll angle in centi-degrees                                                                |
++------------+----------------------------------------------------------------------------------------------------+
+| DPit       | Desired pitch angle in centi-degrees                                                               |
++------------+----------------------------------------------------------------------------------------------------+
 
 **PM (performance monitoring):**
 
-.. raw:: html
++------------+----------------------------------------------------------------------------------------------------+
+| FIELD      | DESCRIPTION                                                                                        |
++------------+----------------------------------------------------------------------------------------------------+
+| RenCnt     | DCM renormalization count - a high number may indicate problems in DCM (extremely rare)            |
++------------+----------------------------------------------------------------------------------------------------+
+| RenBlw     | DCM renormalization blow-up count - how many times DCM had to completely rebuild the DCM matrix    |
+|            | since the last PM. Normally innocuous but a number that constantly grows may be an indication      |
+|            | that DCM is having troubles calculating the attitude (extremely rare)                              |
++------------+----------------------------------------------------------------------------------------------------+
+| FixCnt     | The number of GPS fixes received since the last PM message was received                            |
+|            | (it's hard to imagine how this would be useful)                                                    |
++------------+----------------------------------------------------------------------------------------------------+
+| NLon       | Number of long running main loops                                                                  |
+|            | (i.e. loops that take more than 5% longer than the 10ms they should)                               |
++------------+----------------------------------------------------------------------------------------------------+
+| NLoop      | The total number of loops since the last PM message was displayed. This allows you to calculate    |
+|            | the percentage of slow running loops (which should never be higher than 15%). Note that the        |
+|            | value will depend on the autopilot clock speed.                                                    |
++------------+----------------------------------------------------------------------------------------------------+
+| MaxT       | The maximum time that any loop took since the last PM message. This should be close to 10,000 but  |
+|            | will be up to 6,000,000 during the interval where the motors are armed                             |
++------------+----------------------------------------------------------------------------------------------------+
+| PMT        | A number that increments each time a heart beat is received from the ground station                |
++------------+----------------------------------------------------------------------------------------------------+
+| I2CErr     | The number of I2C errors since the last PM message. Any I2C errors may indicate a problem on the   |
+|            | I2C bus which may in turn slow down the main loop and cause performance problems.                  |
++------------+----------------------------------------------------------------------------------------------------+
 
-   <table>
-   <tbody>
-   <tr>
-   <th>Field</th>
-   <th>DESCRIPTION</th>
-   </tr>
-   <tr>
-   <td>RenCnt</td>
-   <td>DCM renormalization count - a high number may indicate problems in DCM (extremely rare)</td>
-   </tr>
-   <tr>
-   <td>RenBlw</td>
-   <td>DCM renormalization blow-up count - how many times DCM had to completely
-   rebuild the DCM matrix since the last PM. Normally innocuous but a
-   number that constantly grows may be an indication that DCM is having
-   troubles calculating the attitude (extremely rare)   </td>
-   </tr>
-   <tr>
-   <td>FixCnt</td>
-   <td>The number of GPS fixes received since the last PM message was received (it's hard to imagine how this would be useful)</td>
-   </tr>
-   <tr>
-   <td>NLon</td>
-   <td>Number of long running main loops (i.e. loops that take more than 5% longer than the 10ms they should)</td>
-   </tr>
-   <tr>
-   <td>NLoop</td>
-   <td>The total number of loops since the last PM message was displayed. This
-   allows you to calculate the percentage of slow running loops (which
-   should never be higher than 15%). Note that the value will depend on the
-   autopilot clock speed.</td>
-   </tr>
-   <tr>
-   <td>MaxT</td>
-   <td>The maximum time that any loop took since the last PM message. This
-   should be close to 10,000 but will be up to 6,000,000 during the
-   interval where the motors are armed   </td>
-   </tr>
-   <tr>
-   <td>PMT</td>
-   <td>A number that increments each time a heart beat is received from the ground station</td>
-   </tr>
-   <tr>
-   <td>I2CErr</td>
-   <td>The number of I2C errors since the last PM message. Any I2C errors may
-   indicate a problem on the I2C bus which may in turn slow down the main
-   loop and cause performance problems.   </td>
-   </tr>
-   </tbody>
-   </table>
 
 **RCOUT (pwm output to individual RC outputs):**
 
@@ -719,7 +516,7 @@ esc/motor/RC output
 Viewing KMZ FILES
 =================
 
-When you download the dataflash log files from the APM/PX4 it will
+When you download the dataflash log files from the flight controller it will
 automatically create a KMZ file (file with extension .kmz). This file
 can be opened with Google Earth (just double click the file) to view
 your flight in Google Earth. Please see the instructions on the

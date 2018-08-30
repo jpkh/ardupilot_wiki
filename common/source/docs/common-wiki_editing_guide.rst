@@ -13,11 +13,48 @@ spelling/grammatical errors.
 We've made that very easy - all you need for access is a 
 `Github account <https://github.com/join>`__. 
 
-This provides everything you need to help the wiki grow!
+This provides everything you need to help the wiki grow.
+
+Wiki Infrastructure
+===================
+
+.. tip::
+
+    Most of this information is provided for interest only.  All you really need to know is that 
+    you can use Vagrant to quickly set up a zero-configuration development environment, and then call 
+    ``python update.py`` to make a build. If you are working on a common topic, then create it in 
+    **/common/source/docs** with the filename prefix **common-**.
+
+The wiki is built using the static site generator `Sphinx <http://www.sphinx-doc.org/en/stable/>`__ 
+from source written in `reStructured Text markup <http://www.sphinx-doc.org/en/stable/rest.html>`__ 
+and hosted on `Github here <https://github.com/ArduPilot/ardupilot_wiki>`__. 
+
+Each wiki has a separate folder in the repository (e.g. '/copter', '/plane') containing it's own source 
+and configuration files (**conf.py**). Common files that are shared between the wikis are named with the 
+prefix **common-** and stored in the **/common/source/docs/** directory. Images that are specific to a 
+particular wiki are stored in an /images/ subfolder for the wiki (e.g. **copter/images/**) while 
+images are shared between all wikis and are stored in the "root" **/images** directory.
+Common configuration information for the Wiki Sphinx build is stored in **/common_conf.py**.
+
+The **update.py** build script copies the common topics into specified (in source) target wikis directories 
+and then build them.
+
+The **Vagrantfile** can be used by Vagrant to set up a local build environment independent of your host system.
+This allows you to edit the source in your host computer but manage the build inside Vagrant. You can also
+manually set up a build environment (just inspect the Vagrantfile for dependencies).
+
+The wikis use a `common theme <https://github.com/ArduPilot/sphinx_rtd_theme#read-the-docs-sphinx-theme>`__
+that provides the top menu bar. 
+
 
 
 Making a quick edit
 ===================
+
+There is a YouTube tutorial for editing ArduPilot documentation here:
+
+..  youtube:: fb73F8_MiMg
+    :width: 100%
 
 Once you've got your `Github account <https://github.com/join>`__ you can edit
 project source pages directly on Github. 
@@ -45,7 +82,7 @@ For more information see the Github Help topic:
 Making a big edit
 =================
 
-If make a *significant* edit of an existing page (or create a new one) then it is best to 
+If you need to make a *significant* edit of an existing page, edit a significant number of pages, or create a new one, then it is best to 
 verify changes before submitting your Github pull request. Typically you will need to work 
 on your local computer rather than directly on Git, build and test your changes, and then submit
 a pull request to submit your changes.
@@ -58,43 +95,121 @@ a pull request to submit your changes.
 There are a number of way of using Git/Github - including a number of different GUI and command line tools. 
 The typical process for working with Git on the command line is:
 
-#. `Fork the docs repo <https://github.com/ArduPilot/ardupilot_wiki#fork-destination-box>`__ 
+#. `Fork the docs repo <https://github.com/ArduPilot/ardupilot_wiki>`__ 
    (if you haven't already done so).
 
-#. Clone your fork of the repository to your local machine: 
-   
+   "Forking" is GitHub's term for copying a repository to your own account.
+   The forked repository preserves information about the original project
+   so you can fetch updates from it (and contribute changes back to it). If
+   you want to contribute changes back to the main project you will need to
+   first create your own fork of the main ardupilot_wiki repository.
+
+   To fork the main repository:
+
+   -  Log into Github and go to `github.com/ArduPilot/ardupilot_wiki <https://github.com/ArduPilot/ardupilot_wiki>`__.
+   -  Click the "Fork" button on the upper right and follow the directions:
+
+	.. image:: ../../../dev/source/images/APM-Git-Github-Fork-300x64.jpg
+	   :target: ../../../dev/source/images/APM-Git-Github-Fork-300x64.jpg
+
+   When your are finished there will be a new repository within your
+   account: ``//github.com/YOURID/ardupilot_wiki``
+
+#. Clone your fork of the repository to your local machine:
+
    .. code-block:: bash
 
        git clone https://github.com/YOURID/ardupilot_wiki.git
-       
-#. Create a branch for your changes
-   
+
+#. Track the ArduPilot wiki repository by adding a "remote" called "upstream":
+
+   - Use the command below to see which repositories are being tracked
+
+     .. code-block:: bash
+
+	   cd ardupilot_wiki
+       git remote -v
+
+     At least "origin" should appear meaning your local repo is tracking your fork on github.com.
+
+     .. code-block:: bash
+
+	   origin  https://github.com/YOURID/ardupilot_wiki.git (fetch)
+	   origin  https://github.com/YOURID/ardupilot_wiki.git (push)
+
+   - You must track ArduPilot's main wiki repository in order to fetch updates so use the command below to add a "remote" called "upstream"
+
+     .. code-block:: bash
+
+	   git remote add upstream https://github.com/ArduPilot/ardupilot_wiki.git
+
+   - Verify that the "upstream" repository is now referenced as well.
+
+     .. code-block:: bash
+
+	   git remote -v
+
+   - The "upstream" repository should now be part of the remote repository list:  
+
+     .. code-block:: bash
+
+	   origin  https://github.com/YOURID/ardupilot_wiki.git (fetch)
+	   origin  https://github.com/YOURID/ardupilot_wiki.git (push)
+	   upstream        https://github.com/ArduPilot/ardupilot_wiki.git (fetch)
+	   upstream        https://github.com/ArduPilot/ardupilot_wiki.git (push)	 
+
+#. Create a branch in your local clone for your changes
+
    .. code-block:: bash
 
        git checkout -b hgw_my_well_named_branch
-       
+
 #. Make any changes needed and :ref:`test them locally <common_wiki_editing_guide_building_docs>`.
 
 #. Add and commit your changes:
 
    .. code-block:: bash
-   
+
        git add the_name_of_file_you_changed.rst
        git commit -m "A short explanation of the change"
-       
-#. Rebase your fork to the latest version of master
+
+#. Rebase your fork to the latest version of master and push your commits to
+   the fork.
 
    .. code-block:: bash
-   
+
        git fetch upstream master
        git rebase upstream/master
        git push origin hgw_my_well_named_branch
-       
-#. Go to Github and create a Pull Request from your repo to the master. If you do this shortly after 
-   pushing your change, there will normally be a banner link prompting you on the 
-   `main repo <https://github.com/ArduPilot/ardupilot_wiki>`__.
-   
-   
+
+#. Open your clone's repository on the GitHub web page and 
+   `Create a pull request on GitHub <https://help.github.com/articles/using-pull-requests>`__.
+   You'll be making a pull request from your fork/branch to the
+   ardupilot_wiki/master repository. If using the GitHub for Windows client,
+   one convenient way to navigate to the repository/branch is to click
+   one one of your commits and click the "github" (view this commit on
+   github.com) button:
+
+   .. image:: ../../../images/PullRequest_OpenWikiCloneOnGitHubWebPage.png
+       :target: ../_images/PullRequest_OpenWikiCloneOnGitHubWebPage.png
+
+#. On top of the web page select the "Pull Request" tab page, and then
+   select the green "New pull request" button:
+
+   .. image:: ../../../images/PullRequest_InitiateWikiPullRequest.png
+       :target: ../_images/PullRequest_InitiateWikiPullRequest.png
+
+#. The comparison should be between ardupilot_wiki:master and the new branch
+   you created for the feature. The website probably has defaulted to your
+   clone's master branch so click the "compare" combo box and change it to the
+   correct branch:
+
+   .. image:: ../../../images/PullRequest_InitiateWikiPullRequest2.png
+       :target: ../_images/PullRequest_InitiateWikiPullRequest2.png
+
+#. Check the list of change at the bottom of the page only includes your
+   intended changes, then press "Create pull request".
+
 Creating a new wiki page
 ========================
 
@@ -130,8 +245,6 @@ The title should also be preceded by an anchor link named for the page. So the f
     ===============
     Your Page Title
     ===============
-    
-
 
 How to get changes approved
 ===========================
@@ -139,25 +252,29 @@ How to get changes approved
 Once you submit a pull request with your change the wiki team will review it. 
 If we have any questions we'll add them to the request.
 
-
 .. _common_wiki_editing_guide_building_docs:
 
 Building/testing docs locally
 =============================
 
-We provide a Vagrantfile in the root of the repo which can be used to set up a build environment.
+We provide a Vagrantfile in the root of the repo which can be used to set up a build environment.  This is the preferred (and supported) method to create a local build environment.  Alternatively, you may choose to use the instructions for installing `Sphinx <http://www.sphinx-doc.org/en/stable/install.html>`__ to build natively on your system, without Vagrant or a Virtual Machine, and skip the Vagrant specific instructions below.
 
-You will need to install the correct versions of `Vagrant <https://www.vagrantup.com/downloads.html>`__ and 
+To use the preferred method you will need to install the correct versions of `Vagrant <https://www.vagrantup.com/downloads.html>`__ and 
 `Oracle VirtualBox <https://www.virtualbox.org/wiki/Downloads>`__ for your computer. You will also need
 to `fork <https://github.com/ArduPilot/ardupilot_wiki#fork-destination-box>`__ and clone the repository 
 (if you haven't already done so).
+
+For Windows users, it is advised to install SSH client on the computer before starting vagrant. Vagrant needs 
+SSH client program to access development container. We have had great success with OpenSSH packer from MLS-Software
+`here <http://www.mls-software.com/opensshd.html>`__
 
 The main steps for building the docs are:
 
 #. Open a command prompt in the root of the ardupilot_wiki repo, and start Vagrant:
 
    .. code-block:: bash
-   
+
+       cd ardupilot_wiki
        vagrant up
        
    The first time this is run it may take some time to complete.
@@ -165,16 +282,16 @@ The main steps for building the docs are:
 #. SSH into Vagrant (if you're on Windows you may need to add SSH in your Git installation to your PATH)
 
    .. code-block:: bash
-   
+
        vagrant ssh
-       
+
 #. Navigate in the SSH shell to the /vagrant directory and start the build.
 
    .. code-block:: bash
-   
+
        cd /vagrant
        python update.py
-       
+
 The update.py script will copy the common files into each wiki subdirectory and then build each wiki (you can build 
 just one wiki by passing the site name, e.g.: ``python update.py --site copter``).
 
@@ -186,38 +303,58 @@ just one wiki by passing the site name, e.g.: ``python update.py --site copter``
 
 You can check out the built html for each wiki in it's build/html directory (e.g. **/copter/build/html/**).
 
+RST editing/previewing
+======================
+
+The tools described in this section can make it easier to edit RST files and reduce the time required to preview changes.
+
+.. note:: 
+    
+    The RST rendering tools can be useful for rapidly previewing small changes in the documentation. Rendering will not be perfect because the tools are designed for generic reStructuredText (they and are not "Sphinx-aware). We therefore recommend that you build with Sphinx to do a final review before you make a documentation pull request. 
+
+RST rendering on Windows
+------------------------
+
+A combination of two Windows tools can help you previewing your modifications:
+  	
+* `Notepad++ plugin for RST files <https://github.com/steenhulthin/reStructuredText_NPP>`__
+* `restview (on-the-fly renderer for RST files) <https://mg.pov.lt/restview/>`__
+
+The Notepad++ plugin helps you with code completion and syntax highlighting during modification.
+Restview renders RST files on-the-fly, i.e. each modification on the RST file can be immediately
+visualized in your web browser. 
+
+The installation of the Notepad++ plugin is clearly explained on the plugin's website (see above).
+
+Restview can be installed with:
+
+.. code-block:: bat
+	
+	python -m pip install restview
+		
+The restview executable will be installed in the **Scripts** folder of the Python main folder.
+Restview will start the on-the-fly HTML rendering and open a tab page in your preferred web browser.
+
+Example:
+
+If you are in the root folder of your local Wiki repository:
+
+.. code-block:: bat
+	
+	start \python-folder\Scripts\restview common\source\docs\common-wiki_editing_guide.rst	
+	
+RST rendering on Linux
+----------------------
+
+`ReText <https://github.com/retext-project/retext>`__ is a Linux tool that provides
+syntax highlighting and basic on-the-fly rendering in a single application.
+
+.. note:: 
+
+    Although the tool is Python based, don't try it on Windows as it very prone to crashes (this is 
+    also stated by the website).
 
 
-Wiki Infrastructure
-===================
-
-.. tip::
-
-    Most of this information is provided for interest only.  All you really need to know is that 
-    you can use Vagrant to quickly set up a zero-configuration development environment, and then call 
-    ``python update.py`` to make a build. If you are working on a common topic, then create it in 
-    **/common/source/docs** with the filename prefix **common-**.
-
-The wiki is built using the static site generator `Sphinx <http://www.sphinx-doc.org/en/stable/>`__ 
-from source written in `reStructured Text markup <http://www.sphinx-doc.org/en/stable/rest.html>`__ 
-and hosted on `Github here <https://github.com/ArduPilot/ardupilot_wiki>`__. 
-
-Each wiki has a separate folder in the repository (e.g. '/copter', '/plane') containing it's own source 
-and configuration files (**conf.py**). Common files that are shared between the wikis are named with the 
-prefix **common-** and stored in the **/common/source/docs/** directory. Images that are specific to a 
-particular wiki are stroed in an /images/ subfolder for the wiki (e.g. **copter/images/**) while 
-images are shared between all wikis and are stored in the "root" **/images** directory.
-Common configuration information for the Wiki Sphinx build is stored in **/common_conf.py**.
-
-The **update.py** build script copies the common topics into specified (in source) target wikis directories 
-and then build them.
-
-The **Vagrantfile** can be used by Vagrant to set up a local build environment independent of your host system.
-This allows you to edit the source in your host computer but manage the build inside Vagrant. You can also
-manually set up a build environment (just inspect the Vagrantfile for dependencies).
-
-The wikis use a `common theme <https://github.com/ArduPilot/sphinx_rtd_theme#read-the-docs-sphinx-theme>`__
-that provides the top menu bar. 
 
 
    
@@ -286,7 +423,7 @@ they move within the file structure.
 
 .. code-block:: rst
 
-    .. _your_file_name:
+    .. _your_file_name2:
 
     ==========
     Page Title
@@ -556,6 +693,7 @@ Our general advice for images is:
 - Name the file using all lower case, and underscores between words.
 - Name the file "descriptively" so it is easy to find, and possibly re-use. 
   A name like **planner2_flight_screen.jpg** is much more useful than **image1.jpg**.
+- To change an image, simply replace the file in the source tree and commit the change.
     
 Display an image in a "common" article with a caption and target as shown below. Note the paths to the files are relative
 to the current directory (hence the relative link back to **images** in the project root).

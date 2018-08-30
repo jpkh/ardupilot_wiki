@@ -1,56 +1,17 @@
 .. _building-px4-with-make:
 
-=======================================================
-Building ArduPilot for Pixhawk/PX4 on Windows with Make
-=======================================================
+=========================================
+Building for Pixhawk on Windows with Make
+=========================================
 
-This article shows how to build ArduPilot for Pixhawk 2, Pixhawk and PX4
-on Windows with *Make*.
+This article shows how to build ArduPilot for The Cube, Pixhawk, PixRacer on Windows with *Make*.  These instructions assume you have already :ref:`setup the build environment <building-setup-windows>`
 
 .. note::
 
-   The commands for building Pixhawk 2 and Pixhawk are identical
-   (``make px4-v2``). Building for PX4 is the same except that
-   ``make px4-v1`` is used. 
+   The commands for building Pixhawk are (``make px4-v2``). Building for The Cube is the same except ``make px4-v3`` is used. Building for Pixracer is the same except ``make px4-v4`` is used.  For the older (obsolete) PX4 use ``make px4-v1``. 
 
 Build instructions
 ==================
-
-
-#. Install `GitHub for Windows <http://windows.github.com/>`__
-#. Ensure your github settings are set to leave line endings untouched.
-
-   -  The "Git Shell (or Bash)" terminal was also installed when you
-      installed Git.  Click on your new "Git Shell (or Bash)" Icon and
-      type in the following in the Git "MINGW32" Terminal window:
-
-      ::
-
-          git config --global core.autocrlf false
-
-#. Clone the ardupilot repository onto your machine:
-
-   -  Go to the
-      `GitHub/diydrones/ardupilot <https://github.com/ArduPilot/ardupilot>`__
-      web page and click the **Clone in Desktop** button
-   -  Warning: be careful that the directory path is less than about 50
-      characters.  For example
-      "C:\\Users\\rmackay9\\Documents\\GitHub\\ardupilot" is short
-      enough but
-      "C:\\Users\\rmackay9\\Documents\\GitHub\\rmackay9-ardupilot" is
-      too long.  This limit is because during compiling temporary files
-      are created with much much longer paths which can exceed Windows'
-      260 character path limit.
-
-Initialise and update submodules
-
-::
-
-    git submodule update --init --recursive
-
-
-Download and install the *PX4 toolchain* by running the
-`px4_toolchain_installer_v14_win.exe <http://firmware.ardupilot.org/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe>`__
 
 Open the *PX4Console* and navigate to the target vehicle directory:
 
@@ -68,20 +29,16 @@ Open the *PX4Console* and navigate to the target vehicle directory:
 Build the firmware by entering one of the following commands:
 
 +--------------------------------------+--------------------------------------+
-| ``make px4-v2``                      | Build the Pixhawk2/Pixhawk firmware  |
-|                                      | (identical) for a quad               |
+| ``make px4-v2``                      | Build the Pixhawk firmware for a     |
+|                                      | quad                                 |
 +--------------------------------------+--------------------------------------+
-| ``make px4-v2-hexa``                 | Build the Pixhawk firmware for a     |
-|                                      | hexacopter.                          |
-|                                      |                                      |
-|                                      | # Other supported suffixes include   |
-|                                      | "octa", "tri" and "heli".            |
-|                                      |                                      |
-|                                      | # More can be found in               |
-|                                      | "mk/tagets.mk" under FRAMES          |
+| ``make px4-v3``                      | Build The Cube firmware for a        |
+|                                      | quad                                 |
 +--------------------------------------+--------------------------------------+
-| ``make px4``                         | Build both PX4 and PixHawk firmware  |
-|                                      | for a quadcopter                     |
+| ``make px4-v4``                      | Build the PixRacer firmware for quad |
++--------------------------------------+--------------------------------------+
+| ``make px4``                         | Build both PX4 (obsolete) and PixHawk|
+|                                      | firmware for a quadcopter            |
 +--------------------------------------+--------------------------------------+
 | ``make clean``                       | "clean" the ardupilot directory      |
 +--------------------------------------+--------------------------------------+
@@ -89,9 +46,14 @@ Build the firmware by entering one of the following commands:
 |                                      | directories so the next build will   |
 |                                      | completely rebuild them              |
 +--------------------------------------+--------------------------------------+
+| ``make px4-cleandep``                | "clean" .d and .o files from the     |
+|                                      | PX4Firmware and PX4NuttX directories.|
+|                                      | faster but less complete rebuild     |
+|                                      | compared to "px4-clean"              |
++--------------------------------------+--------------------------------------+
 | ``make px4-v2-upload``               | Build and upload the Pixhawk         |
 |                                      | firmware for a quad (i.e. no need to |
-|                                      | do step #7 below)                    |
+|                                      | upload using a ground station)       |
 +--------------------------------------+--------------------------------------+
 
 
@@ -113,7 +75,12 @@ The firmware will be created in the **ArduCopter** directory with the
    `uavcan <https://github.com/ArduPilot/uavcan>`__) as *git submodules*
    when you build the project. If you built the project before the change
    to submodules you may get errors. See :ref:`Git Submodules <git-submodules>` for troubleshooting information.
+   
+   
+.. note::
 
+   You can ignore any mesages regarding PX4Firmware and PX4Nuttx hashes. Those are useful labels for developers but optional and sometimes the build system can't find them on your system. As long as it says "Firmware is in.." followed by a .px4 file then you have a successful build which you can safely load onto your aircraft.
+   
 Hints for speeding up compile time
 ==================================
 

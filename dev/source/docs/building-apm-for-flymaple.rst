@@ -4,6 +4,11 @@
 Building ArduPilot for Flymaple on Linux
 ========================================
 
+.. note::
+
+  Support for FlyMaple in ArduPilot was removed in May 2016. This
+  documentation is for older versions
+  
 About Flymaple
 ==============
 
@@ -50,6 +55,7 @@ How to build APM for Flymaple on Linux.
     cd ~
     git clone https://github.com/ArduPilot/ardupilot.git
     cd ardupilot
+    git submodule update --init --recursive
 
 -  Now edit config.mk to be something like this:
 

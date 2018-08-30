@@ -11,17 +11,20 @@ autopilot (including GPS data) and can use it to make intelligent
 decisions during flight. For example, "take a photo when the vehicle is
 at these GPS co-ordinates".
 
-The possibilities of companion computers are really only limited by your
-imagination.
-
 Related topics on this wiki include:
 
 .. toctree::
     :maxdepth: 1
 
+    APSync <apsync-intro>
     DroneKit Tutorial <droneapi-tutorial>
-    Communicating with Raspberry Pi via Mavlink <raspberry-pi-via-mavlink>
-    Communicating with ODroid via MAVLink <odroid-via-mavlink>
+    FlytOS <flytos>
+    Maverick <https://goodrobots.github.io/maverick/#/>
+    ROS <ros>
+    Raspberry Pi <raspberry-pi-via-mavlink>
+    ODroid <odroid-via-mavlink>
+    Intel Edison <intel-edison>
+    NVidia TX2 <companion-computer-nvidia-tx2>
+    NVidia TX1 <companion-computer-nvidia-tx1>
     BeaglePilot Project <beaglepilot>
-    Edison as a Companion Computer <edison-for-drones>
     Turnkey Companion Computer Solutions <turnkey-companion-computer-solutions>

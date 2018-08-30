@@ -71,8 +71,21 @@ Indent using 4 spaces everywhere. Do not use tabs.
 Case statements
 ---------------
 
-A case label should line up with its switch statement. The case
-statement is indented.
+The case label indentation is acceptable either 
+when lined up with the switch or indented once.
+
+**Right:**
+
+::
+
+    switch (condition) {
+        case foo_cond:
+            foo();
+            break;
+        case bar_cond:
+            bar();
+            break;
+    }
 
 **Right:**
 
@@ -92,12 +105,12 @@ statement is indented.
 ::
 
     switch (condition) {
-        case foo_cond:
-            foo();
-            break;
-        case bar_cond:
-            bar();
-            break;
+    case foo_cond:
+        foo();
+    break;
+    case bar_cond:
+        bar();
+    break;
     }
 
 Spacing
@@ -182,7 +195,7 @@ Line breaks
 Single statements
 -----------------
 
-Each statement should get its own line.
+Each statement should get its own line except in method implementations in header files which may (or may not be) on a single lines.
 
 **Right:**
 
@@ -200,6 +213,12 @@ Each statement should get its own line.
 
     x++; y++;
     if (condition) foo();
+
+**Right:**
+
+::
+
+     bool requires_GPS() const override { return false; }
 
 Else statement
 --------------
@@ -337,8 +356,53 @@ underscores.
 
     class ap_compass { };
 
+Functions and variables
+-----------------------
+
+Functions that return a single physical value or variables that represent a physical value should be suffixed by the physical unit.
+
+**Right:**
+
+::
+    uint16 get_angle_rad() { ... };
+    float distance_m;
+
+**Wrong:**
+
+::
+
+    uint16 get_angle() { ... };
+    float distance;
+
+Functions or variables that represent a value relative to a frame should be suffixed with the frame first, then with the physical unit (if any).
+
+**Right:**
+
+::
+    uint16 get_distance_ned_cm() { ... };
+    uint16 get_distance_enu_m() { ... };
+    float position_neu_mm;
+
+**Wrong:**
+
+::
+
+    uint16 get_distance() { ... };
+    float position;
+
+
 Commenting
 ==========
 
 Each file, function and method with public visibility should have a
 comment at the top describing what it does.
+
+Parameter Naming
+================
+
+Parameter with multiple words should have the words ordered from left to right by importance:
+
+- the flight mode, feature or sensor should be the first word.  I.e. a parameter relevant only to the RTL flight mode should start with "RTL" like "RTL_ALT".
+- qualifiers like "MIN", "MAX" or units (in the rare case they appear in the name) should be on the far right.  I.e RTL_ALT_MIN is better than RTL_MIN_ALT.
+
+Re-use words from other parameters if possible instead of creating new words.  For eample we use "MIN" and "MAX" so these should be used instead of equivalent words like "TOP" and "BOTTOM".

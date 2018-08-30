@@ -9,24 +9,22 @@ of `the main Copter code <https://github.com/ArduPilot/ardupilot/tree/master/Ard
 resides in it's own directory, and `the libraries <https://github.com/ArduPilot/ardupilot/tree/master/libraries>`__ which
 are shared with Plane and Rover.
 
-Click on the images below to see a high level view of flight-mode to
-motor output code:
+Below is a highlevel view of the ardupilot architecture.
+
+.. image:: ../images/ArduPilot_HighLevelArchecture.png
+    :target: ../_images/ArduPilot_HighLevelArchecture.png
+
+Below is a more zoomed in view (as compared to the above diagram) of the architecture.
+
+.. image:: ../images/copter-architecture.png
+    :target: ../_images/copter-architecture.png
+
+The image below shows the architecture of **manual modes** (i.e. Stabilize, Acro, Drift)
 
 .. image:: ../images/AC_CodeOverview_ManualFlightMode.png
     :target: ../_images/AC_CodeOverview_ManualFlightMode.png
 
+The image below shows the architecture of **autonomous modes** (i.e. RTL, Guided, Auto)
+
 .. image:: ../images/AC_CodeOverview_AutoFlightModes.png
     :target: ../_images/AC_CodeOverview_AutoFlightModes.png
-
-Sections:
-
-.. toctree::
-    :maxdepth: 1
-
-    Library description <apmcopter-programming-libraries>
-    Attitude Control <apmcopter-programming-attitude-control-2>
-    Adding Parameters <code-overview-adding-a-new-parameter>
-    Adding a new flight mode <apmcopter-adding-a-new-flight-mode>
-    Scheduling your new code to run intermittently <code-overview-scheduling-your-new-code-to-run-intermittently>
-    Adding a new MAVLink message <code-overview-adding-a-new-mavlink-message>
-    Adding a new MAVLink Gimbal <code-overview-adding-support-for-a-new-mavlink-gimbal>

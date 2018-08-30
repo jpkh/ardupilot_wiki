@@ -4,29 +4,23 @@
 LIDAR-Lite Rangefinder
 ======================
 
-The `PulsedLight LIDAR-Lite <http://pulsedlight3d.com/>`__ rangefinder
+The `Garmin / PulsedLight LIDAR-Lite <https://support.garmin.com/support/manuals/manuals.htm?partNo=010-01722-00>`__ rangefinder
 is a low-cost optical distance measurement solution with a 40m range
 under most operating conditions, low power consumption, and small form
-factor.  This sensor can be purchased from `these distributors <http://pulsedlight3d.com/pages/distributors.html>`__ and
-then technical info can be found
-`here <http://pulsedlight3d.com/products/lidar-lite-v2-blue-label.html>`__.
+factor.  This sensor can be purchased from `Sparkfun <https://www.sparkfun.com/products/14032>`__ and `these distributors <http://pulsedlight3d.com/pages/distributors.html>`__ and
+then technical info can be found `here <https://support.garmin.com/support/manuals/manuals.htm?partNo=010-01722-00>`__.
 
 .. note::
 
-   This rangefinder is only supported on the Pixhawk and for the
-   following vehicle platform versions (or later): Copter 3.3, Plane 3.3,
-   and Rover 2.49. ArduPilot transparently supports both LIDAR-Lite v1 and
-   v2.
+   This rangefinder is only supported on the following vehicle platform versions (or later): Copter 3.3, Plane 3.3, and Rover 2.49. ArduPilot transparently supports both LIDAR-Lite v1 and v2.
 
 ..  youtube:: 3I06AOwIQVY
     :width: 100%
 
-Problems with the Lidar-Lite
-============================
+Problems with the Lidar-Lite v2
+===============================
 
-A number of problems have been found with the Lidar-Lite. Attempts to
-resolve these issues with the developers of the product have not been
-entirely successful. These notes serve as a warning to potential users.
+A number of problems have been found with the Lidar-Lite v2. Attempts to resolve these issues with the developers of the product have not been entirely successful. These notes serve as a warning to potential users.  It is not yet clear if these issues have been resolved in v3.
 
 The problems are:
 
@@ -206,6 +200,10 @@ You then need the following parameters set to enable the PWM driver:
 -  ``RNGFND_SCALING`` = 1
 -  ``RNGFND_OFFSET`` = 0
 
+
+**Note**: For RNGFND_SCALING your mileage may vary. Some units work better using RNGFND_SCALING=0.8.
+
+
 The use of pin 55 as the stop pin is just a suggestion, not a
 requirement. It connects to the enable pin on the Lidar, and allows the
 driver to reset the Lidar if it stops providing readings.
@@ -249,29 +247,36 @@ Your GCS must :ref:`provide terrain data <common-terrain-following>` for this to
 Setup in Mission Planner
 ========================
 
-To configure Copter, Plane or Rover to use the LIDAR-Lite, please first
-connect with the Mission Planner and then open the **Config/Tuning \|
-Full Parameter List** page and set: ``RNGFND_TYPE`` to “3" if using an
-APM2, or "4" if using a PX4 or Pixhawk.
+To configure Copter, Plane or Rover to use the LIDAR-Lite:
 
-Set the ``RNGFND_MAX_CM`` parameter to 4000 (40m). This parameter
-represents the maximum distance in centimeters that the LiDAR is
-reliable over — when ignoring “0” distance readings in the driver, a
-value of 4000 should work well in almost all conditions.
+#. Connect with the Mission Planner and open the **Config/Tuning \| Full Parameter List** page. 
 
-``RNGFND_MIN_CM`` should be set to 20cm. Below that distance you will
-still get readings, but they may be inaccurate (the optics can start to
-introduce parallax error if the sensor picks up signal from specular
-reflections rather than directly from a return signal).
+   .. image:: ../../../images/RangeFinder_LIDARLite_MPSetup.png
+       :target: ../_images/RangeFinder_LIDARLite_MPSetup.png
 
-.. image:: ../../../images/RangeFinder_LIDARLite_MPSetup.png
-    :target: ../_images/RangeFinder_LIDARLite_MPSetup.png
+#. Set the ``RNGFND_TYPE`` value based on the flight controller and connection method (PWM or I2C): 
+
+   * ``RNGFND_TYPE=5``: Pixhawk via PWM 
+   * ``RNGFND_TYPE=4``: Pixhawk via I2C
+   * ``RNGFND_TYPE=3``: APM2 via I2C
+
+#. Set the ``RNGFND_MAX_CM`` to 4000 (40m). This parameter represents the maximum distance in centimeters that the LiDAR is reliable over — when ignoring “0” distance readings in the driver, a value of 4000 should work well in almost all conditions.
+
+#. Set ``RNGFND_MIN_CM`` to 20cm. Below that distance you will still get readings, but they may be inaccurate (the optics can start to introduce parallax error if the sensor picks up signal from specular reflections rather than directly from a return signal).
+
 
 Testing the sensor
 ==================
 
 Distances read by the sensor can be seen in the Mission Planner's Flight
 Data screen's Status tab.  Look closely for "sonarrange".
+Its best to place the Lidar several known distances (1m, 3m, 5m) from
+a large flat wall to test it.  If the Lidar is constantly reading
+wrong by a fixed offset e.g. its always 50cm out at each distance then
+adjust the RNGFND_OFFSET parameter by the correct amount.  If however
+it gets the distance wrong each time by a different amount then the
+RNGFND_SCALING parameter needs changing.  Update it (maybe 1.1 or 0.9)
+and test again and repeat until its correct.
 
 .. image:: ../../../images/mp_rangefinder_lidarlite_testing.jpg
     :target: ../_images/mp_rangefinder_lidarlite_testing.jpg

@@ -42,9 +42,7 @@ and be able to :ref:`build it with Arduino <building-ardupilot-with-arduino-wind
 Step #1 - Install VMWare and create an Ubuntu Virtual Machine
 =============================================================
 
-1. Download and install
-`VMware <https://my.vmware.com/web/vmware/free#desktop_end_user_computing/vmware_player/6_0>`__
-(look for VMware Player and VMware Player Plus for Windows)
+1. Download and install `VMware <https://my.vmware.com/web/vmware/free#desktop_end_user_computing/vmware_player/6_0>`__ (look for VMware Player and VMware Player Plus for Windows)
 
 2. Download the `Ubuntu iso <http://www.ubuntu.com/download/desktop/thank-you?country=--&version=14.04.2&architecture=amd64>`__
 
@@ -74,7 +72,7 @@ Step #2 - Start the VM for the first time
 #. Enter your password when the login screen appears
 #. Say "no" to any options to upgrade versions
 #. Open firefox and make sure it can access some web page like
-   www.diydrones.com
+   www.ardupilot.org
 
    .. |Ubuntu_TestNetworkWithFirefox| image:: ../images/ubuntu_test_network_with_firefox.jpg
        :target: ../_images/ubuntu_test_network_with_firefox.jpg
@@ -181,7 +179,7 @@ terminal on the Ubuntu VM:
 
 ::
 
-    ./Tools/autotest/autotest.py build.Copter fly.Copter logs.Copter --map --viewerip=192.168.184.1
+    ./Tools/autotest/autotest.py build.ArduCopter fly.ArduCopter --map --viewerip=192.168.184.1
 
 Next connect with the mission planner after first setting the "COM Port"
 to "UDP".
@@ -202,7 +200,7 @@ file extension to ".log" before opening in Mission Planner.
 Next steps
 ==========
 
-To get the most out of SITL we recommend you `Learn MavProxy <http://tridge.github.io/MAVProxy/>`__.
+To get the most out of SITL we recommend you `Learn MavProxy <http://ardupilot.github.io/MAVProxy/>`__.
 
 The topic :ref:`Using SITL for ArduPilot Testing <using-sitl-for-ardupilot-testing>` explains how to use the
 simulator, and covers topics like how to use SITL with Ground Stations

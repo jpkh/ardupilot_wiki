@@ -210,8 +210,6 @@ TELINK Toro900 flying wing
 .. image:: ../images/toto9002.jpg
     :target: ../_images/toto9002.jpg
 
-Available \ `here <http://www.telink.eu/en/epp-letadla-telink/3509-toro-900-pro-stridavy-pohon.html>`__
-
 The following values should be a good starting point:
 
 -  RLL2SRV_P: 1.2
@@ -285,8 +283,8 @@ will be a good starting point:
 Mugin
 =====
 
-.. image:: http://photos.tridgell.net/d/55220-2/PHOTO_20130309_212952.jpg
-    :target:  http://photos.tridgell.net/d/55220-2/PHOTO_20130309_212952.jpg
+.. image:: https://c5.staticflickr.com/9/8036/7930561924_7392ff0913_z.jpg
+    :target:  https://c5.staticflickr.com/9/8036/7930561924_7392ff0913_z.jpg
 
 The Mugin is a large, fast aircraft. Make sure you have a long enough
 runway for landing!

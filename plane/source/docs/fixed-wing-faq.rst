@@ -6,7 +6,7 @@ Fixed Wing FAQ
 
 This is a set of frequently asked questions with answers. It is created
 when we see questions in `the forums <http://ardupilot.com/forum/viewforum.php?f=1>`__ or on
-`diydrones.com <http://diydrones.com/>`__ that are not sufficiently
+`discuss.ardupilot.org <http://discuss.ardupilot.org/c/arduplane>`__ that are not sufficiently
 answered in the rest of the docs.
 
 When reading this FAQ please refer to the :doc:`full parameter list <parameters>` for an explanation of each
@@ -26,6 +26,9 @@ That will prevent the throttle dropping below 10%, but will give you
 manual throttle control for idling while on the ground, and manual
 throttle control in stabilisation modes (such as FBWA and STABILIZE) for
 shutting down the motor when you need to.
+
+THR_SLEWRATE can also aid in prevention of a nitro engine stalling in
+flight by slowing the throttle advance from going wide open to quickly.
 
 How do you prevent the servo demo and have faster startups?
 -----------------------------------------------------------
@@ -54,7 +57,7 @@ How do I setup reverse throttle on a IC plane?
 
 Some planes (mostly nitro or petrol planes) have a reversed throttle
 servo, so lower PWM values on the throttle channel gives more throttle
-not less. To setup Plane to handle this you need to change 3 settings:
+not less. To set up Plane 3.7 or earlier to handle this you need to change 3 settings:
 
 -  set RC3_REV to -1
 -  setup your transmitter for reverse throttle
@@ -64,6 +67,10 @@ not less. To setup Plane to handle this you need to change 3 settings:
 
 After you setup reverse throttle make sure you test correct failsafe by
 turning off your transmitter while on the ground.
+
+For plane 3.8.0 or later, the servo library allows you to reverse the 
+throttle output channel without affecting your RC inputs or failsafe configuration.
+to do this, set SERVO3_REVERSED to 1.
 
 What happens if an airspeed sensor fails in flight?
 ---------------------------------------------------
@@ -88,7 +95,7 @@ to detect an airspeed failure. If the failure leads to a low airspeed
 reading then if the plane is in an auto-throttle mode (such as AUTO,
 GUIDED, LOITER or RTL) then the plane will tend to lose altitude as it
 tries to gain speed. The amount of altitude it will lose depends on how
-low the airspeed reading is. If the airspeed reading it low enough then
+low the airspeed reading is. If the airspeed reading is low enough then
 it may trigger a fast enough descent to crash the aircraft.
 
 If the failure leads to a too high airspeed reading then the plane will
@@ -168,7 +175,7 @@ you fly.
 How would I setup crow flaps?
 -----------------------------
 
-Crow flaps combined flaperons with normal flaps, but the flaperons move
+Crow flaps combine flaperons with normal flaps, but the flaperons move
 upward when the flaps are engaged. Crow flaps can add a lot of drag to
 slow an aircraft for landing without inducing a lot of pitching moment.
 

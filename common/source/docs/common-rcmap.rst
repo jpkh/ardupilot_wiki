@@ -1,8 +1,8 @@
 .. _common-rcmap:
 
-===========================
-RCMAP Input Channel Mapping
-===========================
+================================
+RC Input Channel Mapping (RCMAP)
+================================
 
 This article shows how to set up a non-standard RC input channel mapping
 using the RCMAP feature.
@@ -22,10 +22,7 @@ By default the RC input channels are:
 -  Channel 3: Throttle input
 -  Channel 4: Yaw input
 
-These can be changed by setting the ``RCMAP_PITCH``, ``RCMAP_ROLL``,
-``RCMAP_THROTTLE`` and ``RCMAP_YAW`` parameters using the *Mission
-Planner*'s **Config/Tuning \| Full Parameter Tree** (or Full Parameter
-List) as shown below .
+These can be changed by setting the :ref:`RCMAP_ROLL <RCMAP_ROLL>`, :ref:`RCMAP_PITCH <RCMAP_PITCH>`, :ref:`RCMAP_THROTTLE <RCMAP_THROTTLE>` and :ref:`RCMAP_YAW <RCMAP_YAW>` parameters using the *Mission Planner*'s **Config/Tuning \| Full Parameter Tree** (or Full Parameter List) as shown below.
 
 .. image:: ../../../images/RCMAP_MPSetup.png
     :target: ../_images/RCMAP_MPSetup.png

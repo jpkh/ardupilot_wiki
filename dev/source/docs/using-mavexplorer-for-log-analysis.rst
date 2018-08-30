@@ -16,7 +16,7 @@ Linux do this:
 
 ::
 
-    sudo apt-get install python-matplotlib python-serial python-wxgtk2.8 python-lxml
+    sudo apt-get install python-matplotlib python-serial python-wxgtk3.0 python-lxml
     sudo apt-get install python-scipy python-opencv  python-pip python-pexpect python-tk
     sudo pip install --upgrade pymavlink mavproxy
 
@@ -41,6 +41,8 @@ you will end up with two windows, like this:
 The top window is the "console" and has your menus and the status
 messages. The bottom window is your terminal, and has the "MAV>" prompt
 for typing commands.
+
+Note: be careful with spaces in log filenames. Use quotes around the filename if needed.
 
 Using pre-defined graphs
 ------------------------
@@ -219,7 +221,7 @@ favourite text editor.
 
 You can see an example of the XML format here:
 
-https://raw.githubusercontent.com/Dronecode/MAVProxy/master/MAVProxy/tools/graphs/mavgraphs.xml
+https://raw.githubusercontent.com/ArduPilot/MAVProxy/master/MAVProxy/tools/graphs/mavgraphs.xml
 
 Create an XML graph file
 
@@ -275,8 +277,8 @@ One of the main reasons for the XML files in MAVExplorer is to allow
 community members to contribute new graphs that are useful in log
 analysis. If you create a set of useful graphs please send them by email
 to andrew-mavexplorer@tridgell.net or open a pull request against the
-`MAVProxy git repository <https://github.com/Dronecode/MAVProxy>`__.
+`MAVProxy git repository <https://github.com/ArduPilot/MAVProxy>`__.
 
 For a pull request with graphs, please add the graphs to the
-`MAVProxy/tools/graphs <https://github.com/Dronecode/MAVProxy/tree/master/MAVProxy/tools/graphs>`__
+`MAVProxy/tools/graphs <https://github.com/ArduPilot/MAVProxy/tree/master/MAVProxy/tools/graphs>`__
 directory

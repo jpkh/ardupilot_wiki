@@ -18,6 +18,12 @@ Additional information on the similar :ref:`analog version of this sonar can be 
 
    This rangefinder is only supported on the Pixhawk running AC3.2 or
    higher or recent versions of Plane and Rover.
+   
+.. warning::
+   
+   RNGFND_MAX_CM must be set to a tested, appropriate value.  If RNGFND_MAX_CM is set to a value
+   greater than the range of the sensor, the flight controller will not respond correctly to the 
+   data provided.
 
 Connecting to the Pixhawk
 =========================
@@ -34,10 +40,10 @@ Setup through the mission planner
 
 To configure Copter, Plane or Rover to use the Maxbotix I2C, please
 first connect with the Mission Planner and then open the Config/Tuning
->> Full Parmeter List page and set the following parameters:
+>> Full Parameter List page and set the following parameters:
 
 -  RNGFND_MAX_CM = "700" (i.e. 7m max range)
--  RNGFND_TYPE = “4" (PX4-MaxbotixI2C sonar)
+-  RNGFND_TYPE = “2" (MaxbotixI2C sonar)
 
 .. image:: ../../../images/RangeFinder_MaxbotixI2C_MPSetup.png
     :target: ../_images/RangeFinder_MaxbotixI2C_MPSetup.png

@@ -81,6 +81,8 @@ https://github.com/ArduPilot/ardupilot
 ::
 
     git clone https://github.com/ArduPilot/ardupilot.git
+    cd ardupilot
+    git submodule update --init --recursive
 
 Building
 ========
@@ -91,7 +93,7 @@ directory:
 
 ::
 
-    $ cd ardupilot/ArduCopter
+    $ cd ArduCopter
     $ make
 
 The output of the build is, by default, located in
@@ -117,10 +119,10 @@ based platforms.
 
 ::
 
-    $ cd ardupilot/Plane
+    $ cd ArduPlane
     $ make upload
 
-For PX4 platforms, the \`px4-upload\` target will use the PX4 bootloader
+For Pixhawk platforms, the \`px4-upload\` target will use the PX4 bootloader
 to perform an upload.
 
 Troubleshooting

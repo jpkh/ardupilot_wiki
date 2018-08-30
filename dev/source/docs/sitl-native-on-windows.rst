@@ -21,7 +21,7 @@ a virtual machine (Linux) hosted on Windows, Mac OSX, or Linux.
 
 These instructions explain how to build SITL *natively* on Windows, and
 how to interact with the simulator using
-`MAVProxy <http://tridge.github.io/MAVProxy/>`__ and/or :ref:`Mission Planner <planner:home>`.
+`MAVProxy <http://ardupilot.github.io/MAVProxy/>`__ and/or :ref:`Mission Planner <planner:home>`.
 
 .. figure:: ../images/MAVProxy_Map_GuidedCopter.jpg
    :target: ../_images/MAVProxy_Map_GuidedCopter.jpg
@@ -31,6 +31,10 @@ how to interact with the simulator using
 Installation steps
 ==================
 
+   .. tip::
+
+      An automatic download and installation script for MAVProxy, Cygwin, JSBSim and ArduPilot can be found `here <https://raw.githubusercontent.com/ArduPilot/ardupilot/master/Tools/autotest/win_sitl/InstallDevEnvironmentAndAPMSource.ps1>`__. After downloading the file, right click -> Run in Powershell.
+      
 Install MAVProxy
 ----------------
 
@@ -49,12 +53,8 @@ Install Cygwin
 `Cygwin <http://www.cygwin.com/>`__ provides the tools and libraries
 that allow us to rebuild ArduPilot on Windows.
 
-#. Download and run the `Cygwin 32-bit installer <https://cygwin.com/setup-x86.exe>`__.
+#. Download and run the `Cygwin 32-bit installer <https://cygwin.com/setup-x86.exe>`__ or the `Cygwin 64-bit installer <https://cygwin.com/setup-x86_64.exe>`__.
 
-   .. tip::
-
-      The 32 bit version is preferred over the 64-bit version, which
-      is missing one of our dependencies (procps)
 
 #. Accept the all the prompts (including default file locations) until
    you reach the *Select Packages* dialog.There are thousands of
@@ -70,34 +70,67 @@ that allow us to rebuild ArduPilot on Windows.
 #. Select the packages listed below (search using the text in the "Name"
    field):
 
-   +------------+----------------------------------------------------------------------------------+
-   | Name       | Category / Name / Description                                                    |
-   +============+==================================================================================+
-   | autoconf   | Devel \| autoconf: Wrapper scripts for autoconf commands                         |
-   +------------+----------------------------------------------------------------------------------+
-   | automake   | Devel \| automake: Wrapper scripts for automake and aclocal                      |
-   +------------+----------------------------------------------------------------------------------+
-   | ccache     | Devel \| ccache: A C compiler cache for improving recompilation                  |
-   +------------+----------------------------------------------------------------------------------+
-   | g++        | Devel \| gcc-g++ GNU Compiler Collection (C++)                                   |
-   +------------+----------------------------------------------------------------------------------+
-   | git        | Devel \| git: Distributed version control system                                 |
-   +------------+----------------------------------------------------------------------------------+
-   | libtool    | Devel \| libtool: Generic library support script                                 |
-   +------------+----------------------------------------------------------------------------------+
-   | make       | Devel \| make: The GNU version of the 'make' utility                             |
-   +------------+----------------------------------------------------------------------------------+
-   | gawk       | Interpreters \| gawk: GNU awk, a pattern scanning and processing language        |
-   +------------+----------------------------------------------------------------------------------+
-   | libexpat   | Libs \| libexpat-devel: Expat XML parswer library (development files)            |
-   +------------+----------------------------------------------------------------------------------+
-   | procps     | System \| procps: System and process monitoring utilities (required for pkill)   |
-   +------------+----------------------------------------------------------------------------------+
+   +----------------+----------------------------------------------------------------------------------+
+   | Name           | Category / Name / Description                                                    |
+   +================+==================================================================================+
+   | autoconf       | Devel \| autoconf: Wrapper scripts for autoconf commands                         |
+   +----------------+----------------------------------------------------------------------------------+
+   | automake       | Devel \| automake: Wrapper scripts for automake and aclocal                      |
+   +----------------+----------------------------------------------------------------------------------+
+   | ccache         | Devel \| ccache: A C compiler cache for improving recompilation                  |
+   +----------------+----------------------------------------------------------------------------------+
+   | g++            | Devel \| gcc-g++ GNU Compiler Collection (C++)                                   |
+   +----------------+----------------------------------------------------------------------------------+
+   | git            | Devel \| git: Distributed version control system                                 |
+   +----------------+----------------------------------------------------------------------------------+
+   | libtool        | Devel \| libtool: Generic library support script                                 |
+   +----------------+----------------------------------------------------------------------------------+
+   | make           | Devel \| make: The GNU version of the 'make' utility                             |
+   +----------------+----------------------------------------------------------------------------------+
+   | gawk           | Interpreters \| gawk: GNU awk, a pattern scanning and processing language        |
+   +----------------+----------------------------------------------------------------------------------+
+   | libexpat       | Libs \| libexpat-devel: Expat XML parser library (development files)             |
+   +----------------+----------------------------------------------------------------------------------+
+   | libxml2-devel  | Libs \| libxml2-devel: Gnome XML library (development)                           |
+   +----------------+----------------------------------------------------------------------------------+
+   | libxslt-devel  | Libs \| libxslt-devel: XML template library (development files)                  |
+   +----------------+----------------------------------------------------------------------------------+
+   | python2-devel  | Python \| python2-devel: Python2 language interpreter (python3 does not work yet)|
+   +----------------+----------------------------------------------------------------------------------+
+   | procps         | System \| procps-ng: System and process monitoring utilities (required for pkill)|
+   +----------------+----------------------------------------------------------------------------------+
+
+#. If you want to compile the firmware as well then you should also install these packages:
+
+   +----------------+----------------------------------------------------------------------------------+
+   | Name           | Category / Name / Description                                                    |
+   +================+==================================================================================+
+   | patch          | Devel \| patch: Applies diff files                                               |
+   +----------------+----------------------------------------------------------------------------------+
+   | cmake          | Devel \| cmake: Cross-platform makefile generation system                        |
+   +----------------+----------------------------------------------------------------------------------+
+   | flex           | Devel \| flex: A fast lexical analizer generator                                 |
+   +----------------+----------------------------------------------------------------------------------+
+   | bison          | Devel \| bison: GNU yacc-compatible parser generator                             |
+   +----------------+----------------------------------------------------------------------------------+
+   | zip            | Devel \| zip: Info-ZIP compression utility                                       |
+   +----------------+----------------------------------------------------------------------------------+
+   | unzip          | Devel \| unzip: Info-ZIP decompression utility                                   |
+   +----------------+----------------------------------------------------------------------------------+
+   | python2-pip    | Python \| python2-pip: Python package instalation tool                           |
+   +----------------+----------------------------------------------------------------------------------+
 
 #. When all the packages are selected, click through the rest of the
    prompts and accept all other default options (including
    the additional dependencies).
 #. Select **Finish** to start downloading the files.
+
+#. If you want to compile the firmware as well then you also need to issue these commands on the cygwin prompt:
+
+   ::
+
+       pip2 install argparse
+       pip2 install empy
 
 Set up directories/paths in Cygwin
 ----------------------------------
@@ -116,19 +149,32 @@ helpful to set up the path to the **Tools/autotest** directory.
 
 #. Navigate the file system to the home directory and open the
    **.bashrc** files (e.g. **C:\\cygwin\\home\\user_name\\.bashrc**.
-#. Add the following line to the end of **.bashrc**
+#. Add the path to your Ardupilot source to cygwin by adding the following line to the end of **.bashrc**. Note, that your source may not be in $HOME but in some other fixed path that starts with /cygdrive/c/Users/ 
 
    ::
 
        export PATH=$PATH:$HOME/ardupilot/Tools/autotest
+       
+       
 
 The file will be loaded next time you open the *Cygwin terminal*.
 
 .. tip::
 
-   Cygwin will not be able to find **sim_vehicle.sh** if you omit
+   Cygwin will not be able to find **sim_vehicle.py** if you omit
    this step. This will be reported as a "command not found" error when you
-   try and build: ``sim_vehicle.sh -j4 --map``\ 
+   try and build: ``sim_vehicle.py --map``
+
+Install required Python packages
+--------------------------------
+
+::
+
+   python -m ensurepip --user
+   python -m pip install --user future
+   python -m pip install --user lxml
+   python -m pip install --user uavcan
+
 
 Download and make ArduPilot
 ---------------------------
@@ -138,6 +184,11 @@ Open (reopen) *Cygwin Terminal* and clone the Github `ArduPilot repository: <htt
 ::
 
     git clone git://github.com/ArduPilot/ardupilot.git
+    cd ardupilot
+    git submodule update --init --recursive
+    
+If you have an existing clone of the ArduPilot repository, navigate to it in the terminal using "cd /cygdrive/drive/path" 
+   ie "cd /cygdrive/c/Users/James/Documents/GitHub/ardupilot" (substitute your own path).
 
 In the terminal navigate to the *ArduCopter* directory and run **make**
 as shown:
@@ -154,35 +205,6 @@ The platform that is built depends on the directory where you run
 
    An additional component is required before you can build Plane -
    see next step!
-
-JSBSim (Plane only)
--------------------
-
-If you want to fly the fixed wing (Plane) simulator then you will need
-to use the JSBSim flight simulator. JSBSim is a sophisticated flight
-simulator that is used as the core flight dynamics system for several
-well known flight simulation systems. The reason we use JSBSim is that
-it provides a way to get extremely high frame rate simulation, which is
-essential for the register level sensor emulation that we use in the
-SITL build.
-
-Open the *Cygwin Terminal*, navigate to your home directory, and enter:
-
-::
-
-    git clone git://github.com/tridge/jsbsim.git
-    cd jsbsim
-    ./autogen.sh
-    make
-    cp src/JSBSim.exe /usr/local/bin
-
-Now you can navigate to the ArduPlane directory and build Plane in the
-same way as described for Copter in the next section (:ref:`Running SITL and MAVProxy <sitl-native-on-windows_running_sitl_andmavproxy>`):
-
-::
-
-    cd ~/ardupilot/ArduPlane
-    sim_vehicle.sh -j4 --map
 
 FlightGear 3D View (Optional)
 -----------------------------
@@ -231,7 +253,7 @@ The main steps are:
 
    ::
 
-       sim_vehicle.sh -j4 -L KSFO 
+       sim_vehicle.py -L KSFO
 
    .. note::
 
@@ -262,23 +284,27 @@ Windows not setting paths correctly. For more information see `this issue <https
 Running SITL and MAVProxy
 =========================
 
+   .. tip::
+
+      Use batch files to simplify the running of SITL down to a single double-click. See `here <https://github.com/ArduPilot/ardupilot/tree/master/Tools/autotest/win_sitl>`__ for some examples.
+      
 *MAVProxy* is commonly used by developers to communicate with SITL. To
 build and start SITL for a 4-core CPU and then launch a *MAVProxy map*:
 
 #. Navigate to the target vehicle directory (in this case Copter) in the
-   *Cygwin Terminal* and call ``sim_vehicle.sh`` to start SITL:
+   *Cygwin Terminal* and call ``sim_vehicle.py`` to start SITL:
 
    ::
 
        cd ~/ardupilot/ArduCopter
-       sim_vehicle.sh -j4 --map
+       sim_vehicle.py --map --console
 
    If you get a windows security alert for the the firewall, allow the
    connection.
 
    .. tip::
 
-      `sim_vehicle.sh <https://github.com/ArduPilot/ardupilot/blob/master/Tools/autotest/sim_vehicle.sh>`__
+      `sim_vehicle.py <https://github.com/ArduPilot/ardupilot/blob/master/Tools/autotest/sim_vehicle.py>`__
       has many useful build options, ranging from setting the simulation
       speed through to choosing the initial vehicle location. These can be
       listed by calling it with the ``-h`` flag (and some are demonstrated
@@ -304,7 +330,7 @@ build and start SITL for a 4-core CPU and then launch a *MAVProxy map*:
 
    ::
 
-       param load ..\Tools\autotest\copter_params.parm
+       param load ..\Tools\autotest\default_params\copter.parm
 
 #. You can send commands to SITL from the command prompt and observe the
    results on the map.
@@ -491,7 +517,7 @@ SITL and MAVProxy can do a whole lot more than shown here, including
 manually guiding the vehicle, and creating and running missions. To find
 out more:
 
--  Read the `MAVProxy documentation <http://tridge.github.io/MAVProxy/>`__.
+-  Read the `MAVProxy documentation <http://ardupilot.github.io/MAVProxy/>`__.
 -  See :ref:`Using SITL for ArduPilot Testing <using-sitl-for-ardupilot-testing>` for guidance on flying
    and testing with SITL.
 

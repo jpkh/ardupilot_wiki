@@ -12,6 +12,7 @@ value to users with old hardware.
 .. toctree::
     :maxdepth: 1
 
+    NAVIO+ Overview <common-navio-overview>
     APM 2.x <common-apm25-and-26-overview>
     PX4FMU <common-px4fmu-overview>
     Open Camera Control Board <common-camera-control-board>
@@ -28,6 +29,7 @@ value to users with old hardware.
     Traditional Helicopter Simulator – TradHeliHIL <tradhelihil>
     Archived: Installing the PX4FMU on a QuadCopter <px4fmu-only-wiring>
     GPS Failsafe <archived-gps-failsafe>
+    traditional-helicopter-archived-tuning
 [/site]
 
 [site wiki="dev"]
@@ -35,6 +37,10 @@ value to users with old hardware.
     :maxdepth: 1
 
     Building ArduPilot for APM2.x with Eclipse on Windows <building-apm2-with-eclipse-on-windows>
+    Loading the code onto APM2.x <load-the-code-onto-apm2x>
+    Advanced Configuration Settings <advanced-configuration-settings>
+    Updating the APM2.x BootLoader <updating-the-apm2-x-bootloade>
+    Mission Planner Terminal <mission-planner-terminal>
 [/site]
 
 

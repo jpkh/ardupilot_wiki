@@ -14,7 +14,7 @@ location of the vehicle while "Do" commands (i.e. "Do-Set-Servo" and
 vehicle's position.  During a mission at most one "Navigation" command
 and one "Do" command can be running at one time.  The "Do" commands will
 be run in order as soon as the preceeding navigation command before them
-starts.  For more information on setting up missions please refer to the
+completes.  For more information on setting up missions please refer to the
 :ref:`Planning a Mission with Waypoints and Events <common-planning-a-mission-with-waypoints-and-events>`
 page.
 
@@ -96,7 +96,7 @@ above shows some characteristics of the spline
    resolve in an upcoming release.
 
 Loiter_Time
-~~~~~~~~~~~~
+~~~~~~~~~~~
 
 .. image:: ../../../images/MissionList_LoiterTime.png
     :target: ../_images/MissionList_LoiterTime.png
@@ -114,7 +114,7 @@ will hold at the current location.
 will hold at the current altitude.
 
 Loiter_Turns
-~~~~~~~~~~~~~
+~~~~~~~~~~~~
 
 .. image:: ../../../images/MissionList_LoiterTurns.png
     :target: ../_images/MissionList_LoiterTurns.png
@@ -136,7 +136,7 @@ will circle around the current location.
 will circle at the current altitude.
 
 Loiter_Unlimited
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 .. image:: ../../../images/MissionList_LoiterUnlimited.png
     :target: ../_images/MissionList_LoiterUnlimited.png
@@ -176,6 +176,37 @@ provided.  This is the mission equivalent of the :ref:`LAND flight mode <land-mo
 **Lat, Lon** - the latitude and longitude targets. If left as zero it
 will land at the current location.
 
+Delay
+~~~~~
+
+.. image:: ../../../images/MissionList_NavDelay.png
+    :target: ../_images/MissionList_NavDelay.png
+
+Support for the Delay command was added in Copter-3.4.
+
+Vehicle will remain at it's current location until the specified number of seconds has passed or the absolute time is reached.
+The first column ("Seconds") holds the number of seconds to delay.  Set to -1 if this field should be ignored.
+The "hour UTC", "minute UTC" and "second UTC" fields can be used to specify an absolute time (`UTC <https://en.wikipedia.org/wiki/Coordinated_Universal_Time>`__).  The example above will cause the vehicle to take-off at 1:30pm UTC.  Note that the hour and/or minute field can also be ignored by setting them to -1.
+
+This is a video made during the development of this feature.  Note in the video CONDITION_DELAY command is used but in it's final version this DELAY command should be used.
+
+..  youtube:: 9VK3yjIyCSo
+    :width: 100%
+
+Package Place
+~~~~~~~~~~~~~
+
+.. image:: ../../../images/MissionList_packageplace.png
+    :target: ../_images/MissionList_packageplace.png
+
+Support for Package Place was added in Copter-3.5.
+
+Vehicle flies to the specified location and descends until it senses (using motor output) that the package has reached the ground.  The gripper is then released to unload the package.
+The first column ("Max Desc") hold the maximum descent (in meters) that the vehicle should descend.  If the package has still not reached the ground despite this descent, the package will not be released and the vehicle will advance to the next mission command.
+
+..  youtube:: m4GK4ALqluc
+    :width: 100%
+
 .. _mission-command-list_do-set-roi:
 
 Do-Set-ROI
@@ -206,7 +237,7 @@ all zero for Lat, Lon and Alt.
 
 ..  youtube:: W8NCFHrEjfU
     :width: 100%
-
+    
 Condition-Delay
 ~~~~~~~~~~~~~~~
 
@@ -359,7 +390,7 @@ of zero will stop the camera shutter from being triggered**
 Do-Set-Relay
 ~~~~~~~~~~~~
 
-.. image:: ../images/MissionList_DoSetRelay.png
+.. image:: ../../../images/MissionList_DoSetRelay.png
     :target: ../_images/MissionList_DoSetRelay.png
 
 Set a :ref:`Relay <common-relay>` pin's voltage high or low.  The
@@ -441,3 +472,12 @@ Do-Mount-Control
 From AC3.3 This command allows you to specify a roll, pitch and yaw
 angle which will be sent to the :ref:`camera gimbal <common-cameras-and-gimbals>`. This can be used to point the
 camera in specific directions at various times in the mission.
+
+Do-Gripper
+~~~~~~~~~~
+
+.. image:: ../../../images/MissionList_DoGripper.png
+    :target: ../_images/MissionList_DoGripper.png
+
+This command allows opening and closing a :ref:`servo gripper <common-gripper-servo>` or :ref:`EPM gripper <common-cameras-and-gimbals>`.
+Set the "drop/grab" column to 0 to close the gripper, 1 to open the gripper.  The first column, "Gripper No" is ignored because we currently only support a single gripper per vehicle.

@@ -13,11 +13,7 @@ Overview
 ========
 
 When RTL mode is selected, the copter will return to the home location.
-The copter will first rise to
-:ref:`RTL_ALT <RTL_ALT>`
-before returning home or maintain the current altitude if the current
-altitude is higher than ``RTL_ALT``.  The default value for ``RTL_ALT``
-is 15m.
+The copter will first rise to :ref:`RTL_ALT <RTL_ALT>` before returning home or maintain the current altitude if the current altitude is higher than :ref:`RTL_ALT <RTL_ALT>`.  The default value for :ref:`RTL_ALT <RTL_ALT>` is 15m.
 
 .. image:: ../images/RTL.jpg
     :target: ../_images/RTL.jpg
@@ -88,6 +84,18 @@ Options (User Adjustable Parameters)
    The vehicle will climb at least this many meters at the first stage
    of the RTL.  By default this value is zero.  (only Copter-3.3 and
    above)
+
+-  :ref:`RTL_SPEED <RTL_SPEED>`:
+   The horizontal speed (in cm/s) at which the vehicle will return to
+   home.  By default this value is zero meaning it will use
+   :ref:`WPNAV_SPEED <WPNAV_SPEED>`. (only Copter-3.4 and higher)
+
+-  :ref:`RTL_CONE_SLOPE <RTL_CONE_SLOPE>`:
+   Defines the slope of an inverted cone above home which is used
+   to limit the amount the vehicle climbs when RTL-ing from close
+   to home. Low values lead to a wide cone meaning the vehicle
+   will climb less, High values will lead to the vehicle climbing more.
+   (supported in Copter-3.4 and higher)
 
 Notes
 =====

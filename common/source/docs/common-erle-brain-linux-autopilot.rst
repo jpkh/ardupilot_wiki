@@ -120,10 +120,12 @@ on Erle-Brain 2:
 ::
 
     $ git clone https://github.com/erlerobot/ardupilot
+    $ cd ardupilot
+    $ git submodule update --init --recursive
 
 ::
 
-    $ cd ardupilot/ArduCopter
+    $ cd ArduCopter
 
 ::
 
@@ -245,10 +247,12 @@ on Erle-Brain:
 ::
 
     $ git clone https://github.com/erlerobot/ardupilot
+    $ cd ardupilot
+    $ git submodule update --init --recursive
 
 ::
 
-    $ cd ardupilot/ArduCopter
+    $ cd ArduCopter
 
 ::
 
